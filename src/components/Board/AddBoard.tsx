@@ -2,7 +2,7 @@ import { Formik, Form, FieldArray } from "formik";
 import * as Yup from "yup";
 import { SubtaskInput, TextInput } from "components/InputField";
 import { IBoard, IColumn } from "types";
-import { editBoard, appData, addBoard } from "redux/boardSlice";
+import { editBoard, appData , addBoard} from "redux/boardSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { checkDuplicatedBoard } from "utilis";
 import { useToast } from "@chakra-ui/react";
@@ -14,7 +14,7 @@ interface Props {
 function AddBoard({ handleClose, active }: Props) {
   const dispatch = useDispatch();
   const data = useSelector(appData);
-  const  board :IBoard[] = data.board;
+  const board: IBoard[] = data.board;
   const toast = useToast();
 
   const TaskSchema = Yup.object().shape({
@@ -93,12 +93,12 @@ function AddBoard({ handleClose, active }: Props) {
                           />
                         ))}
                       <button
-                       aria-label="Add Column"
+                        aria-label="Add Column"
                         className="bg-white mt-3 font-bold text-sm text-primary p-2 w-full rounded-full"
                         type="button"
                         onClick={() => {
                           arrayHelpers.push({
-                            id: Number(uuidv4()),
+                            id:uuidv4(),
                             name: "",
                             tasks: [],
                           });
@@ -122,7 +122,7 @@ function AddBoard({ handleClose, active }: Props) {
               </div>
 
               <button
-               aria-label="Board"
+                aria-label="Board"
                 className="bg-primary p-2 w-full text-sm rounded-full"
                 type="submit"
               >

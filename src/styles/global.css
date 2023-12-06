@@ -87,14 +87,18 @@
   }
 
   input,
-  button,
+
   textarea,
   select {
     font: inherit;
     background-color: transparent;
     @apply border-gray/20 border-[2px];
   }
-
+button{
+  cursor: pointer;
+  font: inherit;
+  background-color: transparent;
+}
 }
 ::-webkit-scrollbar {
   width: 8px;

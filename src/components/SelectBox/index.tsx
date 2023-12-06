@@ -17,7 +17,6 @@ export default function Index({ selectedColumn, setSelectedColumn, tasks }: Prop
   const data = useSelector(appData);
   const  active:IBoard  = data.active;
   const [isOpen, setOpen] = useState(false);
-
   const toggleDropdown = () => setOpen(!isOpen);
 
   const handleItemClick = (title: string) => {
@@ -32,7 +31,7 @@ export default function Index({ selectedColumn, setSelectedColumn, tasks }: Prop
       dispatch(deleteTask(tasks));
     }
   };
-
+console.log(active)
   return (
     <div className="dropdown">
       <div
@@ -45,9 +44,7 @@ export default function Index({ selectedColumn, setSelectedColumn, tasks }: Prop
           {" "}
           {selectedColumn
             ? selectedColumn
-            : active.columns.find((item: IColumn) =>
-                item.tasks.find((o, index) => index === 0)
-              )?.name}
+            : active.columns[0]?.name}
         </p>
         {isOpen ? (
           <BiChevronDown className={`icon ${isOpen && "open"}`} />

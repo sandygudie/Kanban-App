@@ -25,8 +25,8 @@ export default function Modal({
           <div
             className={`z-30 rounded-lg ${
               showDowndrop
-                ? " w-72 p-2 top-[13rem]"
-                : `${!isMobile && 'w-[22rem]'} w-[28rem] p-6  top-[50%]` 
+                ? "w-72 p-2 top-[13rem]"
+                : `${!isMobile && 'w-[22rem]'} w-64 md:w-[28rem] py-6 md:p-6 top-[50%]` 
             }  fixed bg-white dark:bg-secondary 
             -translate-y-[50%] -translate-x-[50%] left-[50%] rounded-lg`}
           >

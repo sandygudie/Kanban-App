@@ -34,7 +34,7 @@ function App() {
               {isMobile && (
                 <Collapse in={showSidebar} animateOpacity>
                   <div
-                    className={`z-20 h-screen fixed w-72 ${
+                    className={`z-20 h-screen fixed w-64 ${
                       showSidebar ? "block" : "hidden"
                     }`}
                   >

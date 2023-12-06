@@ -28,22 +28,21 @@ export default function Header() {
   const editBoard = () => {
     setOpenBoard(true);
     setOpenMenu(false);
-
   };
-  const handleOpenMenu = ()=> setOpenMenu(false)
+  const handleOpenMenu = () => setOpenMenu(false);
   const isMobile = useMediaQuery({ query: "(min-width: 700px)" });
   return (
     <>
       <div className="bg-white dark:bg-secondary flex items-center fixed w-full border-b-[1px] border-gray/20">
         {isMobile ? (
           <div
-            className={`border-r-[1px] border-gray/20 p-6 min-w-[18rem] cursor-pointer`}
+            className={`border-r-[1px] border-gray/20 p-6 min-w-[16rem] cursor-pointer`}
           >
             <Icon type="kanban_logo" />
           </div>
         ) : (
-          <div className="border-gray/20 p-6 cursor-pointer">
-            <img src={logoMobile} alt="logo" className="w-10 h-10" />
+          <div className="border-gray/20 p-3 cursor-pointer">
+            <img src={logoMobile} alt="logo" className="w-8 h-8" />
           </div>
         )}
         <div
@@ -62,7 +61,7 @@ export default function Header() {
                   }}
                   className="flex items-center relative"
                 >
-                  <h3 className="font-bold text-xl">{active.name}</h3>{" "}
+                  <h3 className="font-bold text-sm  md:text-xl">{active.name}</h3>{" "}
                   <span>
                     <FiChevronDown className="inline vertical-bottom" />
                   </span>
@@ -73,13 +72,13 @@ export default function Header() {
                   aria-label="Add Task"
                   onClick={() => setIsOpen(true)}
                   className={`rounded-full bg-primary text-sm font-bold text-white ${
-                    !isMobile ? "w-[40px]" : "w-32"
-                  } h-[40px]`}
+                    !isMobile ? "w-[30px] h-[30px]" : "w-32 h-[40px]"
+                  } `}
                 >
                   {!isMobile ? (
                     <IoIosAdd className="inline-flex" />
                   ) : (
-                    <span className="py-8"> + Add Task</span>
+                    <span className="flex gap-x-1 justify-center items-center"> <span><IoIosAdd className="font-bold text-2xl"/></span> Add Task</span>
                   )}
                 </button>
                 <div>

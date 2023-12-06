@@ -115,7 +115,7 @@ export default function Index() {
             </div>
           </DragDropContext>
         ) : (
-          <div
+          <button
             onClick={() => {
               setOpenBoard(true);
             }}
@@ -123,7 +123,7 @@ export default function Index() {
       fixed -translate-y-[50%] -translate-x-[50%] top-[50%] left-[50%]"
           >
             + Create New Board
-          </div>
+          </button>
         )}
       </div>
 

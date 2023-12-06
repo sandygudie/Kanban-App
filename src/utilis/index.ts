@@ -1,6 +1,6 @@
-import data from "data";
+// import data from "data";
 import { IBoard, ITask } from "types";
-
+const data: any[] =[]
 export const loadState = () => {
   const initialState = {
     board: data,
