@@ -134,7 +134,7 @@ export default function Index() {
               </div>
 
               <div className="md:flex my-12 items-start justify-center gap-8">
-                <div className="">
+                <div>
                   <h1 className="my-4 text-xl md:text-2xl font-semibold">
                     Handle Multiple Projects
                   </h1>
