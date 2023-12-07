@@ -21,6 +21,7 @@ export default function Header() {
   const [isOpenMenu, setOpenMenu] = useState(false);
   const [isDeleteBoard, setDeleteBoard] = useState(false);
   const [showDowndrop, setShowDropDown] = useState(false);
+  const [addBoardMobile, setAddBoardMobile] = useState(false);
 
   const data = useSelector(appData);
   const active: IBoard = data.active;
@@ -30,13 +31,15 @@ export default function Header() {
     setOpenMenu(false);
   };
   const handleOpenMenu = () => setOpenMenu(false);
+  const handleaddBoardMobile = () => setAddBoardMobile(true);
   const isMobile = useMediaQuery({ query: "(min-width: 700px)" });
+  console.log(addBoardMobile);
   return (
     <>
       <div className="bg-white dark:bg-secondary flex items-center fixed w-full border-b-[1px] border-gray/20">
         {isMobile ? (
           <div
-            className={`border-r-[1px] border-gray/20 p-6 min-w-[16rem] cursor-pointer`}
+            className={`border-r-[1px] border-gray/20 p-6 min-w-[15rem] cursor-pointer`}
           >
             <Icon type="kanban_logo" />
           </div>
@@ -46,45 +49,51 @@ export default function Header() {
           </div>
         )}
         <div
-          className={`flex items-center justify-between w-full ${
-            isMobile ? "px-4" : "pr-4"
-          }`}
+          className={`flex items-center justify-between w-full ${isMobile ? "px-4" : "pr-4"
+            }`}
         >
           {active ? (
             <>
               {isMobile ? (
                 <h3 className="font-bold text-xl">{active.name}</h3>
               ) : (
-                <div
+                <button
                   onClick={() => {
                     setShowDropDown(!showDowndrop);
                   }}
                   className="flex items-center relative"
                 >
-                  <h3 className="font-bold text-sm  md:text-xl">{active.name}</h3>{" "}
+                  <h3 className="font-bold text-sm  md:text-xl">
+                    {active.name}
+                  </h3>{" "}
                   <span>
                     <FiChevronDown className="inline vertical-bottom" />
                   </span>
-                </div>
+                </button>
               )}
               <div className="flex items-center">
                 <button
                   aria-label="Add Task"
                   onClick={() => setIsOpen(true)}
-                  className={`rounded-full bg-primary text-sm font-bold text-white ${
-                    !isMobile ? "w-[30px] h-[30px]" : "w-32 h-[40px]"
-                  } `}
+                  className={`hover:bg-primary/40 rounded-full bg-primary text-sm font-bold text-white ${!isMobile ? "w-[30px] h-[30px]" : "px-6 py-2"
+                    } `}
                 >
                   {!isMobile ? (
-                    <IoIosAdd className="inline-flex" />
+                    <IoIosAdd className="inline-flex text-2xl" />
                   ) : (
-                    <span className="flex gap-x-1 justify-center items-center"> <span><IoIosAdd className="font-bold text-2xl"/></span> Add Task</span>
+                    <span className="flex justify-center items-center">
+                      {" "}
+                      <span>
+                        <IoIosAdd className="font-bold text-2xl" />
+                      </span>{" "}
+                      Add Task
+                    </span>
                   )}
                 </button>
                 <div>
                   <BiDotsVerticalRounded
                     onClick={() => setOpenMenu(!isOpenMenu)}
-                    className="text-3xl cursor-pointer"
+                    className="text-3xl hover:text-primary cursor-pointer"
                   />
                 </div>
               </div>
@@ -136,9 +145,15 @@ export default function Header() {
           <Modal
             showDowndrop={showDowndrop}
             open={showDowndrop}
-            handleClose={() => setShowDropDown(false)}
+            handleClose={() => {
+              setShowDropDown(false), setAddBoardMobile(false);
+            }}
           >
-            <SideBar handleClose={() => setShowDropDown(false)} />
+            {addBoardMobile ? (
+              <AddBoard handleClose={() => setIsOpen(false)} />
+            ) : (
+              <SideBar handleaddBoardMobile={handleaddBoardMobile} />
+            )}
           </Modal>
         </div>
       )}

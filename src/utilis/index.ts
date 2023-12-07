@@ -1,6 +1,6 @@
 // import data from "data";
 import { IBoard, ITask } from "types";
-const data: any[] =[]
+const data: any[] = [];
 export const loadState = () => {
   const initialState = {
     board: data,
@@ -22,11 +22,11 @@ export const saveState = (state: any) => {
     const serializesState = JSON.stringify(state);
     localStorage.setItem("boarddata", serializesState);
   } catch (err) {
-    return err
+    return err;
   }
 };
 
-export const  checkDuplicatedBoard = (values: IBoard, board: IBoard[]) => {
+export const checkDuplicatedBoard = (values: IBoard, board: IBoard[]) => {
   return board.some((el: IBoard) => el.name === values.name);
 };
 

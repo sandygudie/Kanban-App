@@ -16,11 +16,11 @@ export default function Index() {
           setTheme("dark");
         }
       }}
-      className="rounded-full cursor-pointer bg-primary p-1 w-14"
+      className="rounded-full cursor-pointer bg-primary p-1 w-12"
     >
       <div
         className={`rounded-full bg-white p-2 w-[20px] h-[20px] transition ease-in-out duration-[0.4s]
-      ${theme === "dark" ? "translate-x-7": ""}`}
+      ${theme === "dark" ? "translate-x-5": ""}`}
       ></div>
     </div>
   );

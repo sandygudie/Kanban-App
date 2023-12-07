@@ -72,7 +72,7 @@ export const SubtaskInput = ({
         />
        <button>
        <MdClose
-          className="text-lg font-bold"
+          className="text-lg hover:text-primary font-bold"
           onClick={() => arrayHelpers.remove(index)}
         />
        </button>

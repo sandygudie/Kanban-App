@@ -142,7 +142,7 @@ export default function AddTask({ handleClose, tasks }: Props) {
                         ))}
                       <button
                         aria-label="Add Subtasks"
-                        className="bg-white mt-2 font-bold text-sm text-primary px-2 py-3 w-full rounded-full"
+                        className="bg-white mt-2 font-bold text-sm text-primary px-2 py-3 w-full hover:bg-primary/20 hover:text-white rounded-full"
                         type="button"
                         onClick={() => {
                           arrayHelpers.push({
@@ -180,7 +180,7 @@ export default function AddTask({ handleClose, tasks }: Props) {
               <div className="my-8">
                 <button
                   aria-label="Create Task"
-                  className="bg-primary px-2 py-3 w-full text-sm rounded-full"
+                  className="bg-primary px-2 py-3 w-full font-bold text-sm hover:bg-primary/40 rounded-full"
                   type="submit"
                 >
                   {tasks ? "Update" : "Create"} Task

@@ -54,7 +54,7 @@ function AddBoard({ handleClose, active }: Props) {
       <h1 className="font-bold pb-2 px-4">
         {active ? "Edit" : "Add New"} Board
       </h1>
-      <div className="overflow-y-auto  px-4">
+      <div className="overflow-y-auto px-4">
         <Formik
           initialValues={
             active
@@ -95,7 +95,7 @@ function AddBoard({ handleClose, active }: Props) {
                         ))}
                       <button
                         aria-label="Add Column"
-                        className="bg-white mt-3 font-bold text-sm text-primary px-2 py-3 w-full rounded-full"
+                        className="bg-white mt-3 hover:bg-primary/20 hover:text-white font-bold text-sm text-primary px-2 py-3 w-full rounded-full"
                         type="button"
                         onClick={() => {
                           arrayHelpers.push({
@@ -125,7 +125,7 @@ function AddBoard({ handleClose, active }: Props) {
               <div className="my-8">
                 <button
                   aria-label="Board"
-                  className="bg-primary px-2 font-bold py-4 w-full text-sm rounded-full"
+                  className="bg-primary px-2 hover:bg-primary/40 font-bold py-4 w-full text-sm rounded-full"
                   type="submit"
                 >
                   {active ? "Update" : "Create"} Board

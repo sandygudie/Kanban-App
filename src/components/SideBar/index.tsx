@@ -4,18 +4,24 @@ import { BsMoonStarsFill } from "react-icons/bs";
 import Icon from "components/Icon";
 import ToggleBtn from "components/ToggleBtn";
 import { IBoard } from "types";
-import AddBoard from "components/Board/AddBoard";
-import Modal from "components/Modal";
+
 import { useMediaQuery } from "react-responsive";
 import { useDispatch, useSelector } from "react-redux";
 import { appData, activeItem } from "redux/boardSlice";
 import { IoIosAdd } from "react-icons/io";
+import Modal from "components/Modal";
+import AddBoard from "components/Board/AddBoard";
 interface Props {
   setShowSidebar?: Dispatch<SetStateAction<boolean>>;
   handleClose?: () => void;
+  handleaddBoardMobile?: () => void;
 }
 
-export default function Index({ setShowSidebar, handleClose }: Props) {
+export default function Index({
+  handleaddBoardMobile,
+  setShowSidebar,
+  handleClose,
+}: Props) {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const dispatch = useDispatch();
   const data = useSelector(appData);
@@ -62,11 +68,11 @@ export default function Index({ setShowSidebar, handleClose }: Props) {
               </>
             )}
 
-            <div
+            <button
               onClick={() => {
-                setIsOpen(true);
+                handleaddBoardMobile ? handleaddBoardMobile() : setIsOpen(true);
               }}
-              className="pl-6 my-8 md:my-4 font-bold cursor-pointer text-primary hover:opacity-20"
+              className="pl-6 my-8 md:my-4 font-bold cursor-pointer text-primary hover:text-primary/60"
             >
               <div className="flex items-center ">
                 {" "}
@@ -76,7 +82,7 @@ export default function Index({ setShowSidebar, handleClose }: Props) {
                 </span>{" "}
                 <p> Create New Board</p>
               </div>
-            </div>
+            </button>
           </div>
         </div>
 

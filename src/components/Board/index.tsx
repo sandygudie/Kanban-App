@@ -20,7 +20,6 @@ export default function Index() {
   const [isOpenBoard, setOpenBoard] = useState(false);
   const [isEditBoard, setEditBoard] = useState(false);
 
-
   const onDragEnd = (result: any) => {
     if (!result.destination) {
       return;
@@ -59,7 +58,7 @@ export default function Index() {
                     {" "}
                     <BsCircleFill
                       style={{
-                        fill: 
+                        fill:
                           index === 0
                             ? "hsla(193, 75%, 59%,1)"
                             : index === 1
@@ -110,7 +109,10 @@ export default function Index() {
                 onClick={() => setEditBoard(true)}
                 className="h-full dark:bg-secondary/20 cursor-pointer flex flex-col justify-center text-center rounded-lg"
               >
-                <p className="text-xl text-gray font-bold"> + New Column</p>
+                <p className="text-xl hover:text-primary/70 text-primary font-bold">
+                  {" "}
+                  + New Column
+                </p>
               </div>
             </div>
           </DragDropContext>
@@ -119,8 +121,8 @@ export default function Index() {
             onClick={() => {
               setOpenBoard(true);
             }}
-            className="font-bold text-xl cursor-pointer text-primary hover:opacity-20
-      fixed -translate-y-[50%] top-[50%] left-[50%]"
+            className="font-bold text-xl cursor-pointer bg-primary text-primary hover:bg-primary-20
+      fixed md:-translate-y-[50%] top-[50%] left-[50%]"
           >
             + Create New Board
           </button>
