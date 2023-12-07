@@ -94,7 +94,7 @@ export default function TaskDetails({
             <p className="text-sm text-gray my-6">
               {tasks.description ? tasks.description : "No description"}
             </p>
-            <p className=" text-sm font-bold mb-2 ">{`Substasks (${filtered.length} of ${tasks.subtasks.length})`}</p>
+            <p className=" text-sm font-bold mb-2 ">{`Subtasks (${filtered.length} of ${tasks.subtasks.length})`}</p>
             <div
               className={`overflow-y-auto px-4 ${
                 tasks.subtasks.length >= 4 && "h-[10rem]"
@@ -125,7 +125,7 @@ export default function TaskDetails({
             </div>
           </div>
           <div className="mt-6">
-            <p className="text-sm mb-1">Status</p>
+            <p className="text-sm font-bold mb-1">Column</p>
             <SelectBox
               selectedColumn={selectedColumn}
               handleClose={handleClose}

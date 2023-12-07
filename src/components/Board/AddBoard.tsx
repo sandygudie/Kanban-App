@@ -2,7 +2,7 @@ import { Formik, Form, FieldArray } from "formik";
 import * as Yup from "yup";
 import { SubtaskInput, TextInput } from "components/InputField";
 import { IBoard, IColumn } from "types";
-import { editBoard, appData , addBoard} from "redux/boardSlice";
+import { editBoard, appData, addBoard } from "redux/boardSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { checkDuplicatedBoard } from "utilis";
 import { useToast } from "@chakra-ui/react";
@@ -26,7 +26,7 @@ function AddBoard({ handleClose, active }: Props) {
           tasks: Yup.array(),
         })
       )
-      .min(1, "Add an item."),
+      .min(1, "Add a column."),
   });
   const addBoardHandler = (values: IBoard) => {
     const foundDuplicate = checkDuplicatedBoard(values, board);
@@ -34,7 +34,7 @@ function AddBoard({ handleClose, active }: Props) {
       dispatch(addBoard(values));
     } else {
       toast({
-        title: "Item already exist.",
+        title: "Board already exist.",
         position: "top",
         status: "error",
         duration: 2000,
@@ -73,7 +73,7 @@ function AddBoard({ handleClose, active }: Props) {
                   label="Name"
                   name="name"
                   type="text"
-                  placeholder="e.g Development, Marketing"
+                  placeholder="E.g  Development, Marketing"
                 />
               </div>
               <div className="mb-6">
@@ -90,16 +90,16 @@ function AddBoard({ handleClose, active }: Props) {
                             index={index}
                             name={`columns.${index}.name`}
                             arrayHelpers={arrayHelpers}
-                            placeholder="e.g Todo, Progress"
+                            placeholder="E.g  Todo, Progress, Done"
                           />
                         ))}
                       <button
                         aria-label="Add Column"
-                        className="bg-white mt-3 font-bold text-sm text-primary p-2 w-full rounded-full"
+                        className="bg-white mt-3 font-bold text-sm text-primary px-2 py-3 w-full rounded-full"
                         type="button"
                         onClick={() => {
                           arrayHelpers.push({
-                            id:uuidv4(),
+                            id: uuidv4(),
                             name: "",
                             tasks: [],
                           });
@@ -122,13 +122,15 @@ function AddBoard({ handleClose, active }: Props) {
                 />
               </div>
 
-              <button
-                aria-label="Board"
-                className="bg-primary p-2 w-full text-sm rounded-full"
-                type="submit"
-              >
-                {active ? "Update" : "Create"} Board
-              </button>
+              <div className="my-8">
+                <button
+                  aria-label="Board"
+                  className="bg-primary px-2 font-bold py-4 w-full text-sm rounded-full"
+                  type="submit"
+                >
+                  {active ? "Update" : "Create"} Board
+                </button>
+              </div>
             </Form>
           )}
         </Formik>

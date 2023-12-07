@@ -35,9 +35,9 @@ export default function Index({
       dispatch(deleteTask(tasks));
     }
   };
-  console.log(active);
+
   return (
-    <div className="dropdown">
+    <div className="dropdown mt-2">
       <div
         className={`dropdown-header dark:bg-secondary-dark relative ${
           isOpen && "border-2 border-primary"

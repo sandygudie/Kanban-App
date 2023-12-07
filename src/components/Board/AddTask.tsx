@@ -26,9 +26,7 @@ export default function AddTask({ handleClose, tasks }: Props) {
       ? active.columns.find((item: IColumn) =>
           item.tasks.find((o) => o == tasks)
         )?.name
-      : active.columns.find((item: IColumn) =>
-          item.tasks.find((o, index) => index === 0)
-        )?.name
+      : active.columns[0]?.name
   );
 
   const TaskSchema = Yup.object().shape({
@@ -42,7 +40,7 @@ export default function AddTask({ handleClose, tasks }: Props) {
           isCompleted: Yup.boolean(),
         })
       )
-      .min(1, "Add an item."),
+      .min(1, "Add a substask."),
   });
 
   const addTaskHandler = (values: ITask) => {
@@ -53,7 +51,7 @@ export default function AddTask({ handleClose, tasks }: Props) {
       dispatch(addTask({ updatedTasks: values, position: 0 }));
     } else {
       toast({
-        title: "Item already exist.",
+        title: "Task already exist.",
         position: "top",
         status: "error",
         duration: 2000,
@@ -114,12 +112,12 @@ export default function AddTask({ handleClose, tasks }: Props) {
                   label="Title"
                   name="title"
                   type="text"
-                  placeholder="e.g Pending design task"
+                  placeholder="E.g Pending design task"
                 />
               </div>
               <div className="my-4">
                 <TextArea
-                  placeholder="e.g  The hero page design is not completed"
+                  placeholder="E.g  The hero page design is not completed"
                   name="description"
                   label="Description"
                 />
@@ -139,11 +137,12 @@ export default function AddTask({ handleClose, tasks }: Props) {
                             index={index}
                             name={`subtasks.${index}.title`}
                             arrayHelpers={arrayHelpers}
+                            placeholder="E.g  Add company logo"
                           />
                         ))}
                       <button
                         aria-label="Add Subtasks"
-                        className="bg-white mt-2 font-bold text-sm text-primary p-2 w-full rounded-full"
+                        className="bg-white mt-2 font-bold text-sm text-primary px-2 py-3 w-full rounded-full"
                         type="button"
                         onClick={() => {
                           arrayHelpers.push({
@@ -171,19 +170,22 @@ export default function AddTask({ handleClose, tasks }: Props) {
               </div>
 
               <div className="mb-6">
+                <label className="text-sm font-bold">Column</label>
                 <SelectBox
                   selectedColumn={selectedColumn}
                   setSelectedColumn={setSelectedColumn}
                 />
               </div>
 
-              <button
-                aria-label="Create Task"
-                className="bg-primary p-2 w-full text-sm rounded-full"
-                type="submit"
-              >
-                {tasks ? "Update" : "Create"} Task
-              </button>
+              <div className="my-8">
+                <button
+                  aria-label="Create Task"
+                  className="bg-primary px-2 py-3 w-full text-sm rounded-full"
+                  type="submit"
+                >
+                  {tasks ? "Update" : "Create"} Task
+                </button>
+              </div>
             </Form>
           )}
         </Formik>

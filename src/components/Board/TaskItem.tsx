@@ -36,7 +36,7 @@ export default function TaskItem({ tasks, filtered, index }: Props) {
               <p className="font-bold text-sm">{tasks.title} </p>
               <p className="pt-2 text-xs text-gray font-bold">
                 {" "}
-                {filtered.length} of {tasks.subtasks.length} substasks
+                {filtered.length} of {tasks.subtasks.length} subtasks
               </p>
             </div>
           );
