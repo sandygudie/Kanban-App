@@ -59,7 +59,7 @@ export default function Index() {
                     {" "}
                     <BsCircleFill
                       style={{
-                        fill:
+                        fill: 
                           index === 0
                             ? "hsla(193, 75%, 59%,1)"
                             : index === 1

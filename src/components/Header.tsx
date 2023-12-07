@@ -118,7 +118,7 @@ export default function Header() {
           handleOpenMenu={handleOpenMenu}
           items={[
             {
-              title: "Edit board",
+              title: "Edit Board",
               handler: editBoard,
             },
             {

@@ -12,10 +12,14 @@ interface Props {
   handleClose?: () => void;
 }
 
-export default function Index({ selectedColumn, setSelectedColumn, tasks }: Props) {
+export default function Index({
+  selectedColumn,
+  setSelectedColumn,
+  tasks,
+}: Props) {
   const dispatch = useDispatch();
   const data = useSelector(appData);
-  const  active:IBoard  = data.active;
+  const active: IBoard = data.active;
   const [isOpen, setOpen] = useState(false);
   const toggleDropdown = () => setOpen(!isOpen);
 
@@ -31,7 +35,7 @@ export default function Index({ selectedColumn, setSelectedColumn, tasks }: Prop
       dispatch(deleteTask(tasks));
     }
   };
-console.log(active)
+  console.log(active);
   return (
     <div className="dropdown">
       <div
@@ -42,9 +46,7 @@ console.log(active)
       >
         <p className="text-sm">
           {" "}
-          {selectedColumn
-            ? selectedColumn
-            : active.columns[0]?.name}
+          {selectedColumn ? selectedColumn : active.columns[0]?.name}
         </p>
         {isOpen ? (
           <BiChevronDown className={`icon ${isOpen && "open"}`} />

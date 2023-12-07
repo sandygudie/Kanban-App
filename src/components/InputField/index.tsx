@@ -27,7 +27,7 @@ export const TextInput = ({
       <Field
         {...field}
         placeholder={props.placeholder}
-        className="p-2 w-full rounded-md outline-none text-sm  placeholder:text-xs"
+        className="p-2 w-full rounded-md outline-none text-sm placeholder:text-xs"
       />
       {meta.touched || meta.error ? (
         <div className="text-error text-xs">{meta.error}</div>
@@ -44,7 +44,7 @@ export const TextArea = (props: LabelProps & FieldHookConfig<string>) => {
         {props.label}
       </label>
       <textarea
-        className="p-2 w-full rounded-md outline-none  text-sm h-20 placeholder:text-xs"
+        className="p-2 w-full rounded-md outline-none text-sm h-20 placeholder:text-xs"
         placeholder={props.placeholder}
         {...field}
       />
@@ -68,12 +68,14 @@ export const SubtaskInput = ({
         <Field
           {...field}
           placeholder={props.placeholder}
-          className="p-2 w-full text-sm rounded-md outline-none"
+          className="p-2 w-full text-sm placeholder:text-xs rounded-md outline-none"
         />
-        <MdClose
+       <button>
+       <MdClose
           className="text-lg font-bold"
           onClick={() => arrayHelpers.remove(index)}
         />
+       </button>
       </div>
       {meta.touched || meta.error ? (
         <div className="text-error text-xs">{meta.error}</div>

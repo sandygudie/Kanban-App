@@ -73,11 +73,11 @@ function AddBoard({ handleClose, active }: Props) {
                   label="Name"
                   name="name"
                   type="text"
-                  placeholder="e.g Take a coffee break"
+                  placeholder="e.g Development, Marketing"
                 />
               </div>
               <div className="mb-6">
-                <label className="text-sm font-bold">columns</label>
+                <label className="text-sm font-bold">Columns</label>
                 <FieldArray
                   name="columns"
                   render={(arrayHelpers) => (
@@ -90,6 +90,7 @@ function AddBoard({ handleClose, active }: Props) {
                             index={index}
                             name={`columns.${index}.name`}
                             arrayHelpers={arrayHelpers}
+                            placeholder="e.g Todo, Progress"
                           />
                         ))}
                       <button

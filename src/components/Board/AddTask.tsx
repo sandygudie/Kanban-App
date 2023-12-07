@@ -114,12 +114,12 @@ export default function AddTask({ handleClose, tasks }: Props) {
                   label="Title"
                   name="title"
                   type="text"
-                  placeholder="e.g Take a coffee break"
+                  placeholder="e.g Pending design task"
                 />
               </div>
               <div className="my-4">
                 <TextArea
-                  placeholder="e.g  It's always good to take a break"
+                  placeholder="e.g  The hero page design is not completed"
                   name="description"
                   label="Description"
                 />
