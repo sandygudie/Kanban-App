@@ -120,7 +120,7 @@ export default function Index() {
               setOpenBoard(true);
             }}
             className="font-bold text-xl cursor-pointer text-primary hover:opacity-20
-      fixed -translate-y-[50%] -translate-x-[50%] top-[50%] left-[50%]"
+      fixed -translate-y-[50%] top-[50%] left-[50%]"
           >
             + Create New Board
           </button>
