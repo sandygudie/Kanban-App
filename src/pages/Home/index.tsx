@@ -76,7 +76,8 @@ export default function Index() {
       <img
         src="./background.svg"
         className="object-cover h-full left-0 bottom-0 block fixed right-0 top-0 w-full"
-        alt=""
+        alt="background"
+        loading="eager"
       />
       {/* </div> */}
       <div className="h-full w-full relative z-20 text-black">
