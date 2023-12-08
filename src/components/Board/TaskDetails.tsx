@@ -124,7 +124,7 @@ export default function TaskDetails({
               })}
             </div>
           </div>
-          <div className="mt-6">
+          <div className="mt-6 pb-6">
             <p className="text-sm font-bold mb-1">Column</p>
             <SelectBox
               selectedColumn={selectedColumn}

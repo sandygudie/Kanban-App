@@ -40,7 +40,7 @@ export default function Index({
     <div className="dropdown mt-2">
       <div
         className={`dropdown-header dark:bg-secondary-dark relative ${
-          isOpen && "border-2 border-primary"
+          isOpen && "border-[1px] border-primary"
         }`}
         onClick={toggleDropdown}
       >

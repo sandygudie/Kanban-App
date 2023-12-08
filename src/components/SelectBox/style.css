@@ -1,6 +1,6 @@
 .dropdown-header {
   border-radius: 5px;
-  border: 2px solid hsla(216, 15%, 57%, 1);
+  border: 1px solid hsla(216, 15%, 57%, 1);
   padding: 8px 20px;
   cursor: pointer;
   display: flex;

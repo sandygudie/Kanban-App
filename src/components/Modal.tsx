@@ -27,10 +27,10 @@ export default function Modal({
               showDowndrop
                 ? "w-[17rem] p-2 top-[13rem]"
                 : `${
-                    !isMobile && "w-[22rem]"
-                  } w-64 md:w-[28rem] py-6 md:p-6 top-[50%]`
+                    !isMobile ?"w-[18rem] p-4":"w-[28rem] p-6"
+                  } top-[50%]`
             }  fixed bg-white dark:bg-secondary 
-            -translate-y-[50%] -translate-x-[50%] left-[50%] rounded-lg max-h-[24rem] md:max-h-[32rem] overflow-auto`}
+            -translate-y-[50%] -translate-x-[50%] left-[50%] rounded-lg max-h-[24rem] h-auto md:max-h-[32rem] overflow-auto`}
           >
             {children}
           </div>

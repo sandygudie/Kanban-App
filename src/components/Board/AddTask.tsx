@@ -79,7 +79,7 @@ export default function AddTask({ handleClose, tasks }: Props) {
   return (
     <div>
       <h1 className="font-bold pb-2 px-4">{tasks ? "Edit" : "Add New"} Task</h1>
-      <div className="overflow-y-auto h-[30rem] px-4">
+      <div className="overflow-y-auto h-[30rem] pl-0 pr-4 md:px-4">
         <Formik
           initialValues={
             tasks
@@ -142,7 +142,7 @@ export default function AddTask({ handleClose, tasks }: Props) {
                         ))}
                       <button
                         aria-label="Add Subtasks"
-                        className="bg-white mt-2 font-bold text-sm text-primary px-2 py-3 w-full hover:bg-primary/20 hover:text-white rounded-full"
+                        className="dark:bg-white bg-primary/50 mt-2 font-bold text-sm text-primary px-2 py-3 w-full rounded-full"
                         type="button"
                         onClick={() => {
                           arrayHelpers.push({
@@ -180,7 +180,7 @@ export default function AddTask({ handleClose, tasks }: Props) {
               <div className="my-8">
                 <button
                   aria-label="Create Task"
-                  className="bg-primary px-2 py-3 w-full font-bold text-sm hover:bg-primary/40 rounded-full"
+                  className="text-white hover:text-primary bg-primary px-2 py-3 w-full font-bold text-sm hover:bg-primary/50 dark:hover:text-white rounded-full"
                   type="submit"
                 >
                   {tasks ? "Update" : "Create"} Task

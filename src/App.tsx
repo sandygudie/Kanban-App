@@ -1,23 +1,10 @@
-import React, { useEffect } from "react";
+import React from "react";
 import Home from "pages/Home";
 import { Route, Routes } from "react-router-dom";
 import Dashboard from "pages/Dashboard";
 import LoadingSpinner from "components/LoadingSpinner";
 
 function App() {
-  useEffect(() => {
-    localStorage.setItem("theme", "dark");
-    if (
-      localStorage.theme === "dark" ||
-      (!("theme" in localStorage) &&
-        window.matchMedia("(prefers-color-scheme: dark)").matches)
-    ) {
-      document.documentElement.classList.add("dark");
-    } else {
-      document.documentElement.classList.remove("dark");
-    }
-  }, []);
-
   return (
     <React.Suspense
       fallback={

@@ -107,7 +107,7 @@ export default function Index() {
             <div className="mt-8 h-screen w-[250px] shrink-0">
               <div
                 onClick={() => setEditBoard(true)}
-                className="h-full dark:bg-secondary/20 cursor-pointer flex flex-col justify-center text-center rounded-lg"
+                className="h-full bg-primary/20 cursor-pointer flex flex-col justify-center text-center rounded-lg"
               >
                 <p className="text-xl hover:text-primary/70 text-primary font-bold">
                   {" "}
@@ -121,7 +121,7 @@ export default function Index() {
             onClick={() => {
               setOpenBoard(true);
             }}
-            className="font-bold text-xl cursor-pointer bg-primary text-primary hover:bg-primary-20
+            className="font-bold text-xl cursor-pointer text-primary hover:text-primary/40
       fixed md:-translate-y-[50%] top-[50%] left-[50%]"
           >
             + Create New Board

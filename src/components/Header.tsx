@@ -33,7 +33,7 @@ export default function Header() {
   const handleOpenMenu = () => setOpenMenu(false);
   const handleaddBoardMobile = () => setAddBoardMobile(true);
   const isMobile = useMediaQuery({ query: "(min-width: 700px)" });
-  console.log(addBoardMobile);
+
   return (
     <>
       <div className="bg-white dark:bg-secondary flex items-center fixed w-full border-b-[1px] border-gray/20">
@@ -63,7 +63,7 @@ export default function Header() {
                   }}
                   className="flex items-center relative"
                 >
-                  <h3 className="font-bold text-sm  md:text-xl">
+                  <h3 className="font-bold text-sm md:text-xl">
                     {active.name}
                   </h3>{" "}
                   <span>

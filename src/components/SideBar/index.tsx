@@ -29,7 +29,8 @@ export default function Index({
   const board: IBoard[] = data.board;
 
   const isMobile = useMediaQuery({ query: "(min-width: 700px)" });
-
+  const [theme, setTheme] = useState("");
+  const updateThemehandler = (theme: string) => setTheme(theme);
   return (
     <>
       <div
@@ -92,7 +93,7 @@ export default function Index({
       justify-center rounded-md"
           >
             <MdLightMode />
-            <ToggleBtn />
+            <ToggleBtn updateThemehandler={updateThemehandler} theme={theme} />
             <BsMoonStarsFill />
           </div>
           {isMobile && (
