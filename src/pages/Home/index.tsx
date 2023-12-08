@@ -63,17 +63,24 @@ export default function Index() {
   ];
   return (
     <div
-      className="h-screen overflow-auto"
-      style={{
-        background: `url("./background.svg")`,
-        backgroundRepeat: "no-repeat",
-        backgroundSize: "cover",
-        width: "100%",
-        backgroundPosition: "center",
-      }}
+      className=" h-screen overflow-auto relative w-full"
+      // style={{
+      //   backgroundImage: `url("./background.svg")`,
+      //   backgroundRepeat: "no-repeat",
+      //   backgroundSize: "cover",
+      //   width: "100%",
+      //   backgroundPosition: "center",
+      // }}
     >
-      <div className="h-screen text-black">
-        <header className="flex items-center justify-between px-4 md:px-16 py-4">
+      {/* <div className="h-screen fixed right-0 z-10 top-0 w-full"> */}
+      <img
+        src="./background.svg"
+        className="object-cover h-full left-0 bottom-0 block fixed right-0 top-0 w-full"
+        alt=""
+      />
+      {/* </div> */}
+      <div className="h-full w-full relative z-20 text-black">
+        <header className="flex items-center justify-between px-4 lg:px-16 py-4">
           <Link to="/">
             <Icon type="kanban_logo" />
           </Link>
@@ -98,7 +105,7 @@ export default function Index() {
           </Link>
         </header>
         <main>
-          <div className="px-3 md:px-0 md:w-3/6 mx-auto my-16 md:my-36 text-center">
+          <div className="px-3 lg:px-0 lg:w-3/6 mx-auto my-16 lg:my-36 text-center">
             <h1 className="font-bold text-[2rem] md:text-6xl">
               Effortlessly Manage your Projects.
             </h1>
