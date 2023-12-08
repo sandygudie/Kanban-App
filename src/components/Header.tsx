@@ -90,12 +90,12 @@ export default function Header() {
                     </span>
                   )}
                 </button>
-                <div>
+                <button>
                   <BiDotsVerticalRounded
                     onClick={() => setOpenMenu(!isOpenMenu)}
                     className="text-3xl hover:text-primary cursor-pointer"
                   />
-                </div>
+                </button>
               </div>
             </>
           ) : (

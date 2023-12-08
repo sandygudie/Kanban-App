@@ -65,12 +65,9 @@ export default function TaskDetails({
           <div className=" text-lg font-bold flex items-center justify-between">
             <p className=""> {tasks.title}</p>{" "}
             <div className="relative">
-              <p>
-                <FiMoreVertical
-                  onClick={() => setOpenMenu(!isOpenMenu)}
-                  className="text-3xl cursor-pointer"
-                />
-              </p>
+              <button className="text-3xl hover:text-primary">
+                <FiMoreVertical onClick={() => setOpenMenu(!isOpenMenu)} />
+              </button>
               {isOpenMenu && (
                 <Popup
                   items={[

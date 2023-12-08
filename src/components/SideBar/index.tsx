@@ -29,7 +29,8 @@ export default function Index({
   const board: IBoard[] = data.board;
 
   const isMobile = useMediaQuery({ query: "(min-width: 700px)" });
-  const [theme, setTheme] = useState("");
+  const currentTheme = localStorage.getItem("theme")!;
+  const [theme, setTheme] = useState(currentTheme ? currentTheme : "dark");
   const updateThemehandler = (theme: string) => setTheme(theme);
   return (
     <>
@@ -47,9 +48,9 @@ export default function Index({
               <>
                 {board.map((options: IBoard) => {
                   return (
-                    <div
+                    <button
                       key={options.id}
-                      className={`py-3 px-6 flex items-center gap-x-4 font-bold cursor-pointer ${`${
+                      className={`py-3 w-full px-6 flex items-center gap-x-4 font-bold cursor-pointer ${`${
                         active.id === options.id
                           ? "bg-primary rounded-r-full text-white"
                           : "hover:bg-primary/20 rounded-r-full"
@@ -63,7 +64,7 @@ export default function Index({
                     >
                       <Icon type="board" />
                       {options.name}
-                    </div>
+                    </button>
                   );
                 })}
               </>
@@ -87,14 +88,20 @@ export default function Index({
           </div>
         </div>
 
-        <div className="mx-auto w-4/5 mb-4">
+        <div className="mx-auto w-4/5 mb-4 md:mb-0">
           <div
             className="flex items-center text-xs gap-x-6 p-2 bg-secondary-dark 
       justify-center rounded-md"
           >
-            <MdLightMode />
+            <MdLightMode
+              size={20}
+              className={`${theme === "light" ? "text-primary" : "gray"}`}
+            />
             <ToggleBtn updateThemehandler={updateThemehandler} theme={theme} />
-            <BsMoonStarsFill />
+            <BsMoonStarsFill
+              size={20}
+              className={`${theme === "dark" ? "text-primary" : "gray"}`}
+            />
           </div>
           {isMobile && (
             <button
@@ -102,9 +109,9 @@ export default function Index({
               onClick={() => {
                 setShowSidebar ? setShowSidebar(false) : null;
               }}
-              className="cursor-pointer border-none inline-flex items-center gap-x-2 text-xs my-4"
+              className="cursor-pointer hover:text-primary border-none inline-flex  items-center gap-x-2 text-xs my-4"
             >
-              <MdVisibilityOff /> Hide Sidebar
+              <MdVisibilityOff size={20} /> Hide Sidebar
             </button>
           )}
         </div>

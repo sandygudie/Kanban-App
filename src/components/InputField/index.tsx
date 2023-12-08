@@ -70,12 +70,9 @@ export const SubtaskInput = ({
           placeholder={props.placeholder}
           className="p-2 w-full text-sm placeholder:text-xs rounded-md outline-none"
         />
-       <button>
-       <MdClose
-          className="text-lg hover:text-primary font-bold"
-          onClick={() => arrayHelpers.remove(index)}
-        />
-       </button>
+        <button onClick={() => arrayHelpers.remove(index)}>
+          <MdClose className="text-lg hover:text-primary font-bold" />
+        </button>
       </div>
       {meta.touched || meta.error ? (
         <div className="text-error text-xs">{meta.error}</div>

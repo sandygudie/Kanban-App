@@ -18,7 +18,18 @@ function AddBoard({ handleClose, active }: Props) {
   const toast = useToast();
 
   const TaskSchema = Yup.object().shape({
-    name: Yup.string().required("Required"),
+    name: Yup.string()
+      .required("Required")
+      .test(
+        "len",
+        "At least 5 characters and not more than 15",
+        (val) => {
+          if (val == undefined) {
+            return false;
+          }
+          return val.length >= 5 && val.length <= 15;
+        }
+      ),
     columns: Yup.array()
       .of(
         Yup.object().shape({

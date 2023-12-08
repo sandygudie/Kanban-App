@@ -65,10 +65,10 @@ export default function Index() {
         }}
         className={` ${
           showSidebar ? "hidden" : "block"
-        } cursor-pointer fixed bottom-10 rounded-r-full bg-primary p-4 w-12 transition ease-in-out duration-[2s]`}
+        } cursor-pointer fixed bottom-10 text-white rounded-r-full bg-primary p-4 w-12 transition ease-in-out duration-[2s]`}
       >
         {" "}
-        <MdVisibilityOff />{" "}
+        <MdVisibilityOff size={20} />{" "}
       </button>
     </div>
   );

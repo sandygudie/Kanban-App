@@ -105,15 +105,15 @@ export default function Index() {
             })}
 
             <div className="mt-8 h-screen w-[250px] shrink-0">
-              <div
+              <button
                 onClick={() => setEditBoard(true)}
-                className="h-full bg-primary/20 cursor-pointer flex flex-col justify-center text-center rounded-lg"
+                className="h-full w-full bg-primary/20 cursor-pointer flex items-center flex-col justify-center text-center rounded-lg"
               >
                 <p className="text-xl hover:text-primary/70 text-primary font-bold">
                   {" "}
                   + New Column
                 </p>
-              </div>
+              </button>
             </div>
           </DragDropContext>
         ) : (
