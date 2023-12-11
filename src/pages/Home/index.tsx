@@ -198,6 +198,7 @@ export default function Index() {
             id="connect"
             className="mt-16 md:mt-36 px-3 md:px-0 md:w-4/6 mx-auto py-16 text-center"
           >
+            <p className="text-lg"> If you will like to add suggestions or corrections</p>
             <Link
               to="/"
               className="hover:bg-primary/20 font-bold bg-primary px-8 py-4 rounded-lg text-white"
