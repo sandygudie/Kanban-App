@@ -1,11 +1,20 @@
 # Kanban-Board
-The Kanban App is a project management application similar to Trello and Asana. The project are created as boards , each board shows progress of the project. The board includes task and subtask exisitng for the project. The Application is built with Vite React, TailwindCSS, Redux Toolkit and Typescript.
+
+The Kanban App is a project management application for managing and tracking project development progress similar to Trello and Asana. The projects are created as boards, and each board shows the progress of the project. The board includes tasks and subtasks for the project. 
+
+## Live Site
+https://kanban-management-app.netlify.app/
+
+## Views
+<img width="1280" alt="Screenshot 2023-12-11 at 10 04 45" src="https://github.com/sandygudie/Kanban-App/assets/54219127/d6ff1bbd-8dbf-490a-ae5f-3a2edc207ff3">
 
 ![image](https://github.com/sandygudie/Kanban-App/assets/54219127/3edd0818-9867-4573-893d-1aaf0e561097)
 
-## Overview
 
-### Installation
+<br/>
+
+## Installation
+
 1. Clone this repository into your local machine:
 ```
 git clone https://github.com/sandygudie/Kanban-App.git
@@ -30,7 +39,7 @@ docker pull sandy8169/kanban:latest
 ```
 
 ## Features
-users are able to:
+Users are able to:
 
 - View the optimal layout for the app depending on their device's screen size.
 - See hover states for all interactive elements on the page.
@@ -42,7 +51,8 @@ users are able to:
 - To drag and drop tasks to change their status and re-order them in a column.
 - Keep track of any changes, even after refreshing the browser.
 
-## Built With
+## Technologies Used
+The application is built with 
 * Vite ReactJS
 * Redux Toolkit
 * TypeScript
@@ -51,10 +61,13 @@ users are able to:
 * Yup
 * Chakara-UI
 * Cypress
-* Eslint
+* Eslint and Prettier
+* Docker Compose
+* GitHub Action
+* Netlify
+
 
 ## Deployment pipeline(CI/CD)
  - From GitHub Actions to Netlify
+ - From GitHub Actions to Dockerhub
 
-
-#### This app is a challenge on [Frontendmentor.io](https://www.frontendmentor.io/challenges/kanban-task-management-web-app-wgQLt-HlbB).
