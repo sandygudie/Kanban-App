@@ -13,6 +13,7 @@
     "@chakra-ui/react": "^2.4.1",
     "@emotion/react": "^11.10.5",
     "@emotion/styled": "^11.10.5",
+    "@gsap/react": "^2.0.2",
     "@hello-pangea/dnd": "^16.0.1",
     "@reduxjs/toolkit": "^1.9.0",
     "formik": "^2.2.9",
