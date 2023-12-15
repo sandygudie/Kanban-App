@@ -168,7 +168,7 @@ export default function Index() {
           </section>
           <section
             id="technologies"
-            className="my-16 md:my-36 px-3 md:px-0 md:w-5/6 mx-auto text-center"
+            className="my-16 md:my-36 px-3 md:px-0 mx-auto text-center"
           >
             <h1 className="text-3xl md:text-4xl font-bold">Technologies</h1>
             <Marquee className="mt-12 ">
@@ -187,7 +187,7 @@ export default function Index() {
                 return (
                   <div
                     key={index}
-                    className="px-2 font-bold  md:px-6 text-white mr-6 py-2 bg-primary/50 rounded-lg text-sm md:text-base"
+                    className="px-2 font-bold md:px-6 text-white mr-8 py-2 bg-primary/50 rounded-lg text-sm md:text-base"
                   >
                     {ele}
                   </div>
