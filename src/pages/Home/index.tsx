@@ -62,7 +62,7 @@ export default function Index() {
       />
 
       <div ref={hero} className="h-full w-full relative z-20 text-black">
-        <header className="header flex items-center justify-between px-4 lg:px-16 py-4">
+        <header className="header flex items-center justify-between px-4 lg:px-16 py-8">
           <Link to="/">
             <Icon type="kanban_logo" />
           </Link>
@@ -82,7 +82,7 @@ export default function Index() {
           <div className="hover:scale-110 transition ease-in-out delay-150 ">
             <Link
               to="/dashboard"
-              className="hidden md:inline bg-primary rounded-lg text-white text-base px-6 py-2 font-bold"
+              className="hidden md:inline bg-primary rounded-lg text-white text-base px-6 py-4 font-bold"
             >
               Get Started
             </Link>
@@ -104,7 +104,7 @@ export default function Index() {
                 <div className="hover:scale-110 transition ease-in-out delay-150 w-fit mx-auto">
                   <Link
                     to="/dashboard"
-                    className=" bg-primary rounded-lg text-white text-lg px-10 py-3 font-medium"
+                    className=" bg-primary rounded-lg text-white text-lg px-10 py-4 font-medium"
                   >
                     Get Started
                   </Link>
@@ -112,46 +112,47 @@ export default function Index() {
               </div>
             </div>
           </div>
-          <section id="features" className="px-4 md:px-0 text-center rounded-b-[9rem] py-24">
+          <section
+            id="features"
+            className="px-4 md:px-0 text-center rounded-b-[9rem] py-24"
+          >
             <h1 className="text-3xl md:text-4xl font-bold">Features</h1>
 
-            <div className=" box my-6 md:my-16 flex items-center justify-center gap-y-6 md:gap-x-4 flex-wrap">
+            <div className="box my-6 md:my-16 ">
               <div className="simplified-view flex items-center justify-center flex-col justify-between">
-                <h1 className="mb-4 text-xl md:text-xl font-semibold">
+                <h1 className="mb-8 text-xl md:text-2xl font-semibold">
                   Simplified Board View
                 </h1>
-                <div  className="h-40 md:h-64 mx-auto md:mx-8">
-               <img
-                  src="simp.svg"
-                  className="object-cover w-full h-40 md:h-56"
-                  alt="mutiple-projects-image"
-                />
-               </div>
-              </div>
 
-              <div className="flex items-center justify-center flex-col justify-between">
-                <h1 className="mb-4 text-xl md:text-xl font-semibold">
-                  Handle Multiple Projects
-                </h1>
-                <div  className="h-48 md:h-64 mx-auto md:mx-8">
-               <img
-                  src="mutipleproject.svg"
-                  className="object-cover w-full h-48 md:h-56"
+                <img
+                  src="simplified-board.svg"
+                  className="w-auto md:h-[22rem] mx-auto"
                   alt="mutiple-projects-image"
                 />
-               </div>
               </div>
-              <div className="md:mt-0 flex items-center justify-center flex-col justify-between">
-                <h1 className="mb-4 text-xl md:text-xl font-semibold">
-                  Smooth Interactions
-                </h1>
-                <div  className="h-48 md:h-64 md:mx-auto md:mx-8">
-               <img
-                  src="interactiveproject.svg"
-                  className="object-cover w-full h-48 md:h-56"
-                  alt="drag-and-drop-gif"
-                />
-               </div>
+              <div className="flex items-center justify-center mt-20 gap-x-8 flex-wrap">
+                <div className="flex items-center justify-center flex-col justify-between">
+                  <h1 className="mb-8 text-xl md:text-2xl font-semibold">
+                    Handle Multiple Projects
+                  </h1>
+
+                  <img
+                    src="mutipleproject.svg"
+                    className="w-auto md:h-[22rem] mx-auto"
+                    alt="mutiple-projects-image"
+                  />
+                </div>
+                <div className="md:mt-0 flex items-center justify-center flex-col justify-between">
+                  <h1 className="mb-8 text-xl md:text-2xl font-semibold">
+                    Smooth Interaction
+                  </h1>
+
+                  <img
+                    src="interactiveproject.svg"
+                    className="w-auto md:h-[22rem] mx-auto"
+                    alt="drag-and-drop-gif"
+                  />
+                </div>
               </div>
             </div>
           </section>
