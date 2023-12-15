@@ -1,6 +1,7 @@
 import React from "react";
 import Icon from "components/Icon";
 import { Link } from "react-router-dom";
+import Marquee from "react-fast-marquee";
 // import { gsap } from "gsap";
 // import { ScrollTrigger } from "gsap/ScrollTrigger";
 
@@ -120,7 +121,7 @@ export default function Index() {
                 to="/dashboard"
                 className="hover:bg-primary/20 bg-primary rounded-lg text-white text-lg px-10 py-3 font-medium"
               >
-                Go to Board
+                Get Started
               </Link>
             </div>
           </div>
@@ -167,10 +168,10 @@ export default function Index() {
           </section>
           <section
             id="technologies"
-            className="my-16 md:my-36 px-3 md:px-0 md:w-4/6 mx-auto text-center"
+            className="my-16 md:my-36 px-3 md:px-0 md:w-5/6 mx-auto text-center"
           >
             <h1 className="text-3xl md:text-4xl font-bold">Technologies</h1>
-            <div className="flex mt-12 flex-wrap items-center justify-center gap-y-4 gap-x-10">
+            <Marquee className="mt-12 ">
               {[
                 "Vite(ReactJs)",
                 "TypeScript",
@@ -186,19 +187,22 @@ export default function Index() {
                 return (
                   <div
                     key={index}
-                    className="px-2 md:px-6 text-white font-medium py-2 bg-primary/50 rounded-lg text-sm md:text-base"
+                    className="px-2 font-bold  md:px-6 text-white mr-6 py-2 bg-primary/50 rounded-lg text-sm md:text-base"
                   >
                     {ele}
                   </div>
                 );
               })}
-            </div>
+            </Marquee>
           </section>
           <section
             id="connect"
             className="mt-16 md:mt-36 px-3 md:px-0 md:w-4/6 mx-auto py-16 text-center"
           >
-            <p className="text-lg mb-8"> If you would like to add suggestions or corrections</p>
+            <p className="text-lg mb-8">
+              {" "}
+              If you would like to add suggestions or corrections
+            </p>
             <Link
               to="/"
               className="hover:bg-primary/20 font-bold bg-primary px-8 py-4 rounded-lg text-white"
