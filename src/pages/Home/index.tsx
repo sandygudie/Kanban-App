@@ -79,7 +79,7 @@ export default function Index() {
               );
             })}
           </div>
-          <div className="hover:scale-110 transition ease-in-out delay-150 ">
+          <div className="hover:scale-110 transition ease-in-out delay-100 duration-300">
             <Link
               to="/dashboard"
               className="hidden md:inline bg-primary rounded-lg text-white text-base px-6 py-4 font-bold"
@@ -101,7 +101,7 @@ export default function Index() {
                   quickly shift priorities, track project progress, and stay on
                   top of deadlines.
                 </p>
-                <div className="hover:scale-110 transition ease-in-out delay-150 w-fit mx-auto">
+                <div className="hover:scale-110 transition ease-in-out w-fit mx-auto delay-100 duration-300">
                   <Link
                     to="/dashboard"
                     className=" bg-primary rounded-lg text-white text-lg px-10 py-4 font-medium"

@@ -9,8 +9,8 @@ import TaskItem from "./TaskItem";
 import { addTask, appData, deleteTask } from "redux/boardSlice";
 import { Droppable, DragDropContext } from "@hello-pangea/dnd";
 import { randomColor } from "utilis";
-
 import { v4 as uuidv4 } from "uuid";
+import { IoIosAdd } from "react-icons/io";
 
 export default function Index() {
   const data = useSelector(appData);
@@ -117,15 +117,22 @@ export default function Index() {
             </div>
           </DragDropContext>
         ) : (
-          <button
+          <div className="fixed md:-translate-y-[50%] top-[50%] left-[40%] text-center">
+            <h1 className="text-primary text-3xl font-bold ">Welcome to Kanban!</h1>
+            <p className="text-gray mt-1 mb-8">Get started by creating your first project!</p>
+             <button
             onClick={() => {
               setOpenBoard(true);
             }}
-            className="font-bold text-xl cursor-pointer text-primary hover:text-primary/40
-      fixed md:-translate-y-[50%] top-[50%] left-[50%]"
+            className="font-bold  bg-primary rounded-xl px-6 py-3 cursor-pointer text-white transition ease-in-out delay-100 duration-500 bg-blue-500 hover:-translate-y-1 hover:scale-110
+      "
           >
-            + Create New Board
+         <div className="flex items-center justify-center gap-x-2">
+         <span ><IoIosAdd/></span> Create New Board
+         </div>
           </button>
+          </div>
+         
         )}
       </div>
 
