@@ -1,5 +1,5 @@
 import Modal from "components/Modal";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { BsCircleFill } from "react-icons/bs";
 import { useDispatch, useSelector } from "react-redux";
 import { IBoard, IColumn, ITask } from "../../types";
@@ -11,8 +11,12 @@ import { Droppable, DragDropContext } from "@hello-pangea/dnd";
 import { randomColor } from "utilis";
 import { v4 as uuidv4 } from "uuid";
 import { IoIosAdd } from "react-icons/io";
+import { useGSAP } from "@gsap/react";
+import { gsap } from "gsap";
+
 
 export default function Index() {
+  const emptyState = useRef(null);
   const data = useSelector(appData);
   const dispatch = useDispatch();
   const active: IBoard = data.active;
@@ -20,6 +24,16 @@ export default function Index() {
   const [isOpenBoard, setOpenBoard] = useState(false);
   const [isEditBoard, setEditBoard] = useState(false);
 
+  useGSAP(
+    () => {
+      gsap.from(".empty-state", {
+        duration: 1,
+        opacity: 0,
+     scale:0.2,
+      });
+    },
+    { scope: emptyState}
+  )
   const onDragEnd = (result: any) => {
     if (!result.destination) {
       return;
@@ -44,7 +58,7 @@ export default function Index() {
   };
 
   return (
-    <div className="w-[72rem] h-full">
+    <div ref={emptyState} className="w-[72rem] h-full">
       <div className="mt-3 z-10 h-full flex gap-x-10 w-full">
         {active ? (
           <DragDropContext onDragEnd={onDragEnd}>
@@ -117,12 +131,12 @@ export default function Index() {
             </div>
           </DragDropContext>
         ) : (
-          <div className="fixed md:-translate-y-[50%] md:top-1/2  md:left-[45%] text-center">
+          <div  className="empty-state fixed md:-translate-y-[50%] md:top-1/2  md:left-[45%] text-center">
            <div className="w-72 h-auto">
            <img src="/start-project.png" alt="start project" loading="eager" className="w-72 h-auto"/>
            </div>
-            <h1 className="text-primary text-2xl font-bold ">Welcome to Kanban!</h1>
-            <p className="text-gray mt-1 text-sm mb-8">Get started by creating your first project!</p>
+            <h1 className="mt-8 text-primary text-2xl font-bold ">Welcome to Kanban!</h1>
+            <p className="text-gray mt-1 text-sm mb-8">Get started by creating your first project board!</p>
              <button
             onClick={() => {
               setOpenBoard(true);
