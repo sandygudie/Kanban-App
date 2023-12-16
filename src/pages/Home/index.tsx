@@ -93,11 +93,11 @@ export default function Index() {
             <div className="px-3 lg:px-0 lg:w-3/6 mx-auto my-16 lg:my-36 text-center">
               <h1 className="font-bold text-[2rem] md:text-6xl">
                 <p className="title-left"> Effortlessly Manage </p>
-                <p className="title-right">your Projects.</p>
+                <p className="title-right">Your Projects.</p>
               </h1>
               <div className="description">
-                <p className="text-lg md:text-2xl my-8 font-normal leading-relaxed">
-                  Kanban offers a visual view for teams to manage entire tasks,
+                <p className="text-lg md:text-[25px] my-8 font-normal leading-[2.5rem]">
+                  Kanban offers a visual view for teams to manage tasks,
                   quickly shift priorities, track project progress, and stay on
                   top of deadlines.
                 </p>
@@ -177,7 +177,7 @@ export default function Index() {
                 return (
                   <div
                     key={index}
-                    className="px-2 font-bold md:px-6 text-white mr-8 py-2 bg-primary/30 rounded-lg text-sm md:text-base"
+                    className="px-2 font-bold md:px-6 text-white mr-8 py-3 bg-primary/30 rounded-lg text-sm md:text-base"
                   >
                     {ele}
                   </div>
@@ -189,7 +189,7 @@ export default function Index() {
             id="connect"
             className="mt-16 md:mt-36 px-3 md:px-0 md:w-4/6 mx-auto py-16 text-center"
           >
-            <p className="text-lg mb-8">
+            <p className="text-xl mb-8">
               {" "}
               If you would like to add suggestions or corrections
             </p>
