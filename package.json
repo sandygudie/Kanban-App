@@ -26,8 +26,6 @@
     "react-redux": "^8.0.5",
     "react-responsive": "^9.0.0",
     "react-router-dom": "6",
-    "sharp": "^0.33.0",
-    "svgo": "^3.1.0",
     "uuidv4": "^6.2.13",
     "yup": "^0.32.11"
   },
@@ -47,10 +45,6 @@
     "typescript": "^4.6.4",
     "vite": "^3.1.0",
     "vite-plugin-eslint": "^1.8.1",
-    "vite-plugin-image-optimizer": "^1.1.7",
     "vite-tsconfig-paths": "^3.5.1"
-  },
-  "engines": {
-    "node": "^20.3.0"
   }
 }
