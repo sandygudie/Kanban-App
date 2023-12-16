@@ -36,10 +36,7 @@ export const TextInput = ({
   );
 };
 
-export const TextArea = (
-  { placeholder }: any,
-  props: LabelProps & FieldHookConfig<string>
-) => {
+export const TextArea = (props: LabelProps & FieldHookConfig<string>|any) => {
   const [field, meta] = useField(props);
   return (
     <>
@@ -47,9 +44,9 @@ export const TextArea = (
         {props.label}
       </label>
       <textarea
-        {...field}
         className="p-2 w-full mt-2 rounded-md outline-none text-sm h-20 placeholder:text-xs"
-        placeholder={placeholder}
+        placeholder={props.placeholder}
+        {...field}
       />
       {meta.touched || meta.error ? (
         <div className="text-error text-xs">{meta.error}</div>
