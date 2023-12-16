@@ -99,7 +99,7 @@ export default function Header() {
               </div>
             </>
           ) : (
-            <h1 className="font-bold text-xl"> No Board</h1>
+            <h1 className="font-bold text-gray text-xl"> No Board</h1>
           )}
         </div>
       </div>

@@ -1,5 +1,5 @@
 import Modal from "components/Modal";
-import { useRef, useState } from "react";
+import { useState } from "react";
 import { BsCircleFill } from "react-icons/bs";
 import { useDispatch, useSelector } from "react-redux";
 import { IBoard, IColumn, ITask } from "../../types";
@@ -11,12 +11,8 @@ import { Droppable, DragDropContext } from "@hello-pangea/dnd";
 import { randomColor } from "utilis";
 import { v4 as uuidv4 } from "uuid";
 import { IoIosAdd } from "react-icons/io";
-import { useGSAP } from "@gsap/react";
-import { gsap } from "gsap";
-
 
 export default function Index() {
-  const emptyState = useRef(null);
   const data = useSelector(appData);
   const dispatch = useDispatch();
   const active: IBoard = data.active;
@@ -24,16 +20,6 @@ export default function Index() {
   const [isOpenBoard, setOpenBoard] = useState(false);
   const [isEditBoard, setEditBoard] = useState(false);
 
-  useGSAP(
-    () => {
-      gsap.from(".empty-state", {
-        duration: 1,
-        opacity: 0,
-     scale:0.2,
-      });
-    },
-    { scope: emptyState}
-  )
   const onDragEnd = (result: any) => {
     if (!result.destination) {
       return;
@@ -58,7 +44,7 @@ export default function Index() {
   };
 
   return (
-    <div ref={emptyState} className="w-[72rem] h-full">
+    <div className="w-[72rem] h-full">
       <div className="mt-3 z-10 h-full flex gap-x-10 w-full">
         {active ? (
           <DragDropContext onDragEnd={onDragEnd}>
@@ -131,25 +117,36 @@ export default function Index() {
             </div>
           </DragDropContext>
         ) : (
-          <div  className="empty-state fixed md:-translate-y-[50%] md:top-1/2  md:left-[45%] text-center">
-           <div className="w-72 h-auto">
-           <img src="/start-project.png" alt="start project" loading="eager" className="w-72 h-auto"/>
-           </div>
-            <h1 className="mt-8 text-primary text-2xl font-bold ">Welcome to Kanban!</h1>
-            <p className="text-gray mt-1 text-sm mb-8">Get started by creating your first project board!</p>
-             <button
-            onClick={() => {
-              setOpenBoard(true);
-            }}
-            className="font-bold  bg-primary rounded-xl px-6 py-3 cursor-pointer text-white transition ease-in-out delay-100 duration-500 bg-blue-500 hover:-translate-y-1 hover:scale-110
+          <div className="fixed translate-x-[50%] md:-translate-y-[50%] md:top-1/2  md:left-[45%] text-center">
+            <div className="w-72 h-auto">
+              <img
+                src="/start-project.png"
+                alt="start project"
+                loading="eager"
+                className="w-72 h-auto"
+              />
+            </div>
+            <h1 className="mt-8 text-primary text-2xl font-bold ">
+              Welcome to Kanban!
+            </h1>
+            <p className="text-gray mt-1 text-sm mb-8">
+              Get started by creating your first project board!
+            </p>
+            <button
+              onClick={() => {
+                setOpenBoard(true);
+              }}
+              className="font-bold  bg-primary rounded-xl px-6 py-3 cursor-pointer text-white transition ease-in-out delay-100 duration-500 bg-blue-500 hover:-translate-y-1 hover:scale-110
       "
-          >
-         <div className="flex items-center justify-center gap-x-2">
-         <span ><IoIosAdd/></span> Create New Board
-         </div>
-          </button>
+            >
+              <div className="flex items-center justify-center gap-x-2">
+                <span>
+                  <IoIosAdd />
+                </span>{" "}
+                Create New Board
+              </div>
+            </button>
           </div>
-         
         )}
       </div>
 
