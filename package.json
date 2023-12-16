@@ -49,5 +49,8 @@
     "vite-plugin-eslint": "^1.8.1",
     "vite-plugin-image-optimizer": "^1.1.7",
     "vite-tsconfig-paths": "^3.5.1"
+  },
+  "engines": {
+    "node": "^20.3.0"
   }
 }
