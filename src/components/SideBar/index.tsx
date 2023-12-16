@@ -109,7 +109,7 @@ export default function Index({
               onClick={() => {
                 setShowSidebar ? setShowSidebar(false) : null;
               }}
-              className="cursor-pointer hover:text-primary border-none inline-flex  items-center gap-x-2 text-xs my-4"
+              className="cursor-pointer hover:text-primary border-none inline-flex items-center gap-x-2 text-xs my-4"
             >
               <MdVisibilityOff size={20} /> Hide Sidebar
             </button>

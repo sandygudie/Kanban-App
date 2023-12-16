@@ -117,9 +117,12 @@ export default function Index() {
             </div>
           </DragDropContext>
         ) : (
-          <div className="fixed md:-translate-y-[50%] top-[50%] left-[40%] text-center">
-            <h1 className="text-primary text-3xl font-bold ">Welcome to Kanban!</h1>
-            <p className="text-gray mt-1 mb-8">Get started by creating your first project!</p>
+          <div className="fixed md:-translate-y-[50%] md:top-1/2  md:left-[45%] text-center">
+           <div className="w-72 h-auto">
+           <img src="/start-project.svg" alt="start project" loading="eager" className="w-72 h-auto"/>
+           </div>
+            <h1 className="text-primary text-2xl font-bold ">Welcome to Kanban!</h1>
+            <p className="text-gray mt-1 text-sm mb-8">Get started by creating your first project!</p>
              <button
             onClick={() => {
               setOpenBoard(true);
