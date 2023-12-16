@@ -26,7 +26,7 @@ export const TextInput = ({
       </label>
       <Field
         {...field}
-        placeholder={props.placeholder}
+        {...props}
         className="p-2 w-full mt-2 rounded-md outline-none text-sm placeholder:text-xs"
       />
       {meta.touched || meta.error ? (
@@ -36,7 +36,10 @@ export const TextInput = ({
   );
 };
 
-export const TextArea = (props: LabelProps & FieldHookConfig<string>) => {
+export const TextArea = (
+  { placeholder }: any,
+  props: LabelProps & FieldHookConfig<string>
+) => {
   const [field, meta] = useField(props);
   return (
     <>
@@ -44,9 +47,9 @@ export const TextArea = (props: LabelProps & FieldHookConfig<string>) => {
         {props.label}
       </label>
       <textarea
-        className="p-2 w-full mt-2 rounded-md outline-none text-sm h-20 placeholder:text-xs"
-        placeholder={props.placeholder}
         {...field}
+        className="p-2 w-full mt-2 rounded-md outline-none text-sm h-20 placeholder:text-xs"
+        placeholder={placeholder}
       />
       {meta.touched || meta.error ? (
         <div className="text-error text-xs">{meta.error}</div>
@@ -67,7 +70,7 @@ export const SubtaskInput = ({
       <div className="flex gap-2 mt-2 items-center">
         <Field
           {...field}
-          placeholder={props.placeholder}
+          {...props}
           className="p-2 w-full text-sm placeholder:text-xs rounded-md outline-none"
         />
         <button onClick={() => arrayHelpers.remove(index)}>
