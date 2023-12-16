@@ -117,7 +117,7 @@ export default function Index() {
             </div>
           </DragDropContext>
         ) : (
-          <div className="fixed translate-x-[50%] md:-translate-y-[50%] md:top-1/2  md:left-[45%] text-center">
+          <div className="fixed md:-translate-y-[50%] md:top-1/2  md:left-[45%] text-center">
             <div className="w-72 h-auto">
               <img
                 src="/start-project.png"
