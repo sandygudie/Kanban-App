@@ -1218,7 +1218,7 @@
 
 "@gsap/react@^2.0.2":
   version "2.0.2"
-  resolved "https://registry.npmjs.org/@gsap/react/-/react-2.0.2.tgz"
+  resolved "https://registry.yarnpkg.com/@gsap/react/-/react-2.0.2.tgz#ec9fa2b9c25e10e3b2928c1f472d5f1e327ad383"
   integrity sha512-Uo2lOBlGcwmkIE9EcPdsyDfg+DRAoboVvuWgvVIrsJ2tIZHcpFab82YNV0iWj9CNfTzIqGP44ziXqsCMkc8OEw==
 
 "@hello-pangea/dnd@^16.0.1":

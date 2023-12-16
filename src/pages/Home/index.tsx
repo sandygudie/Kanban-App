@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import { useRef } from "react";
 import Icon from "components/Icon";
 import { Link } from "react-router-dom";
 import Marquee from "react-fast-marquee";
