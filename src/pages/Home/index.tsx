@@ -208,16 +208,10 @@ export default function Index() {
             id="connect"
             className="mt-16 bg-primary md:mt-36 py-16 text-center"
           >
-            <p className="text-3xl mb-6 text-white font-bold"> Let&apos;s connect</p>
+            <p className="text-5xl text-white font-bold"> Let&apos;s connect</p>
+            <p className="text-white text-lg mt-4 mb-7 w-1/2 mx-auto font-medium">If you&apos;d like to work together on a new project or have any questions then please get in touch - I&apos;d love to hear from you!</p>
             <div className="flex items-center flex-col text-sm text-white gap-y-2 justify-center">
-              <Link
-                target="_blank"
-                to="https://goodnewssandy.netlify.app/#project"
-                className="hover:text-gray"
-              >
-                {" "}
-                Portfolio
-              </Link>
+            
               <Link
                 to="https://github.com/sandygudie"
                 target="_blank"
@@ -233,6 +227,14 @@ export default function Index() {
               >
                 {" "}
                 LinkedIn
+              </Link>
+              <Link
+                target="_blank"
+                to="https://goodnewssandy.netlify.app/#project"
+                className="hover:text-gray"
+              >
+                {" "}
+                Portfolio
               </Link>
               <Link
                 target="_blank"
