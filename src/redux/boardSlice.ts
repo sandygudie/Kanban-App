@@ -88,7 +88,7 @@ const boardSlice = createSlice({
       state.board.find((item: IBoard) =>
         item.name === state.active.name
           ? item.columns.find((o: IColumn) =>
-              o.name === action.payload.values.status
+              o.name === action.payload.tasks.status
                 ? o.tasks.map((s: ITask) =>
                     s.id === action.payload.values.id
                       ? ((s.title = action.payload.values.title),
