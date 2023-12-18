@@ -47,7 +47,6 @@ export default function TaskDetails({
       const updatedCheckedState = checkedState.map((item, index) =>
         index === id ? !item : item
       );
-
       setCheckedState(updatedCheckedState);
       dispatch(isCompletedToggle({ updatedCheckedState, id, tasks }));
     }

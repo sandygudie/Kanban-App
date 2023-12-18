@@ -21,6 +21,7 @@ export default function AddTask({ handleClose, tasks }: Props) {
   const active: IBoard = data.active;
   const toast = useToast();
 
+
   const [selectedColumn, setSelectedColumn] = useState<string | any>(
     tasks
       ? active.columns.find((item: IColumn) =>
@@ -45,7 +46,6 @@ export default function AddTask({ handleClose, tasks }: Props) {
 
   const addTaskHandler = (values: ITask) => {
     values.status = selectedColumn;
-
     const foundDuplicate = checkDuplicatedTask(values, active);
     if (foundDuplicate === false) {
       dispatch(addTask({ updatedTasks: values, position: 0 }));

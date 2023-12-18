@@ -74,7 +74,7 @@ const boardSlice = createSlice({
           ? item.columns.find((o: IColumn) =>
               o.name === action.payload.status
                 ? (o.tasks = o.tasks.filter(
-                    (s: any) => s.title !== action.payload.title
+                    (s: any) => s.id !== action.payload.id
                   ))
                 : null
             )
@@ -89,8 +89,8 @@ const boardSlice = createSlice({
         item.name === state.active.name
           ? item.columns.find((o: IColumn) =>
               o.name === action.payload.values.status
-                ? o.tasks.find((s: ITask) =>
-                    s.title === action.payload.tasks.title
+                ? o.tasks.map((s: ITask) =>
+                    s.id === action.payload.values.id
                       ? ((s.title = action.payload.values.title),
                         (s.description = action.payload.values.description),
                         (s.status = action.payload.values.status),
@@ -111,7 +111,7 @@ const boardSlice = createSlice({
           ? item.columns.find((o: IColumn) =>
               o.name === action.payload.tasks.status
                 ? o.tasks.map((s: ITask) =>
-                    s.title === action.payload.tasks.title
+                    s.id === action.payload.tasks.id
                       ? s.subtasks.map((t: ISubTask, i: number) =>
                           i === action.payload.id
                             ? (t.isCompleted =
