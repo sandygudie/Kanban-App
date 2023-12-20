@@ -13,7 +13,6 @@ export const loadState = () => {
     if (serializedState === null) {
       return initialState;
     }
-    console.log(serializedState)
     return JSON.parse(serializedState).boarddata;
   } catch (err) {
     return undefined;

@@ -1,4 +1,4 @@
-import { IBoard, IColumn, ISubTask, ITask } from "types";
+import { AppState, IBoard, IColumn, ISubTask, ITask } from "types";
 import { FiMoreVertical } from "react-icons/fi";
 import SelectBox from "../SelectBox";
 import { useState } from "react";
@@ -24,7 +24,7 @@ export default function TaskDetails({
   handleOpenModal,
 }: Props) {
   const dispatch = useDispatch();
-  const data = useSelector(appData);
+  const data: AppState = useSelector(appData);
   const active: IBoard = data.active;
 
   const [selectedColumn, setSelectedColumn] = useState<string | any>(

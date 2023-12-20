@@ -1,10 +1,11 @@
+import { MdLightMode } from "react-icons/md";
+import { BsMoonStarsFill } from "react-icons/bs";
+
 interface Props {
   theme: string;
   updateThemehandler: (theme: string) => void;
 }
 export default function Index({ theme, updateThemehandler }: Props) {
-
-
   return (
     <button
       onClick={() => {
@@ -18,12 +19,12 @@ export default function Index({ theme, updateThemehandler }: Props) {
           updateThemehandler("dark");
         }
       }}
-      className="rounded-full cursor-pointer bg-primary p-1 w-12"
     >
-      <div
-        className={`rounded-full bg-white p-2 w-[20px] h-[20px] transition ease-in-out duration-[0.4s]
-      ${theme === "dark" ? "translate-x-5" : "-translate-x-0"}`}
-      ></div>
+      {theme !== "dark" ? (
+        <MdLightMode size={25} className="text-primary" />
+      ) : (
+        <BsMoonStarsFill size={20} className="text-primary" />
+      )}
     </button>
   );
 }

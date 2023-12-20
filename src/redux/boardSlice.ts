@@ -14,7 +14,7 @@ const boardSlice = createSlice({
   },
   reducers: {
     activeItem: (state, action) => {
-      console.log(action.type)
+      // console.log(action.type)
       // if (action.type === "board/activeItem") {
         return {
           ...state,

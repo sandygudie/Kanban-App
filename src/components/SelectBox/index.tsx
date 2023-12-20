@@ -1,7 +1,7 @@
 import { Dispatch, SetStateAction, useState } from "react";
 import "./style.css";
 import { BiChevronUp, BiChevronDown } from "react-icons/bi";
-import { IBoard, IColumn, ITask } from "types";
+import { AppState, IBoard, IColumn, ITask } from "types";
 import { addTask, appData, deleteTask } from "redux/boardSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { v4 as uuidv4 } from "uuid";
@@ -18,7 +18,7 @@ export default function Index({
   tasks,
 }: Props) {
   const dispatch = useDispatch();
-  const data = useSelector(appData);
+  const data: AppState = useSelector(appData);
   const active: IBoard = data.active;
   const [isOpen, setOpen] = useState(false);
   const toggleDropdown = () => setOpen(!isOpen);

@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import { appData, deleteBoard, deleteTask } from "redux/boardSlice";
-import { ITask } from "types";
+import { AppState, ITask } from "types";
 interface Props {
   handleClose: () => void;
   isDeleteBoard?: boolean;
@@ -15,7 +15,7 @@ export default function Delete({
   name,
 }: Props) {
   const dispatch = useDispatch();
-  const data = useSelector(appData);
+  const data: AppState = useSelector(appData);
   const { active } = data;
 
   const deleteBoardHandler = () => {

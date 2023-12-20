@@ -1,7 +1,7 @@
 import { Formik, Form, FieldArray } from "formik";
 import * as Yup from "yup";
 import { SubtaskInput, TextInput } from "components/InputField";
-import { IBoard, IColumn } from "types";
+import { AppState, IBoard, IColumn } from "types";
 import { editBoard, appData, addBoard } from "redux/boardSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { checkDuplicatedBoard } from "utilis";
@@ -13,7 +13,7 @@ interface Props {
 }
 function AddBoard({ handleClose, active }: Props) {
   const dispatch = useDispatch();
-  const data = useSelector(appData);
+  const data: AppState = useSelector(appData);
   const board: IBoard[] = data.board;
   const toast = useToast();
 

@@ -20,27 +20,33 @@ export const TextInput = ({
 }: LabelProps & FieldHookConfig<string>) => {
   const [field, meta] = useField(props);
   return (
-    <>
-      <label className="text-sm font-bold" htmlFor={props.id || props.name}>
+    <div className="relative py-1">
+      <label className="font-bold" htmlFor={props.id || props.name}>
         {label}
       </label>
       <Field
         {...field}
         {...props}
-        className="p-2 w-full mt-2 rounded-md outline-none text-sm placeholder:text-xs"
+        className={`${
+          meta.error ? " border-error/70 border-solid" : null
+        } px-2 py-3 w-full border-[1px] mt-2 rounded-md outline-none text-sm placeholder:text-xs`}
       />
       {meta.touched || meta.error ? (
-        <div className="text-error text-xs">{meta.error}</div>
+        <div className="absolute -bottom-3 text-error/70 text-xs">
+          {meta.error}
+        </div>
       ) : null}
-    </>
+    </div>
   );
 };
 
-export const TextArea = (props: LabelProps & FieldHookConfig<string>|any) => {
+export const TextArea = (
+  props: (LabelProps & FieldHookConfig<string>) | any
+) => {
   const [field, meta] = useField(props);
   return (
-    <>
-      <label className="text-sm font-bold" htmlFor={props.id || props.name}>
+    <div className="relative py-1">
+      <label className="font-bold" htmlFor={props.id || props.name}>
         {props.label}
       </label>
       <textarea
@@ -49,9 +55,11 @@ export const TextArea = (props: LabelProps & FieldHookConfig<string>|any) => {
         {...field}
       />
       {meta.touched || meta.error ? (
-        <div className="text-error text-xs">{meta.error}</div>
+        <div className="absolute -bottom-3 text-error/70 text-xs">
+          {meta.error}
+        </div>
       ) : null}
-    </>
+    </div>
   );
 };
 
@@ -63,20 +71,24 @@ export const SubtaskInput = ({
   const [field, meta] = useField(props);
 
   return (
-    <>
-      <div className="flex gap-2 mt-2 items-center">
+    <div className="relative py-2">
+      <div className="flex gap-2 my-2 items-center">
         <Field
           {...field}
           {...props}
-          className="p-2 w-full text-sm placeholder:text-xs rounded-md outline-none"
+          className={`${
+            meta.error ? " border-error/70 border-solid" : null
+          } px-2 py-2.5 w-full text-sm placeholder:text-xs border-[1px] rounded-md outline-none`}
         />
         <button onClick={() => arrayHelpers.remove(index)}>
           <MdClose className="text-lg hover:text-primary font-bold" />
         </button>
       </div>
       {meta.touched || meta.error ? (
-        <div className="text-error text-xs">{meta.error}</div>
+        <div className="absolute -bottom-0 text-error/70 text-xs">
+          {meta.error}
+        </div>
       ) : null}
-    </>
+    </div>
   );
 };

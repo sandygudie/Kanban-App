@@ -10,10 +10,11 @@ import Icon from "./Icon";
 import Modal from "./Modal";
 import Popup from "./Popup";
 import { FiChevronDown } from "react-icons/fi";
-import SideBar from "./SideBar";
+// import SideBar from "./SideBar";
 import { useSelector } from "react-redux";
 import { appData } from "redux/boardSlice";
-import { IBoard, IProfile } from "types";
+import { AppState } from "types";
+import ToggleBtn from "./ToggleBtn";
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
@@ -21,26 +22,27 @@ export default function Header() {
   const [isOpenMenu, setOpenMenu] = useState(false);
   const [isDeleteBoard, setDeleteBoard] = useState(false);
   const [showDowndrop, setShowDropDown] = useState(false);
-  const [addBoardMobile, setAddBoardMobile] = useState(false);
-
-  const data = useSelector(appData);
-  const active: IBoard = data.active;
-  const profile: IProfile = data.profile;
+  // const [addBoardMobile, setAddBoardMobile] = useState(false);
+  const data: AppState = useSelector(appData);
+  const { active, profile } = data;
+  const currentTheme = localStorage.getItem("theme")!;
+  const [theme, setTheme] = useState(currentTheme ? currentTheme : "dark");
+  const updateThemehandler = (theme: string) => setTheme(theme);
 
   const editBoard = () => {
     setOpenBoard(true);
     setOpenMenu(false);
   };
   const handleOpenMenu = () => setOpenMenu(false);
-  const handleaddBoardMobile = () => setAddBoardMobile(true);
+  // const handleaddBoardMobile = () => setAddBoardMobile(true);
   const isMobile = useMediaQuery({ query: "(min-width: 700px)" });
 
   return (
-    <>
-      <div className="bg-white dark:bg-secondary flex items-center fixed w-full border-b-[1px] border-gray/20">
+    <div>
+      <div className="bg-white h-[65px] dark:bg-secondary flex items-center fixed w-full border-b-[1px] border-gray/20">
         {isMobile ? (
           <div
-            className={`border-r-[1px] border-gray/20 p-6 min-w-[15rem] cursor-pointer`}
+            className={`border-r-[1px] border-gray/20 py-6 px-4 min-w-[14rem] cursor-pointer`}
           >
             <Icon type="kanban_logo" />
           </div>
@@ -57,7 +59,9 @@ export default function Header() {
           {profile.id.length ? (
             <>
               {isMobile ? (
-                <h3 className="font-bold text-base">Workspace : {profile.name}</h3>
+                <h3 className="font-bold text-base">
+                 {profile.name} Workspace 
+                </h3>
               ) : (
                 <button
                   onClick={() => {
@@ -73,7 +77,16 @@ export default function Header() {
                   </span>
                 </button>
               )}
-              {active ? (
+
+            
+            </>
+          ) : (
+            <h1 className="font-bold text-gray text-lg"> No Workspace</h1>
+          )}
+       
+          <div className="flex items-center gap-x-6">
+          <ToggleBtn updateThemehandler={updateThemehandler} theme={theme} />
+          {active ? (
                 <div className="flex items-center">
                   <button
                     aria-label="Add Task"
@@ -102,10 +115,7 @@ export default function Header() {
                   </button>
                 </div>
               ) : null}
-            </>
-          ) : (
-            <h1 className="font-bold text-gray text-lg"> No Workspace</h1>
-          )}
+          </div>
         </div>
       </div>
 
@@ -145,7 +155,7 @@ export default function Header() {
         />
       )}
 
-      {showDowndrop && !isMobile && (
+      {/* {showDowndrop && !isMobile && (
         <div className="absolute top-10">
           <Modal
             showDowndrop={showDowndrop}
@@ -161,7 +171,7 @@ export default function Header() {
             )}
           </Modal>
         </div>
-      )}
-    </>
+      )} */}
+    </div>
   );
 }

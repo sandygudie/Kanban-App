@@ -18,6 +18,12 @@ module.exports = {
       offwhite:"hsla(220, 69%, 97%, 1)",
       error: "#ea5555"
     },
+    // screens: {
+    //   'sm': '600px',
+    //   'md':'900px',
+    //   'lg': '1200px',
+     
+    // }
 
   },
   plugins: [],
