@@ -50,8 +50,14 @@ export interface ISubTask {
   title: string;
   isCompleted: boolean;
 }
+export interface IProfile {
+  id:string,
+  name: string;
+ email: string;
+}
 
-type SliceState = {
+type AppState = {
   board: IBoard[];
   active: IBoard;
+  profile:IProfile
 };

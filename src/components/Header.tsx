@@ -13,7 +13,7 @@ import { FiChevronDown } from "react-icons/fi";
 import SideBar from "./SideBar";
 import { useSelector } from "react-redux";
 import { appData } from "redux/boardSlice";
-import { IBoard } from "types";
+import { IBoard, IProfile } from "types";
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
@@ -25,6 +25,7 @@ export default function Header() {
 
   const data = useSelector(appData);
   const active: IBoard = data.active;
+  const profile: IProfile = data.profile;
 
   const editBoard = () => {
     setOpenBoard(true);
@@ -49,13 +50,14 @@ export default function Header() {
           </div>
         )}
         <div
-          className={`flex items-center justify-between w-full ${isMobile ? "px-4" : "pr-4"
-            }`}
+          className={`flex items-center justify-between w-full ${
+            isMobile ? "px-4" : "pr-4"
+          }`}
         >
-          {active ? (
+          {profile.id.length ? (
             <>
               {isMobile ? (
-                <h3 className="font-bold text-xl">{active.name}</h3>
+                <h3 className="font-bold text-base">Workspace : {profile.name}</h3>
               ) : (
                 <button
                   onClick={() => {
@@ -64,42 +66,45 @@ export default function Header() {
                   className="flex items-center relative"
                 >
                   <h3 className="font-bold text-sm md:text-xl">
-                    {active.name}
+                    {profile.name}
                   </h3>{" "}
                   <span>
                     <FiChevronDown className="inline vertical-bottom" />
                   </span>
                 </button>
               )}
-              <div className="flex items-center">
-                <button
-                  aria-label="Add Task"
-                  onClick={() => setIsOpen(true)}
-                  className={`hover:bg-primary/40 rounded-full bg-primary text-sm font-bold text-white ${!isMobile ? "w-[30px] h-[30px]" : "px-6 py-2"
+              {active ? (
+                <div className="flex items-center">
+                  <button
+                    aria-label="Add Task"
+                    onClick={() => setIsOpen(true)}
+                    className={`hover:bg-primary/40 rounded-full bg-primary text-sm font-bold text-white ${
+                      !isMobile ? "w-[30px] h-[30px]" : "px-6 py-2"
                     } `}
-                >
-                  {!isMobile ? (
-                    <IoIosAdd className="inline-flex text-2xl" />
-                  ) : (
-                    <span className="flex justify-center items-center">
-                      {" "}
-                      <span>
-                        <IoIosAdd className="font-bold text-2xl" />
-                      </span>{" "}
-                      Add Task
-                    </span>
-                  )}
-                </button>
-                <button>
-                  <BiDotsVerticalRounded
-                    onClick={() => setOpenMenu(!isOpenMenu)}
-                    className="text-3xl hover:text-primary cursor-pointer"
-                  />
-                </button>
-              </div>
+                  >
+                    {!isMobile ? (
+                      <IoIosAdd className="inline-flex text-2xl" />
+                    ) : (
+                      <span className="flex justify-center items-center">
+                        {" "}
+                        <span>
+                          <IoIosAdd className="font-bold text-2xl" />
+                        </span>{" "}
+                        Add Task
+                      </span>
+                    )}
+                  </button>
+                  <button>
+                    <BiDotsVerticalRounded
+                      onClick={() => setOpenMenu(!isOpenMenu)}
+                      className="text-3xl hover:text-primary cursor-pointer"
+                    />
+                  </button>
+                </div>
+              ) : null}
             </>
           ) : (
-            <h1 className="font-bold text-gray text-xl"> No Board</h1>
+            <h1 className="font-bold text-gray text-lg"> No Workspace</h1>
           )}
         </div>
       </div>

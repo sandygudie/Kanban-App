@@ -75,12 +75,12 @@ export default function Index() {
             })}
           </div>
           <div className="hover:scale-110 transition ease-in-out delay-100 duration-300">
-            <Link
+            {/* <Link
               to="/dashboard"
               className="hidden md:inline bg-primary rounded-lg text-white text-base px-6 py-4 font-bold"
             >
               Get Started
-            </Link>
+            </Link> */}
           </div>
         </header>
         <main>
@@ -149,30 +149,6 @@ export default function Index() {
                   </div>
                 </div>
               </div>
-              {/* <div className="flex items-center justify-center mt-20 gap-x-8 flex-wrap">
-                <div className="flex items-center justify-center flex-col justify-between">
-                  <h1 className="text-xl md:text-2xl font-semibold">
-                    Handle Multiple Projects
-                  </h1>
-
-                  <img
-                    src="interactive.gif"
-                    className="w-auto md:h-[22rem] mx-auto"
-                    alt="mutiple-projects-image"
-                  />
-                </div>
-                <div className="md:mt-0 flex items-center justify-center flex-col justify-between">
-                  <h1 className="text-xl md:text-2xl font-semibold">
-                    Smooth Interaction
-                  </h1>
-
-                  <img
-                  src="interactive.gif"
-                    className="w-auto md:h-[22rem] mx-auto"
-                    alt="drag-and-drop-gif"
-                  />
-                </div>
-              </div> */}
             </div>
           </section>
           <section

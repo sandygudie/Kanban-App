@@ -17,7 +17,7 @@ function AddBoard({ handleClose, active }: Props) {
   const board: IBoard[] = data.board;
   const toast = useToast();
 
-  const TaskSchema = Yup.object().shape({
+  const BoardSchema = Yup.object().shape({
     name: Yup.string()
       .required("Required")
       .test(
@@ -39,6 +39,7 @@ function AddBoard({ handleClose, active }: Props) {
       )
       .min(1, "Add a column."),
   });
+
   const addBoardHandler = (values: IBoard) => {
     const foundDuplicate = checkDuplicatedBoard(values, board);
     if (foundDuplicate === false) {
@@ -52,9 +53,9 @@ function AddBoard({ handleClose, active }: Props) {
         isClosable: true,
       });
     }
-
     handleClose();
   };
+  
   const editBoardHandler = (values: IBoard) => {
     dispatch(editBoard(values));
     handleClose();
@@ -72,7 +73,7 @@ function AddBoard({ handleClose, active }: Props) {
               ? { id: active.id, name: active.name, columns: active.columns }
               : { id: uuidv4(), name: "", columns: [] }
           }
-          validationSchema={TaskSchema}
+          validationSchema={BoardSchema}
           validateOnChange={false}
           validateOnBlur={false}
           onSubmit={active ? editBoardHandler : addBoardHandler}

@@ -11,14 +11,17 @@ import { Droppable, DragDropContext } from "@hello-pangea/dnd";
 import { randomColor } from "utilis";
 import { v4 as uuidv4 } from "uuid";
 import { IoIosAdd } from "react-icons/io";
+import CreateWorkspace from "./CreateWorkspace";
 
 export default function Index() {
   const data = useSelector(appData);
   const dispatch = useDispatch();
   const active: IBoard = data.active;
+  const profile: IBoard = data.profile;
   const [isOpen, setIsOpen] = useState(false);
   const [isOpenBoard, setOpenBoard] = useState(false);
   const [isEditBoard, setEditBoard] = useState(false);
+  const [isCreateWorkspace, setCreateWorkspace] = useState(false);
 
   const onDragEnd = (result: any) => {
     if (!result.destination) {
@@ -116,7 +119,7 @@ export default function Index() {
               </button>
             </div>
           </DragDropContext>
-        ) : (
+        ) : !profile.id.length ? (
           <div className="fixed md:-translate-y-[50%] md:top-1/2 md:left-[45%] text-center">
             <div className="w-72 h-auto">
               <img
@@ -130,11 +133,11 @@ export default function Index() {
               Welcome to Kanban!
             </h1>
             <p className="text-gray mt-1 text-sm mb-8">
-              Get started by creating your first project board!
+              Get started by creating your workspace!
             </p>
             <button
               onClick={() => {
-                setOpenBoard(true);
+                setCreateWorkspace(true);
               }}
               className="font-bold  bg-primary rounded-xl px-6 py-3 cursor-pointer text-white transition ease-in-out delay-100 duration-500 bg-blue-500 hover:-translate-y-1 hover:scale-110
       "
@@ -143,7 +146,27 @@ export default function Index() {
                 <span>
                   <IoIosAdd />
                 </span>{" "}
-                Create New Board
+                Create Workspace
+              </div>
+            </button>
+          </div>
+        ) : (
+          <div className="fixed md:-translate-y-[50%] md:top-1/2 md:left-[45%] text-center">
+            <p className="text-gray mt-1 text-sm mb-8">
+              Create your first project board!
+            </p>
+            <button
+              onClick={() => {
+                setOpenBoard(true);
+              }}
+              className="font-bold bg-primary rounded-xl px-6 py-3 cursor-pointer text-white transition ease-in-out delay-100 duration-500 bg-blue-500 hover:-translate-y-1 hover:scale-110
+      "
+            >
+              <div className="flex items-center justify-center gap-x-2">
+                <span>
+                  <IoIosAdd />
+                </span>{" "}
+                Add Board
               </div>
             </button>
           </div>
@@ -151,15 +174,20 @@ export default function Index() {
       </div>
 
       <Modal
-        open={isOpen || isOpenBoard || isEditBoard}
+        open={isOpen || isOpenBoard || isEditBoard || isCreateWorkspace}
         handleClose={() => {
-          setIsOpen(false), setOpenBoard(false), setEditBoard(false);
+          setIsOpen(false),
+            setOpenBoard(false),
+            setCreateWorkspace(false),
+            setEditBoard(false);
         }}
       >
         {isEditBoard ? (
           <AddBoard active={active} handleClose={() => setEditBoard(false)} />
         ) : isOpenBoard ? (
           <AddBoard handleClose={() => setOpenBoard(false)} />
+        ) : isCreateWorkspace ? (
+          <CreateWorkspace handleClose={() => setCreateWorkspace(false)} />
         ) : (
           <AddTask handleClose={() => setIsOpen(false)} />
         )}

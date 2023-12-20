@@ -1,17 +1,20 @@
 // import data from "data";
-import { IBoard, ITask } from "types";
-const data: any[] = [];
+import { AppState, IBoard, ITask } from "types";
+const data: IBoard[] = [];
 export const loadState = () => {
-  const initialState = {
+  const initialState: AppState = {
     board: data,
-    active: data.find((item: IBoard, index: number) => index === 0),
+    active: data.find((item: IBoard, index: number) => index === 0)!,
+    profile: { id: "", name: "", email: "" },
   };
+  
   try {
     const serializedState = localStorage.getItem("boarddata");
     if (serializedState === null) {
       return initialState;
     }
-    return JSON.parse(serializedState).board;
+    console.log(serializedState)
+    return JSON.parse(serializedState).boarddata;
   } catch (err) {
     return undefined;
   }

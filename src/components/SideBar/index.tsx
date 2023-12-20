@@ -4,7 +4,6 @@ import { BsMoonStarsFill } from "react-icons/bs";
 import Icon from "components/Icon";
 import ToggleBtn from "components/ToggleBtn";
 import { IBoard } from "types";
-
 import { useMediaQuery } from "react-responsive";
 import { useDispatch, useSelector } from "react-redux";
 import { appData, activeItem } from "redux/boardSlice";

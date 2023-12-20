@@ -25,8 +25,8 @@ export default function AddTask({ handleClose, tasks }: Props) {
   const [selectedColumn, setSelectedColumn] = useState<string | any>(
     tasks
       ? active.columns.find((item: IColumn) =>
-          item.tasks.find((o) => o == tasks)
-        )?.name
+        item.tasks.find((o) => o == tasks)
+      )?.name
       : active.columns[0]?.name
   );
 
@@ -84,19 +84,19 @@ export default function AddTask({ handleClose, tasks }: Props) {
           initialValues={
             tasks
               ? {
-                  id: tasks.id,
-                  title: tasks.title,
-                  description: tasks.description,
-                  status: tasks.status,
-                  subtasks: tasks.subtasks,
-                }
+                id: tasks.id,
+                title: tasks.title,
+                description: tasks.description,
+                status: tasks.status,
+                subtasks: tasks.subtasks,
+              }
               : {
-                  id: uuidv4(),
-                  title: "",
-                  description: "",
-                  status: selectedColumn,
-                  subtasks: [],
-                }
+                id: uuidv4(),
+                title: "",
+                description: "",
+                status: selectedColumn,
+                subtasks: [],
+              }
           }
           validationSchema={TaskSchema}
           validateOnChange={false}
