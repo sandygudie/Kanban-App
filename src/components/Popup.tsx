@@ -5,10 +5,11 @@ interface Props {
     title: string;
     handler: () => void;
   }[];
-  handleOpenMenu: ()=>void;
+  style: any;
+  handleOpenMenu: () => void;
 }
 
-function Popup({ items, handleOpenMenu }: Props) {
+function Popup({ items, style, handleOpenMenu }: Props) {
   const domRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -24,8 +25,9 @@ function Popup({ items, handleOpenMenu }: Props) {
   return (
     <div
       ref={domRef}
+      style={style}
       className="z-40 absolute py-2 text-sm shadow-xl dark:shadow-white/20 shadow-gray/50 
-      dark:bg-secondary bg-white right-5 top-10 rounded-md"
+      dark:bg-secondary bg-white w-fit right-0 top-6 rounded-md"
     >
       <ul className="w-36">
         {items.map((list, i) => {
@@ -33,8 +35,8 @@ function Popup({ items, handleOpenMenu }: Props) {
             <li
               key={i}
               onClick={list.handler}
-              className={`hover:text-primary py-2 px-6
-               cursor-pointer ${i < 1 && `border-b-[1px] border-gray/10`}`}
+              className={`hover:text-primary text-xs py-2 px-6
+               cursor-pointer  ${i < items.length -1 && `border-b-[1px] border-gray/20`}`}
             >
               {list.title}
             </li>

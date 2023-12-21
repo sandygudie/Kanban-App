@@ -7,7 +7,7 @@ export const loadState = () => {
     active: data.find((item: IBoard, index: number) => index === 0)!,
     profile: { id: "", name: "", email: "" },
   };
-  
+
   try {
     const serializedState = localStorage.getItem("boarddata");
     if (serializedState === null) {
@@ -32,9 +32,12 @@ export const checkDuplicatedBoard = (values: IBoard, board: IBoard[]) => {
   return board.some((el: IBoard) => el.name === values.name);
 };
 
+export const checkDuplicatedColumn = () => {
+
+};
+
 export const checkDuplicatedTask = (values: ITask, active: IBoard) => {
   let foundTask;
-
   active.columns.find((item) =>
     item.name === values.status
       ? item.tasks.find((t: ITask) =>
@@ -45,7 +48,9 @@ export const checkDuplicatedTask = (values: ITask, active: IBoard) => {
   return foundTask !== undefined ? true : false;
 };
 
-export const randomColor = () => {
+export const colorSelection = () => {
   const randomNumber = Math.floor(Math.random() * 16777215).toString(16);
   return `#${randomNumber}`;
 };
+
+export const colorMarker = ["#FFEB3B", "#8bc34a", "#9c27b0", "#03A9F4"];

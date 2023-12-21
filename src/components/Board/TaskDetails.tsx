@@ -61,7 +61,7 @@ export default function TaskDetails({
     <>
       {!isDeleteTask ? (
         <>
-          <div className=" text-lg font-bold flex items-center justify-between">
+          <div className="text-lg font-bold flex items-center justify-between">
             <p className=""> {tasks.title}</p>{" "}
             <div className="relative">
               <button className="text-3xl hover:text-primary">
@@ -69,6 +69,7 @@ export default function TaskDetails({
               </button>
               {isOpenMenu && (
                 <Popup
+                style={{}}
                   items={[
                     {
                       title: "Edit Task",

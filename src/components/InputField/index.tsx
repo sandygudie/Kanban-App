@@ -71,7 +71,7 @@ export const SubtaskInput = ({
   const [field, meta] = useField(props);
 
   return (
-    <div className="relative py-2">
+    <div className="relative">
       <div className="flex gap-2 my-2 items-center">
         <Field
           {...field}
@@ -84,11 +84,11 @@ export const SubtaskInput = ({
           <MdClose className="text-lg hover:text-primary font-bold" />
         </button>
       </div>
-      {meta.touched || meta.error ? (
+      {/* {meta.touched || meta.error ? (
         <div className="absolute -bottom-0 text-error/70 text-xs">
           {meta.error}
         </div>
-      ) : null}
+      ) : null} */}
     </div>
   );
 };

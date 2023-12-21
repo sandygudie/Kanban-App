@@ -10,11 +10,11 @@ export default function Index() {
   const WorkspaceSchema = Yup.object().shape({
     name: Yup.string()
       .required("Required")
-      .test("len", "At least 5 characters and not more than 15", (val) => {
+      .test("len", "At least 5 characters and not more than 25", (val) => {
         if (val == undefined) {
           return false;
         }
-        return val.length >= 5 && val.length <= 15;
+        return val.length >= 5 && val.length <= 25;
       }),
     email: Yup.string().required("Required"),
   });

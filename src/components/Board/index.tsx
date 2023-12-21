@@ -8,12 +8,13 @@ import AddTask from "./AddTask";
 import TaskItem from "./TaskItem";
 import { addTask, appData, deleteTask } from "redux/boardSlice";
 import { Droppable, DragDropContext } from "@hello-pangea/dnd";
-import { randomColor } from "utilis";
+import { colorMarker, colorSelection } from "utilis";
 import { v4 as uuidv4 } from "uuid";
 import { IoIosAdd } from "react-icons/io";
 import CreateWorkspace from "./CreateWorkspace";
 import { useMediaQuery } from "react-responsive";
 import { PiDotsThreeLight } from "react-icons/pi";
+import Popup from "components/Popup";
 
 interface Props {
   showSidebar: boolean;
@@ -24,6 +25,7 @@ export default function Index({ showSidebar }: Props) {
   const dispatch = useDispatch();
   const { active, profile } = data;
   const [isOpen, setIsOpen] = useState(false);
+  const [isOpenPopup, setOpenPopup] = useState(false);
   const [isOpenBoard, setOpenBoard] = useState(false);
   const [isEditBoard, setEditBoard] = useState(false);
   const [isCreateWorkspace, setCreateWorkspace] = useState(false);
@@ -51,6 +53,9 @@ export default function Index({ showSidebar }: Props) {
     dispatch(addTask({ updatedTasks, position }));
   };
 
+  const addCard = () => {};
+  const editColumn = () => {};
+  const deleteColumn = () => {};
   return (
     <div className="w-auto h-full">
       <>
@@ -77,18 +82,43 @@ export default function Index({ showSidebar }: Props) {
                             <BsCircleFill
                               style={{
                                 fill:
-                                  index === 0
-                                    ? "hsla(193, 75%, 59%,1)"
-                                    : index === 1
-                                    ? "hsla(249, 83% ,70%, 1)"
-                                    : randomColor(),
+                                  index < colorMarker.length
+                                    ? colorMarker[index]
+                                    : colorSelection(),
                               }}
                             />
                             {item.name} ({item.tasks.length})
                           </div>
-                          <button>
-                            <PiDotsThreeLight  className="font-bold" size={20}/>
-                          </button>
+                          <div className="relative">
+                            <button onClick={() => setOpenPopup(true)}>
+                              <PiDotsThreeLight
+                                className="font-bold"
+                                size={20}
+                              />
+                            </button>
+                            {isOpenPopup ? (
+                              <div>
+                                <Popup
+                                  handleOpenMenu={() => setOpenPopup(false)}
+                                  style={{}}
+                                  items={[
+                                    {
+                                      title: "Add Card",
+                                      handler: addCard,
+                                    },
+                                    {
+                                      title: "Edit Column",
+                                      handler: editColumn,
+                                    },
+                                    {
+                                      title: "Delete Column",
+                                      handler: deleteColumn,
+                                    },
+                                  ]}
+                                />
+                              </div>
+                            ) : null}
+                          </div>
                         </div>
                         <Droppable droppableId={`${item.name}`}>
                           {(provided) => (

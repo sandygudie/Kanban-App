@@ -139,6 +139,7 @@ export default function Header() {
       </Modal>
       {isOpenMenu && (
         <Popup
+        style={{}}
           handleOpenMenu={handleOpenMenu}
           items={[
             {

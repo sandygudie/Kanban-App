@@ -102,7 +102,7 @@ function AddBoard({ handleClose, active }: Props) {
                             index={index}
                             name={`columns.${index}.name`}
                             arrayHelpers={arrayHelpers}
-                            placeholder="E.g  Todo, Progress, Done"
+                            placeholder="E.g Todo, Progress, Done"
                           />
                         ))}
                       <button
