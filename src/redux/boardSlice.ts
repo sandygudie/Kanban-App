@@ -4,7 +4,7 @@ import { loadState } from "utilis";
 import type { RootState } from "./store";
 
 const loadedBoard = loadState();
-console.log(loadedBoard)
+
 const boardSlice = createSlice({
   name: "boarddata",
   initialState: {
@@ -14,15 +14,14 @@ const boardSlice = createSlice({
   },
   reducers: {
     activeItem: (state, action) => {
-      // console.log(action.type)
-      // if (action.type === "board/activeItem") {
+     
         return {
           ...state,
           active: state.board.find(
             (item: IBoard) => item.id === action.payload.id
           ),
         };
-      // }
+  
     },
     deleteBoard: (state, action) => {
       const filteredBoard: IBoard[] = state.board.filter(

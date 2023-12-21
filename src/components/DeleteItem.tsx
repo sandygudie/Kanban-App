@@ -51,7 +51,7 @@ export default function Delete({
         </button>
         <button
          aria-label="Cancel"
-          className="py-2 w-40 hover:bg-error/10 duration-300 px-4 rounded-md"
+          className="py-2 w-40 hover:bg-error/10 bg-gray/50 duration-300 px-4 rounded-md"
           type="button"
           onClick={handleClose}
         >

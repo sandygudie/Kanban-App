@@ -28,6 +28,7 @@ export default function Index({ showSidebar }: Props) {
   const [isOpenPopup, setOpenPopup] = useState(false);
   const [isOpenBoard, setOpenBoard] = useState(false);
   const [isEditBoard, setEditBoard] = useState(false);
+  const [selectedColumn, setSelectedColumn] = useState<IColumn>();
   const [isCreateWorkspace, setCreateWorkspace] = useState(false);
   const isMobile = useMediaQuery({ query: "(min-width: 700px)" });
   const onDragEnd = (result: any) => {
@@ -53,7 +54,9 @@ export default function Index({ showSidebar }: Props) {
     dispatch(addTask({ updatedTasks, position }));
   };
 
-  const addCard = () => {};
+  const addCard = () => {
+    console.log(selectedColumn)
+  };
   const editColumn = () => {};
   const deleteColumn = () => {};
   return (
@@ -90,13 +93,17 @@ export default function Index({ showSidebar }: Props) {
                             {item.name} ({item.tasks.length})
                           </div>
                           <div className="relative">
-                            <button onClick={() => setOpenPopup(true)}>
+                            <button
+                              onClick={() => {
+                                setOpenPopup(true), setSelectedColumn(item);
+                              }}
+                            >
                               <PiDotsThreeLight
                                 className="font-bold"
                                 size={20}
                               />
                             </button>
-                            {isOpenPopup ? (
+                            {isOpenPopup && selectedColumn?.id === item.id ? (
                               <div>
                                 <Popup
                                   handleOpenMenu={() => setOpenPopup(false)}

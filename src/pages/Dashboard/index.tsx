@@ -2,7 +2,6 @@ import { useState, useEffect } from "react";
 import Header from "components/Header";
 import { Collapse } from "@chakra-ui/react";
 import { MdVisibilityOff } from "react-icons/md";
-// import { useMediaQuery } from "react-responsive";
 import SideBar from "components/SideBar";
 import Board from "components/Board";
 import { useSelector } from "react-redux";
@@ -11,9 +10,8 @@ import { AppState } from "types";
 
 export default function Index() {
   const [showSidebar, setShowSidebar] = useState<boolean>(true);
-  // const isMobile = useMediaQuery({ query: "(min-width: 900px)" });
   const data: AppState = useSelector(appData);
-  const { profile, board } = data;
+  const { profile} = data;
 
   useEffect(() => {
     const currentTheme = localStorage.getItem("theme");
@@ -30,7 +28,7 @@ export default function Index() {
       document.documentElement.classList.remove("dark");
     }
   }, []);
-  console.log(board.length)
+
   return (
     <div className="w-full h-full">
       <Header />
