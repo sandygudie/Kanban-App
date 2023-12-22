@@ -2,7 +2,6 @@ import { useSelector } from "react-redux";
 import { AppState } from "../../types";
 import { IoIosAdd } from "react-icons/io";
 import { appData } from "redux/boardSlice";
-import CreateWorkspace from "./CreateWorkspace";
 import ActiveBoard from "./ActiveBoard";
 import { useState } from "react";
 import Modal from "components/Modal";
@@ -13,18 +12,15 @@ interface Props {
 }
 
 export default function Index({ showSidebar }: Props) {
-  
   const [isOpenBoard, setOpenBoard] = useState(false);
   const data: AppState = useSelector(appData);
-  const { active, profile } = data;
+  const { active } = data;
 
   return (
     <div className="w-auto h-full">
       <>
         {active ? (
           <ActiveBoard showSidebar={showSidebar} />
-        ) : !profile.id.length ? (
-          <CreateWorkspace />
         ) : (
           <div className=" fixed -translate-y-[50%] -translate-x-[50%] top-1/2 shadow-lg p-4 md:p-8 bg-primary/20 rounded-lg left-[50%] text-center">
             <div className="w-64 md:w-72 mx-auto h-auto">

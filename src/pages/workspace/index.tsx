@@ -1,12 +1,21 @@
+import { useState } from "react";
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
 import { v4 as uuidv4 } from "uuid";
 import { TextInput } from "components/InputField";
 import { addWorkspace } from "redux/boardSlice";
 import { useDispatch } from "react-redux";
+import logoMobile from "../../assets/logo-mobile.svg";
+import Icon from "components/Icon";
+import ToggleBtn from "components/ToggleBtn";
+import { useNavigate } from "react-router-dom";
 
 export default function Index() {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
+  const currentTheme = localStorage.getItem("theme")!;
+  const [theme, setTheme] = useState(currentTheme ? currentTheme : "dark");
+  const updateThemehandler = (theme: string) => setTheme(theme);
   const WorkspaceSchema = Yup.object().shape({
     name: Yup.string()
       .required("Required")
@@ -20,9 +29,10 @@ export default function Index() {
   });
 
   const addWorkspaceHandler = (values: any) => {
-    // const foundDuplicate = checkDuplicatedBoard(values, board);
+    // const foundDuplicate = checkDuplicatedWorkspace(values, board);
     // if (foundDuplicate === false) {
     dispatch(addWorkspace(values));
+    navigate("/dashboard");
     // } else {
     //   toast({
     //     title: "Board already exist.",
@@ -40,6 +50,20 @@ export default function Index() {
 
   return (
     <div className="w-full h-screen">
+      <header className="bg-white h-[65px] dark:bg-secondary flex items-center  w-full border-b-[1px] border-gray/20">
+        <div
+          className={`border-r-[1px] border-gray/20 py-6 px-4 min-w-[14rem] cursor-pointer hidden md:block`}
+        >
+          <Icon type="kanban_logo" />
+        </div>
+        <div className="block md:hidden border-gray/20 p-3 cursor-pointer">
+          <img src={logoMobile} alt="logo" className="w-8 h-8" />
+        </div>
+        <div className="flex items-center justify-between w-full pr-2 md:px-4">
+          <h1 className="font-bold text-gray text-lg"> No Workspace</h1>
+          <ToggleBtn updateThemehandler={updateThemehandler} theme={theme} />
+        </div>
+      </header>
       <div className="flex-wrap flex items-center h-full justify-center">
         <div className="w-72 lg:w-[30rem] h-auto">
           <img

@@ -1,4 +1,4 @@
-import { useMediaQuery } from "react-responsive";
+// import { useMediaQuery } from "react-responsive";
 interface Props {
   open: boolean;
   handleClose: () => void;
@@ -12,23 +12,22 @@ export default function Modal({
   handleClose,
   showDowndrop,
 }: Props) {
-  const isMobile = useMediaQuery({ query: "(min-width: 700px)" });
-
+ 
   return (
     <>
       {open && (
         <>
           <button
             onClick={handleClose}
-            className="z-50 bg-black/70  fixed -translate-y-[50%] -translate-x-[50%] top-[50%] left-[50%] w-screen h-screen"
+            className="z-50 bg-black/70 fixed -translate-y-[50%] -translate-x-[50%] top-[50%] left-[50%] w-screen h-screen"
           />
           <div
             className={`z-50 rounded-lg overflow-hidden ${
               showDowndrop
                 ? "w-[17rem] p-2 top-[13rem]"
-                : `${!isMobile ? "w-[18rem] p-4" : "w-[28rem] p-6"} top-[50%]`
+                : `w-[17rem] sm:w-[20rem] p-4 md:w-[33rem] md:p-6 top-[50%]`
             }  fixed bg-white dark:bg-secondary 
-            -translate-y-[50%] -translate-x-[50%] left-[50%] rounded-lg max-h-[24rem] h-auto md:max-h-[32rem] overflow-auto`}
+            -translate-y-[50%] -translate-x-[50%] left-[50%] rounded-lg max-h-[27rem] h-auto md:max-h-[33rem] overflow-auto`}
           >
             {children}
           </div>

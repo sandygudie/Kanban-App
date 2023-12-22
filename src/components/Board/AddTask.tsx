@@ -119,7 +119,7 @@ export default function AddTask({ handleClose, activeColumn, tasks }: Props) {
           }}
         >
           {({ values, errors }) => (
-            <Form className="py-4">
+            <Form className="pb-4">
               <div className="mb-6">
                 <TextInput
                   label="Title"
@@ -128,7 +128,7 @@ export default function AddTask({ handleClose, activeColumn, tasks }: Props) {
                   placeholder="E.g Pending design task"
                 />
               </div>
-              <div className="my-4">
+              <div className="my-6">
                 <TextArea
                   placeholder="E.g  The hero page design is not completed"
                   name="description"
@@ -181,7 +181,27 @@ export default function AddTask({ handleClose, activeColumn, tasks }: Props) {
                   )}
                 />
               </div>
-
+              <div className="relative flex items-center my-8 gap-x-8 justify-between ">
+               <div className="w-1/2">
+               <TextInput
+                  label="Deadline"
+                  name="deadline"
+                  type="date"
+                  placeholder="E.g Pending design task"
+                  
+                />
+               </div>
+               <div className="w-1/2">
+                 <TextInput
+                  label="Time"
+                  name="time"
+                  type="time"
+                  placeholder="E.g Pending design task"
+                 
+                />
+                 </div>
+                
+              </div>
               <div className="mb-6">
                 <label className="text-sm font-bold">Column</label>
                 {activeColumn ? (

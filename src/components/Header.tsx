@@ -1,20 +1,19 @@
 import { useState } from "react";
-// import { BiDotsVerticalRounded } from "react-icons/bi";
 import { IoIosAdd } from "react-icons/io";
 import AddBoard from "./Board/AddBoard";
-
 import logoMobile from "../assets/logo-mobile.svg";
 import AddTask from "./Board/AddTask";
 import DeleteItem from "./DeleteItem";
 import Icon from "./Icon";
 import Modal from "./Modal";
 import Popup from "./Popup";
-import { FiChevronDown } from "react-icons/fi";
+// import { FiChevronDown } from "react-icons/fi";
 import { useSelector } from "react-redux";
 import { appData } from "redux/boardSlice";
 import { AppState } from "types";
 import ToggleBtn from "./ToggleBtn";
 import { MdOutlineDashboard } from "react-icons/md";
+import { HiOutlineChevronDown } from "react-icons/hi";
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
@@ -33,7 +32,6 @@ export default function Header() {
     setOpenMenu(false);
   };
   const handleOpenMenu = () => setOpenMenu(false);
- 
 
   return (
     <div>
@@ -43,58 +41,57 @@ export default function Header() {
         >
           <Icon type="kanban_logo" />
         </div>
-        <div className="block md:hidden border-gray/20 p-3 cursor-pointer">
+        <div className="block md:hidden border-gray/20 p-3 md:min-w-[14rem] cursor-pointer">
           <img src={logoMobile} alt="logo" className="w-8 h-8" />
         </div>
-    
+
         <div
           className={`flex items-center justify-between w-full pr-2 md:px-4`}
         >
-          {profile.id.length ? (
-            <>
-             
-              <h3 className="hidden  gap-x-2 items-center md:flex w-40 md:w-auto font-bold text-sm md:text-lg">
-                <p>Workspace:</p> <span className="lg:text-2xl"> {profile.name}</span>
-              </h3>
+          <>
+            {/* <h3 className="hidden gap-x-2 items-center md:flex w-40 md:w-auto font-bold text-sm md:text-base">
+              <button className="flex gap-x-1 items-center">
+                Workspace <HiOutlineChevronDown className="mt-1 text-sm" />
+              </button>{" "}
+              <span className="lg:text-2xl ml-3"> {profile.name}</span>
+            </h3> */}
 
-              <button
-                onClick={() => {
-                  setShowDropDown(!showDowndrop);
-                }}
-                className="flex md:hidden items-center relative"
-              >
-                <h3 className="font-bold text-sm md:text-xl">{profile.name}</h3>{" "}
-                <span>
-                  <FiChevronDown className="inline vertical-bottom" />
-                </span>
-              </button>
-      
-            </>
-          ) : (
-            <h1 className="font-bold text-gray text-lg"> No Workspace</h1>
-          )}
+            <button
+              onClick={() => {
+                setShowDropDown(!showDowndrop);
+              }}
+              className="flex items-center gap-x-2 relative"
+            >
+              <h3 className="font-bold truncate w-[5ch] sm:w-auto sm:text-base md:text-xl">
+                {profile.name}
+              </h3>{" "}
+              <HiOutlineChevronDown className="mt-1 text-sm" />
+            </button>
+          </>
 
           <div className="flex items-center gap-x-6">
             <ToggleBtn updateThemehandler={updateThemehandler} theme={theme} />
             {active ? (
               <div className="flex gap-x-4 items-center">
-                <button
-                  aria-label="Add Task"
-                  onClick={() => setIsOpen(true)}
-                  className={`hover:bg-primary/40 rounded-full bg-primary text-sm font-bold text-white 
+                {active.columns.length ? (
+                  <button
+                    aria-label="Add Task"
+                    onClick={() => setIsOpen(true)}
+                    className={`hover:bg-primary/40 rounded-full bg-primary text-sm font-bold text-white 
                   px-1.5 py-1.5 md:px-4 md:py-2 
                   } `}
-                >
-                  <IoIosAdd className="md:hidden inline-flex text-xl md:text-2xl" />
+                  >
+                    <IoIosAdd className="md:hidden inline-flex text-xl md:text-2xl" />
 
-                  <span className="hidden md:flex justify-center items-center">
-                    {" "}
-                    <span>
-                      <IoIosAdd className="font-bold text-2xl" />
-                    </span>{" "}
-                    Add Task
-                  </span>
-                </button>
+                    <span className="hidden md:flex justify-center items-center">
+                      {" "}
+                      <span>
+                        <IoIosAdd className="font-bold text-2xl" />
+                      </span>{" "}
+                      Add Task
+                    </span>
+                  </button>
+                ) : null}
                 <button
                   onClick={() => setOpenMenu(!isOpenMenu)}
                   className="text-base font-bold flex items-center gap-x-1 hover:bg-primary/40 px-2.5 md:px-5 py-2.5 rounded-full bg-primary text-sm font-bold text-white"
@@ -146,24 +143,6 @@ export default function Header() {
           ]}
         />
       )}
-
-      {/* {showDowndrop && !isMobile && (
-        <div className="absolute top-10">
-          <Modal
-            showDowndrop={showDowndrop}
-            open={showDowndrop}
-            handleClose={() => {
-              setShowDropDown(false), setAddBoardMobile(false);
-            }}
-          >
-            {addBoardMobile ? (
-              <AddBoard handleClose={() => setIsOpen(false)} />
-            ) : (
-              <SideBar handleaddBoardMobile={handleaddBoardMobile} />
-            )}
-          </Modal>
-        </div>
-      )} */}
     </div>
   );
 }

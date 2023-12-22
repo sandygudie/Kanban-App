@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState,useEffect} from "react";
 import Header from "components/Header";
 import { Collapse } from "@chakra-ui/react";
 import { MdVisibilityOff } from "react-icons/md";
@@ -8,27 +8,20 @@ import { useSelector } from "react-redux";
 import { appData } from "redux/boardSlice";
 import { AppState } from "types";
 import { useMediaQuery } from "react-responsive";
+import { useNavigate } from "react-router-dom";
 
 export default function Index() {
   const [showSidebar, setShowSidebar] = useState<boolean>(true);
   const data: AppState = useSelector(appData);
   const { profile, board } = data;
+  const navigate = useNavigate();
 
   useEffect(() => {
-    const currentTheme = localStorage.getItem("theme");
-    if (currentTheme === null) {
-      localStorage.setItem("theme", "dark");
-    }
-    if (
-      localStorage.theme === "dark" ||
-      (!("theme" in localStorage) &&
-        window.matchMedia("(prefers-color-scheme: dark)").matches)
-    ) {
-      document.documentElement.classList.add("dark");
-    } else {
-      document.documentElement.classList.remove("dark");
+    if (!profile.id.length) {
+      navigate("/workspace");
     }
   }, []);
+  
   const isMobile = useMediaQuery({ query: "(min-width: 700px)" });
   return (
     <div className="w-full h-full">
@@ -66,7 +59,7 @@ export default function Index() {
         }}
         className={` ${
           showSidebar ? "hidden" : "block"
-        } cursor-pointer fixed bottom-10 text-white rounded-r-full bg-primary p-4 w-12 transition ease-in-out duration-[2s]`}
+        } cursor-pointer fixed z-40 bottom-10 text-white rounded-r-full bg-primary p-4 w-12 transition ease-in-out duration-[2s]`}
       >
         {" "}
         <MdVisibilityOff size={20} />{" "}

@@ -6,7 +6,9 @@ import { gsap } from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { GoDotFill } from "react-icons/go";
-
+import { FaGithub,FaLinkedinIn } from "react-icons/fa";
+import { CgWebsite } from "react-icons/cg";
+import { MdOutlineEmail } from "react-icons/md";
 export default function Index() {
   gsap.registerPlugin(ScrollTrigger);
   const hero = useRef(null);
@@ -186,7 +188,7 @@ export default function Index() {
           >
             <p className="text-4xl md:text-5xl text-white font-bold"> Let&apos;s connect</p>
             <p className="text-white text-lg mt-4 mb-7 w-5/6 md:w-1/2 mx-auto font-medium">If you&apos;d like to work together on a new project or have any questions then please get in touch - I&apos;d love to hear from you!</p>
-            <div className="flex items-center flex-col text-sm text-white gap-y-2 justify-center">
+            <div className="flex items-center gap-x-6 text-lg text-white gap-y-2 justify-center">
             
               <Link
                 to="https://github.com/sandygudie"
@@ -194,7 +196,7 @@ export default function Index() {
                 className="hover:text-gray"
               >
                 {" "}
-                Github
+               <FaGithub /> 
               </Link>
               <Link
                 target="_blank"
@@ -202,7 +204,7 @@ export default function Index() {
                 className="hover:text-gray"
               >
                 {" "}
-                LinkedIn
+             <FaLinkedinIn />
               </Link>
               <Link
                 target="_blank"
@@ -210,15 +212,15 @@ export default function Index() {
                 className="hover:text-gray"
               >
                 {" "}
-                Portfolio
+                <CgWebsite/>
               </Link>
               <Link
                 target="_blank"
                 to="mailto:goodnewssandy@gmail.com"
                 className="hover:text-gray"
               >
-                {" "}
-                goodnewssandy@gmail.com
+                < MdOutlineEmail/>
+              
               </Link>
             </div>
           </section>

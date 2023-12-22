@@ -20,16 +20,12 @@ function AddBoard({ handleClose, active }: Props) {
   const BoardSchema = Yup.object().shape({
     name: Yup.string()
       .required("Required")
-      .test(
-        "len",
-        "At least 5 characters and not more than 15",
-        (val) => {
-          if (val == undefined) {
-            return false;
-          }
-          return val.length >= 5 && val.length <= 15;
+      .test("len", "At least 5 characters and not more than 15", (val) => {
+        if (val == undefined) {
+          return false;
         }
-      ),
+        return val.length >= 5 && val.length <= 15;
+      }),
     columns: Yup.array()
       .of(
         Yup.object().shape({
@@ -55,7 +51,7 @@ function AddBoard({ handleClose, active }: Props) {
     }
     handleClose();
   };
-  
+
   const editBoardHandler = (values: IBoard) => {
     dispatch(editBoard(values));
     handleClose();
@@ -66,7 +62,7 @@ function AddBoard({ handleClose, active }: Props) {
       <h1 className="font-bold text-lg pb-2 px-4">
         {active ? "Edit" : "Add New"} Board
       </h1>
-      <div className="overflow-y-auto px-4">
+      <div className="overflow-y-auto h-auto max-h-[30rem] px-4">
         <Formik
           initialValues={
             active

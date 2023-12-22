@@ -93,8 +93,8 @@ export default function TaskDetails({
             </p>
             <p className=" text-sm font-bold mb-2 ">{`Subtasks (${filtered.length} of ${tasks.subtasks.length})`}</p>
             <div
-              className={`overflow-y-auto px-4 ${
-                tasks.subtasks.length >= 4 && "h-[10rem]"
+              className={`overflow-y-auto ${
+                tasks.subtasks.length >= 4 && "h-[10rem] pr-4"
               }`}
             >
               {subtasks.map((subtask: ISubTask, index: number) => {

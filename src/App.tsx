@@ -1,11 +1,27 @@
-import React from "react";
-import Home from "pages/Home";
+import React, { useEffect } from "react";
+import Home from "pages/home";
 import { Route, Routes } from "react-router-dom";
-import Dashboard from "pages/Dashboard";
+import Dashboard from "pages/dashboard";
 import LoadingSpinner from "components/LoadingSpinner";
-import NotFound from "pages/NotFound";
+import NotFound from "pages/notFound";
+import Workspace from "pages/workspace";
 
 function App() {
+  useEffect(() => {
+    const currentTheme = localStorage.getItem("theme");
+    if (currentTheme === null) {
+      localStorage.setItem("theme", "dark");
+    }
+    if (
+      localStorage.theme === "dark" ||
+      (!("theme" in localStorage) &&
+        window.matchMedia("(prefers-color-scheme: dark)").matches)
+    ) {
+      document.documentElement.classList.add("dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+    }
+  }, []);
   return (
     <React.Suspense
       fallback={
@@ -18,6 +34,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="*" element={<NotFound />} />
+        <Route path="/workspace" element={<Workspace />} />
       </Routes>
     </React.Suspense>
   );

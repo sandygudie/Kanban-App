@@ -28,7 +28,7 @@ export const TextInput = ({
         {...field}
         {...props}
         className={`${
-          meta.error ? " border-error/70 border-solid" : null
+          meta.error ? "border-error/70 border-solid" : null
         } px-2 py-3 w-full border-[1px] mt-2 rounded-md outline-none text-sm placeholder:text-xs`}
       />
       {meta.touched || meta.error ? (
@@ -50,7 +50,7 @@ export const TextArea = (
         {props.label}
       </label>
       <textarea
-        className="p-2 w-full mt-2 rounded-md outline-none text-sm h-20 placeholder:text-xs"
+        className="p-2 w-full mt-2 rounded-md outline-none text-sm h-32 placeholder:text-xs"
         placeholder={props.placeholder}
         {...field}
       />
