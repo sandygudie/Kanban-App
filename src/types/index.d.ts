@@ -1,63 +1,36 @@
 export interface IBoard {
-  id:string,
+  id: string;
   name: string;
-  columns: {
-    id:string,
-    name: string;
-    tasks: {
-      id:string,
-      title: string;
-      description: string;
-      status: string;
-      subtasks: {  id:string,
-        title: string;
-        isCompleted: boolean;
-      }[];
-    }[];
-  }[];
+  columns: IColumn[];
 }
 
 export interface IColumn {
   name: string;
-  id:string,
-  tasks: {
-    id:string,
-    title: string;
-    description: string;
-    status: string;
-    subtasks: {
-      id:string,
-      title: string;
-      isCompleted: boolean;
-    }[];
-  }[];
+  id: string;
+  tasks: ITask[];
 }
 
 export interface ITask {
-  id:string,
+  id: string;
   title: string;
   description: string;
   status: string;
-  subtasks: {
-    id:string,
-    title: string;
-    isCompleted: boolean;
-  }[];
+  subtasks: ISubTask[];
 }
 
 export interface ISubTask {
-  id:string,
+  id: string;
   title: string;
   isCompleted: boolean;
 }
 export interface IProfile {
-  id:string,
+  id: string;
   name: string;
- email: string;
+  email: string;
 }
 
 type AppState = {
   board: IBoard[];
   active: IBoard;
-  profile:IProfile
+  profile: IProfile;
 };

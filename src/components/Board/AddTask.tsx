@@ -14,19 +14,20 @@ interface Props {
   handleClose: () => void;
   tasks?: ITask;
   index?: number;
+  activeColumn?: IColumn;
 }
-export default function AddTask({ handleClose, tasks }: Props) {
+export default function AddTask({ handleClose, activeColumn, tasks }: Props) {
   const dispatch = useDispatch();
   const data: AppState = useSelector(appData);
   const active: IBoard = data.active;
   const toast = useToast();
-
-
   const [selectedColumn, setSelectedColumn] = useState<string | any>(
     tasks
       ? active.columns.find((item: IColumn) =>
-        item.tasks.find((o) => o == tasks)
-      )?.name
+          item.tasks.find((o) => o == tasks)
+        )?.name
+      : activeColumn
+      ? activeColumn.name
       : active.columns[0]?.name
   );
 
@@ -78,25 +79,37 @@ export default function AddTask({ handleClose, tasks }: Props) {
 
   return (
     <div>
-      <h1 className="font-bold pb-2 px-4">{tasks ? "Edit" : "Add New"} Task</h1>
+      <h1 className="font-bold text-lg pb-2 px-4">
+        {tasks ? (
+          "Edit"
+        ) : activeColumn ? (
+          <span>
+            Add{" "}
+            <span className="text-primary text-lg">{activeColumn.name}</span>
+          </span>
+        ) : (
+          "Add New"
+        )}{" "}
+        Task
+      </h1>
       <div className="overflow-y-auto h-[30rem] pl-0 pr-4 md:px-4">
         <Formik
           initialValues={
             tasks
               ? {
-                id: tasks.id,
-                title: tasks.title,
-                description: tasks.description,
-                status: tasks.status,
-                subtasks: tasks.subtasks,
-              }
+                  id: tasks.id,
+                  title: tasks.title,
+                  description: tasks.description,
+                  status: tasks.status,
+                  subtasks: tasks.subtasks,
+                }
               : {
-                id: uuidv4(),
-                title: "",
-                description: "",
-                status: selectedColumn,
-                subtasks: [],
-              }
+                  id: uuidv4(),
+                  title: "",
+                  description: "",
+                  status: selectedColumn,
+                  subtasks: [],
+                }
           }
           validationSchema={TaskSchema}
           validateOnChange={false}
@@ -106,8 +119,8 @@ export default function AddTask({ handleClose, tasks }: Props) {
           }}
         >
           {({ values, errors }) => (
-            <Form>
-              <div className="my-6">
+            <Form className="py-4">
+              <div className="mb-6">
                 <TextInput
                   label="Title"
                   name="title"
@@ -171,10 +184,19 @@ export default function AddTask({ handleClose, tasks }: Props) {
 
               <div className="mb-6">
                 <label className="text-sm font-bold">Column</label>
-                <SelectBox
-                  selectedColumn={selectedColumn}
-                  setSelectedColumn={setSelectedColumn}
-                />
+                {activeColumn ? (
+                  <input
+                    type="text"
+                    disabled
+                    value={activeColumn.name}
+                    className="border-[1px] mt-2 rounded-lg block outline-none py-2 px-4 text-sm w-full"
+                  />
+                ) : (
+                  <SelectBox
+                    selectedColumn={selectedColumn}
+                    setSelectedColumn={setSelectedColumn}
+                  />
+                )}
               </div>
 
               <div className="my-8">

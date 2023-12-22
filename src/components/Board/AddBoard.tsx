@@ -63,7 +63,7 @@ function AddBoard({ handleClose, active }: Props) {
 
   return (
     <div>
-      <h1 className="font-bold pb-2 px-4">
+      <h1 className="font-bold text-lg pb-2 px-4">
         {active ? "Edit" : "Add New"} Board
       </h1>
       <div className="overflow-y-auto px-4">
@@ -80,7 +80,7 @@ function AddBoard({ handleClose, active }: Props) {
         >
           {({ values, errors }) => (
             <Form>
-              <div className="my-6">
+              <div className="mb-6">
                 <TextInput
                   label="Name"
                   name="name"

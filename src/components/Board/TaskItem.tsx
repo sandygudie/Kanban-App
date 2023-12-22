@@ -4,7 +4,7 @@ import { ISubTask, ITask } from "types";
 import AddTask from "./AddTask";
 import TaskDetails from "./TaskDetails";
 import { Draggable } from "@hello-pangea/dnd";
-import { colorMarker, colorSelection } from "utilis";
+import {  colorSelection } from "utilis";
 
 interface Props {
   tasks: ITask;
@@ -34,10 +34,8 @@ export default function TaskItem({ tasks, filtered, index }: Props) {
             >
               <div
                 style={{
-                  borderColor:
-                    index < colorMarker.length
-                      ? colorMarker[index]
-                      : colorSelection(),
+                  borderColor: colorSelection()
+                   
                 }}
                 className="hover:opacity-60 shadow-lg  
               cursor-pointer bg-white dark:bg-secondary border-l-2  mb-4 rounded-lg py-6 px-4"

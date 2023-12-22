@@ -14,14 +14,12 @@ const boardSlice = createSlice({
   },
   reducers: {
     activeItem: (state, action) => {
-     
-        return {
-          ...state,
-          active: state.board.find(
-            (item: IBoard) => item.id === action.payload.id
-          ),
-        };
-  
+      return {
+        ...state,
+        active: state.board.find(
+          (item: IBoard) => item.id === action.payload.id
+        ),
+      };
     },
     deleteBoard: (state, action) => {
       const filteredBoard: IBoard[] = state.board.filter(
@@ -70,6 +68,36 @@ const boardSlice = createSlice({
                     0,
                     action.payload.updatedTasks
                   )
+                : null
+            )
+          : null
+      );
+      state.active = state.board.find(
+        (item: IBoard) => item.id === state.active.id
+      );
+    },
+    editColumnName: (state, action) => {
+      state.board.find((ele: IBoard) =>
+        ele.id === state.active.id
+          ? ele.columns.find((o: IColumn) =>
+              o.id === action.payload.selectedColumn.id
+                ? (o.name = action.payload.editedText)
+                : null
+            )
+          : null
+      );
+      state.active = state.board.find(
+        (item: IBoard) => item.id === state.active.id
+      );
+    },
+    deleteColumn: (state, action) => {
+      state.board.find((ele: IBoard) =>
+        ele.id === state.active.id
+          ? ele.columns.find((o: IColumn) =>
+              o.id === action.payload.id
+                ? (ele.columns = ele.columns.filter(
+                    (s) => s.id !== action.payload.id
+                  ))
                 : null
             )
           : null
@@ -153,7 +181,9 @@ export const {
   editTask,
   addTask,
   deleteTask,
-  addWorkspace
+  addWorkspace,
+  deleteColumn,
+  editColumnName,
 } = boardSlice.actions;
 export const appData = (state: RootState) => state.boarddata;
 export default boardSlice.reducer;

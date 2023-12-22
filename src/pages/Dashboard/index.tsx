@@ -7,11 +7,12 @@ import Board from "components/Board";
 import { useSelector } from "react-redux";
 import { appData } from "redux/boardSlice";
 import { AppState } from "types";
+import { useMediaQuery } from "react-responsive";
 
 export default function Index() {
   const [showSidebar, setShowSidebar] = useState<boolean>(true);
   const data: AppState = useSelector(appData);
-  const { profile} = data;
+  const { profile, board } = data;
 
   useEffect(() => {
     const currentTheme = localStorage.getItem("theme");
@@ -28,22 +29,28 @@ export default function Index() {
       document.documentElement.classList.remove("dark");
     }
   }, []);
-
+  const isMobile = useMediaQuery({ query: "(min-width: 700px)" });
   return (
     <div className="w-full h-full">
       <Header />
       <div className="w-full h-screen">
         <div className={`absolute top-[65px] overflow-auto w-full`}>
           {profile.id.length ? (
-            <Collapse in={showSidebar} animateOpacity>
-              <div
-                className={`h-screen fixed w-56 ${
-                  showSidebar ? "block " : "hidden"
-                }`}
-              >
-                <SideBar setShowSidebar={setShowSidebar} />
-              </div>
-            </Collapse>
+            <div
+              className={`${
+                isMobile === false && board.length < 1 ? "hidden" : "block"
+              }`}
+            >
+              <Collapse in={showSidebar} animateOpacity>
+                <div
+                  className={`h-screen fixed w-56 z-40 ${
+                    showSidebar ? "block " : "hidden"
+                  }`}
+                >
+                  <SideBar setShowSidebar={setShowSidebar} />
+                </div>
+              </Collapse>
+            </div>
           ) : null}
 
           <div>

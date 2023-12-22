@@ -18,13 +18,11 @@ module.exports = {
       offwhite:"hsla(220, 69%, 97%, 1)",
       error: "#ea5555"
     },
-    // screens: {
-    //   'sm': '600px',
-    //   'md':'900px',
-    //   'lg': '1200px',
-     
-    // }
-
+    extend: {
+      boxShadow: {
+        '3xl': 'rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px',
+      }
+    }
   },
   plugins: [],
 };

@@ -26,17 +26,19 @@ function Popup({ items, style, handleOpenMenu }: Props) {
     <div
       ref={domRef}
       style={style}
-      className="z-40 absolute py-2 text-sm shadow-2xl dark:shadow-white/20 shadow-gray/30 
-      dark:bg-[#20212c] bg-[white] w-fit right-0 top-6 rounded-md"
+      className="z-30 absolute rounded-md py-1 shadow-3xl dark:shadow-gray/20 shadow-gray/30 
+      dark:bg-[#20212c] bg-offwhite text-white w-fit right-0 top-6"
     >
-      <ul className="w-[8rem]">
+      <ul className="w-max">
         {items.map((list, i) => {
           return (
             <li
               key={i}
               onClick={list.handler}
-              className={`hover:text-primary text-xs py-2 px-5
-               cursor-pointer  ${i < items.length -1 && `border-b-[1px] border-gray/20`}`}
+              className={`dark:text-white text-gray hover:text-primary hover:dark:text-primary font-bold text-[0.8rem] py-2.5 px-5 
+               cursor-pointer  ${
+                 i < items.length - 1 && `border-b-[1px] border-gray/20 `
+               }`}
             >
               {list.title}
             </li>

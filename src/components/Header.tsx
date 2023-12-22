@@ -22,7 +22,6 @@ export default function Header() {
   const [isOpenMenu, setOpenMenu] = useState(false);
   const [isDeleteBoard, setDeleteBoard] = useState(false);
   const [showDowndrop, setShowDropDown] = useState(false);
-  // const [addBoardMobile, setAddBoardMobile] = useState(false);
   const data: AppState = useSelector(appData);
   const { active, profile } = data;
   const currentTheme = localStorage.getItem("theme")!;
@@ -34,7 +33,7 @@ export default function Header() {
     setOpenMenu(false);
   };
   const handleOpenMenu = () => setOpenMenu(false);
-  // const handleaddBoardMobile = () => setAddBoardMobile(true);
+ 
 
   return (
     <div>
@@ -54,8 +53,8 @@ export default function Header() {
           {profile.id.length ? (
             <>
              
-              <h3 className="hidden md:block w-40 md:w-auto font-bold text-sm md:text-lg">
-                Workspace : <span className="lg:text-2xl"> {profile.name}</span>
+              <h3 className="hidden  gap-x-2 items-center md:flex w-40 md:w-auto font-bold text-sm md:text-lg">
+                <p>Workspace:</p> <span className="lg:text-2xl"> {profile.name}</span>
               </h3>
 
               <button

@@ -32,9 +32,7 @@ export const checkDuplicatedBoard = (values: IBoard, board: IBoard[]) => {
   return board.some((el: IBoard) => el.name === values.name);
 };
 
-export const checkDuplicatedColumn = () => {
-
-};
+export const checkDuplicatedColumn = () => {};
 
 export const checkDuplicatedTask = (values: ITask, active: IBoard) => {
   let foundTask;
@@ -53,4 +51,35 @@ export const colorSelection = () => {
   return `#${randomNumber}`;
 };
 
-export const colorMarker = ["#FFEB3B", "#8bc34a", "#9c27b0", "#03A9F4"];
+export const colorMarker = [
+  "#FFEB3B",
+  "#44c3c3",
+  "#03A9F4",
+  "#8bc34a",
+  "#ed8936",
+  "#9c27b0",
+  "#8bc34a",
+  "#3b61ff",
+  "#03A9F4",
+];
+export const taskColorMarker = [
+  // "#FFEB3B",
+  // "#44c3c3",
+  // "#03A9F4",
+  // "#8bc34a",
+  // "#ed8936",
+  // "#9c27b0",
+  // "#8bc34a",
+  // "#3b61ff",
+  // "#03A9F4",
+  " #ed8936",
+  "#48bb78",
+  "#9c27b0",
+  "#3b61ff",
+  "#ed8936",
+  "#44c3c3",
+  "#9c27b0",
+  "#ff380b",
+  "#03A9F4",
+  "#8bc34a",
+];

@@ -1,185 +1,28 @@
-import Modal from "components/Modal";
-import { useState } from "react";
-import { BsCircleFill } from "react-icons/bs";
-import { useDispatch, useSelector } from "react-redux";
-import { AppState, IColumn, ITask } from "../../types";
-import AddBoard from "./AddBoard";
-import AddTask from "./AddTask";
-import TaskItem from "./TaskItem";
-import { addTask, appData, deleteTask } from "redux/boardSlice";
-import { Droppable, DragDropContext } from "@hello-pangea/dnd";
-import { colorMarker, colorSelection } from "utilis";
-import { v4 as uuidv4 } from "uuid";
+import { useSelector } from "react-redux";
+import { AppState } from "../../types";
 import { IoIosAdd } from "react-icons/io";
+import { appData } from "redux/boardSlice";
 import CreateWorkspace from "./CreateWorkspace";
-import { useMediaQuery } from "react-responsive";
-import { PiDotsThreeLight } from "react-icons/pi";
-import Popup from "components/Popup";
+import ActiveBoard from "./ActiveBoard";
+import { useState } from "react";
+import Modal from "components/Modal";
+import AddBoard from "./AddBoard";
 
 interface Props {
   showSidebar: boolean;
 }
 
 export default function Index({ showSidebar }: Props) {
-  const data: AppState = useSelector(appData);
-  const dispatch = useDispatch();
-  const { active, profile } = data;
-  const [isOpen, setIsOpen] = useState(false);
-  const [isOpenPopup, setOpenPopup] = useState(false);
+  
   const [isOpenBoard, setOpenBoard] = useState(false);
-  const [isEditBoard, setEditBoard] = useState(false);
-  const [selectedColumn, setSelectedColumn] = useState<IColumn>();
-  const [isCreateWorkspace, setCreateWorkspace] = useState(false);
-  const isMobile = useMediaQuery({ query: "(min-width: 700px)" });
-  const onDragEnd = (result: any) => {
-    if (!result.destination) {
-      return;
-    }
+  const data: AppState = useSelector(appData);
+  const { active, profile } = data;
 
-    const activeCopy = { ...active };
-    const sourceList = activeCopy.columns.find(
-      (item: IColumn) => item.name === result.source.droppableId
-    );
-    const sourceTask = sourceList?.tasks.find(
-      (item: ITask, index: number) => index === result.source.index
-    );
-
-    dispatch(deleteTask(sourceTask));
-    const updatedTasks = {
-      ...sourceTask,
-      id: uuidv4(),
-      status: result.destination.droppableId,
-    };
-    const position = result.destination.index;
-    dispatch(addTask({ updatedTasks, position }));
-  };
-
-  const addCard = () => {
-    console.log(selectedColumn)
-  };
-  const editColumn = () => {};
-  const deleteColumn = () => {};
   return (
     <div className="w-auto h-full">
       <>
         {active ? (
-          <DragDropContext onDragEnd={onDragEnd}>
-            <div className="h-[87vh]">
-              <div
-                style={{
-                  marginLeft: showSidebar ? "clamp(260px, 10vw, 500px)" : "0px",
-                }}
-                className={`z-0 h-auto py-4 mb-8 pr-8 ${
-                  isMobile ? "pl-8" : "pl-8"
-                }`}
-              >
-                <div className="mt-3 z-10 h-full flex gap-x-10 w-full">
-                  {active.columns?.map((item: IColumn, index: number) => {
-                    return (
-                      <div key={item.name} className="w-[250px] shrink-0">
-                        <div className="flex justify-between items-center">
-                          <div
-                            className="flex gap-x-3 items-center text-gray 
-            font-bold uppercase text-xs tracking-widest"
-                          >
-                            <BsCircleFill
-                              style={{
-                                fill:
-                                  index < colorMarker.length
-                                    ? colorMarker[index]
-                                    : colorSelection(),
-                              }}
-                            />
-                            {item.name} ({item.tasks.length})
-                          </div>
-                          <div className="relative">
-                            <button
-                              onClick={() => {
-                                setOpenPopup(true), setSelectedColumn(item);
-                              }}
-                            >
-                              <PiDotsThreeLight
-                                className="font-bold"
-                                size={20}
-                              />
-                            </button>
-                            {isOpenPopup && selectedColumn?.id === item.id ? (
-                              <div>
-                                <Popup
-                                  handleOpenMenu={() => setOpenPopup(false)}
-                                  style={{}}
-                                  items={[
-                                    {
-                                      title: "Add Card",
-                                      handler: addCard,
-                                    },
-                                    {
-                                      title: "Edit Column",
-                                      handler: editColumn,
-                                    },
-                                    {
-                                      title: "Delete Column",
-                                      handler: deleteColumn,
-                                    },
-                                  ]}
-                                />
-                              </div>
-                            ) : null}
-                          </div>
-                        </div>
-                        <Droppable droppableId={`${item.name}`}>
-                          {(provided) => (
-                            <div
-                              {...provided.droppableProps}
-                              ref={provided.innerRef}
-                              className="mt-4 h-full"
-                            >
-                              {item.tasks.length > 0 ? (
-                                <div>
-                                  {item.tasks.map(
-                                    (tasks: ITask, index: number) => {
-                                      const filtered = tasks.subtasks.filter(
-                                        (item) => item.isCompleted === true
-                                      );
-                                      return (
-                                        <TaskItem
-                                          tasks={tasks}
-                                          filtered={filtered}
-                                          key={tasks.id}
-                                          index={index}
-                                        />
-                                      );
-                                    }
-                                  )}
-                                </div>
-                              ) : (
-                                <div className="w-[250px] shrink-0 h-full">
-                                  <div className="h-screen dark:bg-secondary/20 border-dashed border-2 border-gray rounded-lg"></div>
-                                </div>
-                              )}
-                              {provided.placeholder}
-                            </div>
-                          )}
-                        </Droppable>
-                      </div>
-                    );
-                  })}
-
-                  <div className="mt-8 h-screen w-[280px] pr-8 shrink-0">
-                    <button
-                      onClick={() => setEditBoard(true)}
-                      className="h-full w-full bg-primary/20 cursor-pointer flex items-center flex-col justify-center text-center rounded-lg"
-                    >
-                      <p className="text-xl hover:text-primary/70 text-primary font-bold">
-                        {" "}
-                        + New Column
-                      </p>
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </DragDropContext>
+          <ActiveBoard showSidebar={showSidebar} />
         ) : !profile.id.length ? (
           <CreateWorkspace />
         ) : (
@@ -217,23 +60,8 @@ export default function Index({ showSidebar }: Props) {
           </div>
         )}
       </>
-
-      <Modal
-        open={isOpen || isOpenBoard || isEditBoard || isCreateWorkspace}
-        handleClose={() => {
-          setIsOpen(false),
-            setOpenBoard(false),
-            setCreateWorkspace(false),
-            setEditBoard(false);
-        }}
-      >
-        {isEditBoard ? (
-          <AddBoard active={active} handleClose={() => setEditBoard(false)} />
-        ) : isOpenBoard ? (
-          <AddBoard handleClose={() => setOpenBoard(false)} />
-        ) : (
-          <AddTask handleClose={() => setIsOpen(false)} />
-        )}
+      <Modal open={isOpenBoard} handleClose={() => setOpenBoard(false)}>
+        <AddBoard handleClose={() => setOpenBoard(false)} />
       </Modal>
     </div>
   );
