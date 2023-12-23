@@ -1,9 +1,9 @@
 import React, { useEffect } from "react";
 import { Route, Routes } from "react-router-dom";
 import LoadingSpinner from "components/LoadingSpinner";
-import NotFound from "./pages/notFound/index";
-import Workspace from "./pages/workspace";
-import Dashboard from "./pages/dashboard/index";
+import NotFound from "pages/notFound";
+import Workspace from "pages/workspace";
+import Dashboard from "pages/dashboard";
 import Home from "pages/home";
 
 function App() {
@@ -22,6 +22,7 @@ function App() {
       document.documentElement.classList.remove("dark");
     }
   }, []);
+
   return (
     <React.Suspense
       fallback={

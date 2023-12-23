@@ -1,4 +1,4 @@
-import React,{ useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import Header from "components/Header";
 import { Collapse } from "@chakra-ui/react";
 import { MdVisibilityOff } from "react-icons/md";
