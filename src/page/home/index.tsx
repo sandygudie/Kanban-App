@@ -51,14 +51,14 @@ export default function Index() {
     { title: "Contact", link: "connect" },
   ];
   return (
-    <div className=" h-screen overflow-auto relative w-full">
-      <img
-        src="./background.svg"
-        className="object-cover h-full left-0 bottom-0 block fixed right-0 top-0 w-full"
-        alt="background"
-        loading="eager"
-      />
-
+    <div
+      style={{
+        background: "url(./background.svg)",
+        backgroundRepeat: "no-repeat",
+        backgroundSize: "cover",
+      }}
+      className="home-container h-screen overflow-y-auto relative w-full"
+    >
       <div ref={hero} className="h-full w-full relative z-20 text-black">
         <header className="header flex items-center justify-between px-4 lg:px-16 py-8">
           <Link to="/">

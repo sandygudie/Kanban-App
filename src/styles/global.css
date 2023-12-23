@@ -134,6 +134,10 @@
   -webkit-box-shadow: inset 0 0 6px rgba(173, 168, 168, 0.5);
 }
 
+
+.home-container::-webkit-scrollbar {
+  display: none;
+}
 @keyframes spinner {
   0% {
     transform: rotate(0deg);
@@ -150,3 +154,4 @@
   border-radius: 50%;
   animation: spinner 1.5s linear infinite;
 }
+
