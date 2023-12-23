@@ -2,7 +2,7 @@ name: Deployment
 
 on:
   push:
-    branches: [new-version]
+    branches: [fix]
 
 jobs:
   build:
