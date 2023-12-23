@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import Home from "pages/home";
+import Home from "./pages/home";
 import { Route, Routes } from "react-router-dom";
 import Dashboard from "./pages/dashboard";
 import LoadingSpinner from "components/LoadingSpinner";
@@ -32,9 +32,10 @@ function App() {
     >
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/dashboard" element={<Dashboard />} />
         <Route path="*" element={<NotFound />} />
         <Route path="/workspace" element={<Workspace />} />
+        <Route path="/dashboard" element={<Dashboard />} />
+     
       </Routes>
     </React.Suspense>
   );
