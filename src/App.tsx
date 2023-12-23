@@ -4,7 +4,7 @@ import LoadingSpinner from "components/LoadingSpinner";
 import NotFound from "./pages/notFound/index";
 import Workspace from "./pages/workspace";
 import Dashboard from "./pages/dashboard/index";
-import Home from "./pages/home/index";
+import Home from "pages/home";
 
 function App() {
   useEffect(() => {
