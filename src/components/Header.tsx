@@ -7,7 +7,6 @@ import DeleteItem from "./DeleteItem";
 import Icon from "./Icon";
 import Modal from "./Modal";
 import Popup from "./Popup";
-
 import { useSelector } from "react-redux";
 import { appData } from "redux/boardSlice";
 import { AppState } from "types";
@@ -106,7 +105,7 @@ export default function Header() {
                   <button
                     aria-label="Add Task"
                     onClick={() => setIsOpen(true)}
-                    className={`hover:bg-primary/40 rounded-full bg-primary text-sm font-bold text-white 
+                    className={`bg-primary/70 hover:bg-primary rounded-full bg-primary text-sm font-bold text-white 
                   px-1.5 py-1.5 md:px-4 md:py-2 
                   } `}
                   >
@@ -124,7 +123,7 @@ export default function Header() {
                 <>
                   <button
                     onClick={() => setOpenMenu(!isOpenMenu)}
-                    className="text-base font-bold flex items-center gap-x-1 hover:bg-primary/40 px-2.5 md:px-5 py-2.5 rounded-full bg-primary text-sm font-bold text-white"
+                    className="text-base font-bold flex items-center gap-x-1  px-2.5 md:px-5 py-2.5 rounded-full bg-primary/70 hover:bg-primary text-sm font-bold text-white"
                   >
                     <span>
                       <MdOutlineDashboard className="font-bold md:text-xl" />

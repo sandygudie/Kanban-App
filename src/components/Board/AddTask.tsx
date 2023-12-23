@@ -222,7 +222,7 @@ export default function AddTask({ handleClose, activeColumn, tasks }: Props) {
               <div className="my-8">
                 <button
                   aria-label="Create Task"
-                  className="text-white hover:text-primary bg-primary px-2 py-3 w-full font-bold text-sm hover:bg-primary/50 dark:hover:text-white rounded-full"
+                  className="text-white bg-primary/70 hover:bg-primary px-2 py-3 w-full font-bold text-sm dark:hover:text-white rounded-full"
                   type="submit"
                 >
                   {tasks ? "Update" : "Create"} Task

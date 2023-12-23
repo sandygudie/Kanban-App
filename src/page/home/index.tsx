@@ -6,7 +6,7 @@ import { gsap } from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { GoDotFill } from "react-icons/go";
-import { FaGithub,FaLinkedinIn } from "react-icons/fa";
+import { FaGithub, FaLinkedinIn } from "react-icons/fa";
 import { CgWebsite } from "react-icons/cg";
 import { MdOutlineEmail } from "react-icons/md";
 
@@ -99,10 +99,11 @@ export default function Index() {
                   shift priorities, track project progress, and stay on top of
                   deadlines.
                 </p>
-                <div className="hover:scale-110 transition ease-in-out w-fit mx-auto delay-100 duration-300">
+                {/* <div className="hover:scale-110 transition ease-in-out w-fit mx-auto delay-100 duration-300"> */}
+                <div className=" w-fit mx-auto ">
                   <Link
                     to="/dashboard"
-                    className=" bg-primary rounded-lg text-white text-lg px-10 py-4 font-medium"
+                    className="bg-primary/70 hover:bg-primary rounded-lg text-white text-lg px-10 py-4 font-medium"
                   >
                     Get Started
                   </Link>
@@ -187,17 +188,23 @@ export default function Index() {
             id="connect"
             className="mt-16 bg-primary md:mt-36 py-16 text-center"
           >
-            <p className="text-4xl md:text-5xl text-white font-bold"> Let&apos;s connect</p>
-            <p className="text-white text-lg mt-4 mb-7 w-5/6 md:w-1/2 mx-auto font-medium">If you&apos;d like to work together on a new project or have any questions then please get in touch - I&apos;d love to hear from you!</p>
+            <p className="text-4xl md:text-5xl text-white font-bold">
+              {" "}
+              Let&apos;s connect
+            </p>
+            <p className="text-white text-lg mt-4 mb-7 w-5/6 md:w-1/2 mx-auto font-medium">
+              If you&apos;d like to work together on a new project or have any
+              questions then please get in touch - I&apos;d love to hear from
+              you!
+            </p>
             <div className="flex items-center gap-x-6 text-lg text-white gap-y-2 justify-center">
-            
               <Link
                 to="https://github.com/sandygudie"
                 target="_blank"
                 className="hover:text-gray"
               >
                 {" "}
-               <FaGithub /> 
+                <FaGithub />
               </Link>
               <Link
                 target="_blank"
@@ -205,7 +212,7 @@ export default function Index() {
                 className="hover:text-gray"
               >
                 {" "}
-             <FaLinkedinIn />
+                <FaLinkedinIn />
               </Link>
               <Link
                 target="_blank"
@@ -213,23 +220,22 @@ export default function Index() {
                 className="hover:text-gray"
               >
                 {" "}
-                <CgWebsite/>
+                <CgWebsite />
               </Link>
               <Link
                 target="_blank"
                 to="mailto:goodnewssandy@gmail.com"
                 className="hover:text-gray"
               >
-                < MdOutlineEmail/>
-              
+                <MdOutlineEmail />
               </Link>
             </div>
           </section>
-          
         </main>
-        <footer className="py-3 w-full text-sm bg-white text-center text-primary">
-            Copyright <span>&copy;</span>{new Date().getFullYear()}. Sandy Goodnews
-          </footer>
+        <footer className="py-3 w-full text-sm bg-primary text-center text-white">
+          Copyright <span>&copy;</span>
+          {new Date().getFullYear()}. Sandy Goodnews
+        </footer>
       </div>
     </div>
   );

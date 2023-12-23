@@ -85,7 +85,7 @@ export default function Index() {
               <h1 className="text-xl md:text-2xl text-center ">Workspace(s)</h1>
               <Link
                 to="/dashboard"
-                className="px-4 md:px-8 py-2 mt-6 w-max rounded-lg border-[1px] border-solid  flex hover:bg-primary/50 gap-x-8 items-center justify-center"
+                className="px-4 md:px-8 py-2 mt-6 w-max rounded-lg border-[1px] border-solid flex hover:bg-primary/50 gap-x-8 items-center justify-center"
               >
                 <img
                   src="./workspace-placeholder.webp"
@@ -99,7 +99,7 @@ export default function Index() {
               </Link>
             </div>
             <div className="text-center mt-10">
-              <button className="bg-primary text-white text-sm p-4 rounded-lg font-bold" onClick={() => setCreateWorkspace(true)}>
+              <button className="bg-primary/70 hover:bg-primary text-white text-sm p-4 rounded-lg font-bold" onClick={() => setCreateWorkspace(true)}>
                 {" "}
                 Add Workspace
               </button>

@@ -233,7 +233,7 @@ export default function ActiveBoard({ showSidebar }: Props) {
               <div className="mt-8 h-screen w-[280px] pr-8 shrink-0">
                 <button
                   onClick={() => setEditBoard(true)}
-                  className="h-full w-full bg-primary/20 cursor-pointer flex items-center flex-col justify-center text-center rounded-lg"
+                  className="h-full w-full bg-primary/30 hover:bg-primary/40 cursor-pointer flex items-center flex-col justify-center text-center rounded-lg"
                 >
                   <p className="text-xl hover:text-primary/70 text-primary font-bold">
                     {" "}

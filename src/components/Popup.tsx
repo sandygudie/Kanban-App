@@ -40,8 +40,8 @@ function Popup({ items, style, handleOpenMenu, description }: Props) {
               <button
                 key={i}
                 onClick={list.handler}
-                className={`dark:text-white text-gray block w-full text-left hover:bg-primary hover:text-white font-semiBold text-[0.95rem] ${
-                  description ? "py-3 text-[0.9rem]" : "py-2 text-[0.8rem]"
+                className={`dark:text-white text-gray block w-full text-left hover:text-primary font-semiBold text-[0.95rem] ${
+                  description ? "py-3 text-[0.9rem] hover:bg-primary hover:text-white" : "py-2 text-[0.75rem]"
                 } px-6 
                ${i < items.length - 1 && `border-b-[1px] border-gray/20`}`}
               >

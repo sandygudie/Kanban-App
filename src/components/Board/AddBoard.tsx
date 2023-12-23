@@ -133,7 +133,7 @@ function AddBoard({ handleClose, active }: Props) {
               <div className="my-8">
                 <button
                   aria-label="Board"
-                  className="bg-primary px-2 text-white hover:bg-primary/50 font-bold py-4 w-full text-sm rounded-full"
+                  className="px-2 text-white bg-primary/70 hover:bg-primary font-bold py-4 w-full text-sm rounded-full"
                   type="submit"
                 >
                   {active ? "Update" : "Create"} Board
