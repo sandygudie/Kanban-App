@@ -76,7 +76,7 @@ export default function Header() {
                     </div>
                   </div>
                 }
-                style={{ top: 45, right: -165 }}
+                style={{ top: 45, right: "-8rem" }}
                 handleOpenMenu={() => setWorkspaceMenu(false)}
                 items={[
                   {
