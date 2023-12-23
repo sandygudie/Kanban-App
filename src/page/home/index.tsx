@@ -131,13 +131,14 @@ export default function Index() {
                   <div>
                     {[
                       "Simplified board view.",
+                      // "Handle multiple workspace.",
                       "Handle multiple projects.",
-                      "Smooth drag and drop.",
+                      "Smooth drag and drop interaction.",
                       "Optimal layout on device's screen size.",
                       "Create, read, update, and delete boards and tasks.",
                       "Keep track of any changes.",
-                      "Toggle theme between dark and light modes.",
-                      "Form validations.",
+                      "Toggle theme between dark and light mode.",
+                      "Form validation.",
                     ].map((ele, index) => {
                       return (
                         <p
