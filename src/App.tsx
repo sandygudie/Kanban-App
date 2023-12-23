@@ -1,10 +1,10 @@
 import React, { useEffect } from "react";
 import { Route, Routes } from "react-router-dom";
 import LoadingSpinner from "components/LoadingSpinner";
-import NotFound from "./pages/notFound";
+import NotFound from "./pages/notFound/index";
 import Workspace from "./pages/workspace";
-import Dashboard from "./pages/dashboard";
-import Home from "./pages/home";
+import Dashboard from "./pages/dashboard/index";
+import Home from "./pages/home/index";
 
 function App() {
   useEffect(() => {
