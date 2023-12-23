@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { ReactElement, useEffect, useRef } from "react";
 
 interface Props {
   items: {
@@ -6,10 +6,11 @@ interface Props {
     handler: () => void;
   }[];
   style: any;
+  description?: ReactElement;
   handleOpenMenu: () => void;
 }
 
-function Popup({ items, style, handleOpenMenu }: Props) {
+function Popup({ items, style, handleOpenMenu, description }: Props) {
   const domRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -26,25 +27,30 @@ function Popup({ items, style, handleOpenMenu }: Props) {
     <div
       ref={domRef}
       style={style}
-      className="z-30 absolute rounded-md py-1 shadow-3xl dark:shadow-gray/20 shadow-gray/30 
-      dark:bg-[#20212c] bg-offwhite text-white w-fit right-0 top-6"
+      className={`  ${
+        description ? "py-1" : "py-0"
+      } absolute rounded-md  shadow-3xl dark:shadow-gray/20 shadow-gray/30 
+      dark:bg-[#20212c] bg-offwhite text-white w-fit right-0 top-6 `}
     >
-      <ul className="w-max">
-        {items.map((list, i) => {
-          return (
-            <li
-              key={i}
-              onClick={list.handler}
-              className={`dark:text-white text-gray hover:text-primary hover:dark:text-primary font-bold text-[0.8rem] py-2.5 px-5 
-               cursor-pointer  ${
-                 i < items.length - 1 && `border-b-[1px] border-gray/20 `
-               }`}
-            >
-              {list.title}
-            </li>
-          );
-        })}
-      </ul>
+      <div className="w-max">
+        {description ? description : null}
+        <div className="">
+          {items.map((list, i) => {
+            return (
+              <button
+                key={i}
+                onClick={list.handler}
+                className={`dark:text-white text-gray block w-full text-left hover:bg-primary hover:text-white font-semiBold text-[0.95rem] ${
+                  description ? "py-3 text-[0.9rem]" : "py-2 text-[0.8rem]"
+                } px-6 
+               ${i < items.length - 1 && `border-b-[1px] border-gray/20`}`}
+              >
+                {list.title}
+              </button>
+            );
+          })}
+        </div>
+      </div>
     </div>
   );
 }

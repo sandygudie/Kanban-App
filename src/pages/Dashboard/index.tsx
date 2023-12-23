@@ -1,4 +1,4 @@
-import { useState,useEffect} from "react";
+import { useState, useEffect } from "react";
 import Header from "components/Header";
 import { Collapse } from "@chakra-ui/react";
 import { MdVisibilityOff } from "react-icons/md";
@@ -20,8 +20,8 @@ export default function Index() {
     if (!profile.id.length) {
       navigate("/workspace");
     }
-  }, []);
-  
+  }, [navigate, profile.id.length]);
+
   const isMobile = useMediaQuery({ query: "(min-width: 700px)" });
   return (
     <div className="w-full h-full">

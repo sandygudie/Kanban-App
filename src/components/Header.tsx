@@ -7,26 +7,27 @@ import DeleteItem from "./DeleteItem";
 import Icon from "./Icon";
 import Modal from "./Modal";
 import Popup from "./Popup";
-// import { FiChevronDown } from "react-icons/fi";
+
 import { useSelector } from "react-redux";
 import { appData } from "redux/boardSlice";
 import { AppState } from "types";
 import ToggleBtn from "./ToggleBtn";
 import { MdOutlineDashboard } from "react-icons/md";
 import { HiOutlineChevronDown } from "react-icons/hi";
+import { useNavigate } from "react-router-dom";
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
   const [isOpenBoard, setOpenBoard] = useState(false);
+  const [isWorkspaceMenu, setWorkspaceMenu] = useState(false);
   const [isOpenMenu, setOpenMenu] = useState(false);
   const [isDeleteBoard, setDeleteBoard] = useState(false);
-  const [showDowndrop, setShowDropDown] = useState(false);
   const data: AppState = useSelector(appData);
   const { active, profile } = data;
   const currentTheme = localStorage.getItem("theme")!;
   const [theme, setTheme] = useState(currentTheme ? currentTheme : "dark");
   const updateThemehandler = (theme: string) => setTheme(theme);
-
+  const navigate = useNavigate();
   const editBoard = () => {
     setOpenBoard(true);
     setOpenMenu(false);
@@ -35,7 +36,7 @@ export default function Header() {
 
   return (
     <div>
-      <div className="bg-white h-[65px] dark:bg-secondary flex items-center fixed w-full border-b-[1px] border-gray/20">
+      <div className="bg-white h-[65px] z-50 dark:bg-secondary flex items-center fixed w-full border-b-[1px] border-gray/20">
         <div
           className={`border-r-[1px] border-gray/20 py-6 px-4 min-w-[14rem] cursor-pointer hidden md:block`}
         >
@@ -48,17 +49,10 @@ export default function Header() {
         <div
           className={`flex items-center justify-between w-full pr-2 md:px-4`}
         >
-          <>
-            {/* <h3 className="hidden gap-x-2 items-center md:flex w-40 md:w-auto font-bold text-sm md:text-base">
-              <button className="flex gap-x-1 items-center">
-                Workspace <HiOutlineChevronDown className="mt-1 text-sm" />
-              </button>{" "}
-              <span className="lg:text-2xl ml-3"> {profile.name}</span>
-            </h3> */}
-
+          <div className="relative">
             <button
               onClick={() => {
-                setShowDropDown(!showDowndrop);
+                setWorkspaceMenu(!isWorkspaceMenu);
               }}
               className="flex items-center gap-x-2 relative"
             >
@@ -67,7 +61,42 @@ export default function Header() {
               </h3>{" "}
               <HiOutlineChevronDown className="mt-1 text-sm" />
             </button>
-          </>
+            {isWorkspaceMenu && (
+              <Popup
+                description={
+                  <div className="flex gap-x-8 items-center border-b-[1px] border-gray/30 py-4 dark:text-white text-gray font-medium px-6 justify-center ">
+                    <img
+                      src="./workspace-placeholder.webp"
+                      className="w-10 h-10"
+                      alt=""
+                    />
+                    <div>
+                      <h2 className="text-xl font-bold">{profile.name}</h2>
+                      <p className="text-xs">{profile.email}</p>
+                    </div>
+                  </div>
+                }
+                style={{ top: 45, right: -165 }}
+                handleOpenMenu={() => setWorkspaceMenu(false)}
+                items={[
+                  {
+                    title: `Invite people to ${profile.name}`,
+                    handler: ()=>{},
+                  },
+                  {
+                    title: "Workspace settings",
+                    handler: ()=>{},
+                  },
+                  {
+                    title: "Switch workspace",
+                    handler: () => {
+                      navigate("/workspace");
+                    },
+                  },
+                ]}
+              />
+            )}
+          </div>
 
           <div className="flex items-center gap-x-6">
             <ToggleBtn updateThemehandler={updateThemehandler} theme={theme} />
@@ -92,15 +121,35 @@ export default function Header() {
                     </span>
                   </button>
                 ) : null}
-                <button
-                  onClick={() => setOpenMenu(!isOpenMenu)}
-                  className="text-base font-bold flex items-center gap-x-1 hover:bg-primary/40 px-2.5 md:px-5 py-2.5 rounded-full bg-primary text-sm font-bold text-white"
-                >
-                  <span>
-                    <MdOutlineDashboard className="font-bold md:text-xl" />
-                  </span>
-                  <span className="hidden md:inline"> Board</span>
-                </button>
+                <>
+                  <button
+                    onClick={() => setOpenMenu(!isOpenMenu)}
+                    className="text-base font-bold flex items-center gap-x-1 hover:bg-primary/40 px-2.5 md:px-5 py-2.5 rounded-full bg-primary text-sm font-bold text-white"
+                  >
+                    <span>
+                      <MdOutlineDashboard className="font-bold md:text-xl" />
+                    </span>
+                    <span className="hidden md:inline"> Board</span>
+                  </button>
+                  {isOpenMenu && (
+                    <Popup
+                      style={{ top: 60, right: 24 }}
+                      handleOpenMenu={handleOpenMenu}
+                      items={[
+                        {
+                          title: "Edit Board",
+                          handler: editBoard,
+                        },
+                        {
+                          title: "Delete Board",
+                          handler: () => {
+                            setDeleteBoard(true), handleOpenMenu();
+                          },
+                        },
+                      ]}
+                    />
+                  )}
+                </>
               </div>
             ) : null}
           </div>
@@ -125,24 +174,6 @@ export default function Header() {
           <AddTask handleClose={() => setIsOpen(false)} />
         )}
       </Modal>
-      {isOpenMenu && (
-        <Popup
-          style={{ top: 50, right: 24 }}
-          handleOpenMenu={handleOpenMenu}
-          items={[
-            {
-              title: "Edit Board",
-              handler: editBoard,
-            },
-            {
-              title: "Delete Board",
-              handler: () => {
-                setDeleteBoard(true), handleOpenMenu();
-              },
-            },
-          ]}
-        />
-      )}
     </div>
   );
 }
