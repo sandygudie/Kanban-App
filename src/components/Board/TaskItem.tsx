@@ -4,6 +4,7 @@ import { ISubTask, ITask } from "types";
 import AddTask from "./AddTask";
 import TaskDetails from "./TaskDetails";
 import { Draggable } from "@hello-pangea/dnd";
+import {  colorSelection } from "utilis";
 
 interface Props {
   tasks: ITask;
@@ -30,14 +31,21 @@ export default function TaskItem({ tasks, filtered, index }: Props) {
               onClick={() => {
                 setIsOpen(true);
               }}
-              className="hover:opacity-60 shadow-lg  
-              cursor-pointer bg-white dark:bg-secondary mb-4 rounded-lg py-6 px-4"
             >
-              <p className="font-bold text-sm">{tasks.title} </p>
-              <p className="pt-2 text-xs text-gray font-bold">
-                {" "}
-                {filtered.length} of {tasks.subtasks.length} subtasks
-              </p>
+              <div
+                style={{
+                  borderColor: colorSelection()
+                   
+                }}
+                className="hover:opacity-60 shadow-lg  
+              cursor-pointer bg-white dark:bg-secondary border-l-2  mb-4 rounded-lg py-6 px-4"
+              >
+                <p className="font-bold text-sm">{tasks.title} </p>
+                <p className="pt-2 text-xs text-gray font-bold">
+                  {" "}
+                  {filtered.length} of {tasks.subtasks.length} subtasks
+                </p>
+              </div>
             </div>
           );
         }}

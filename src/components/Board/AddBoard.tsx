@@ -1,7 +1,7 @@
 import { Formik, Form, FieldArray } from "formik";
 import * as Yup from "yup";
 import { SubtaskInput, TextInput } from "components/InputField";
-import { IBoard, IColumn } from "types";
+import { AppState, IBoard, IColumn } from "types";
 import { editBoard, appData, addBoard } from "redux/boardSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { checkDuplicatedBoard } from "utilis";
@@ -13,23 +13,19 @@ interface Props {
 }
 function AddBoard({ handleClose, active }: Props) {
   const dispatch = useDispatch();
-  const data = useSelector(appData);
+  const data: AppState = useSelector(appData);
   const board: IBoard[] = data.board;
   const toast = useToast();
 
-  const TaskSchema = Yup.object().shape({
+  const BoardSchema = Yup.object().shape({
     name: Yup.string()
       .required("Required")
-      .test(
-        "len",
-        "At least 5 characters and not more than 15",
-        (val) => {
-          if (val == undefined) {
-            return false;
-          }
-          return val.length >= 5 && val.length <= 15;
+      .test("len", "At least 5 characters and not more than 15", (val) => {
+        if (val == undefined) {
+          return false;
         }
-      ),
+        return val.length >= 5 && val.length <= 15;
+      }),
     columns: Yup.array()
       .of(
         Yup.object().shape({
@@ -39,6 +35,7 @@ function AddBoard({ handleClose, active }: Props) {
       )
       .min(1, "Add a column."),
   });
+
   const addBoardHandler = (values: IBoard) => {
     const foundDuplicate = checkDuplicatedBoard(values, board);
     if (foundDuplicate === false) {
@@ -52,9 +49,9 @@ function AddBoard({ handleClose, active }: Props) {
         isClosable: true,
       });
     }
-
     handleClose();
   };
+
   const editBoardHandler = (values: IBoard) => {
     dispatch(editBoard(values));
     handleClose();
@@ -62,24 +59,24 @@ function AddBoard({ handleClose, active }: Props) {
 
   return (
     <div>
-      <h1 className="font-bold pb-2 px-4">
+      <h1 className="font-bold text-lg pb-2 px-4">
         {active ? "Edit" : "Add New"} Board
       </h1>
-      <div className="overflow-y-auto px-4">
+      <div className="overflow-y-auto h-auto max-h-[30rem] px-4">
         <Formik
           initialValues={
             active
               ? { id: active.id, name: active.name, columns: active.columns }
               : { id: uuidv4(), name: "", columns: [] }
           }
-          validationSchema={TaskSchema}
+          validationSchema={BoardSchema}
           validateOnChange={false}
           validateOnBlur={false}
           onSubmit={active ? editBoardHandler : addBoardHandler}
         >
           {({ values, errors }) => (
             <Form>
-              <div className="my-6">
+              <div className="mb-6">
                 <TextInput
                   label="Name"
                   name="name"
@@ -101,7 +98,7 @@ function AddBoard({ handleClose, active }: Props) {
                             index={index}
                             name={`columns.${index}.name`}
                             arrayHelpers={arrayHelpers}
-                            placeholder="E.g  Todo, Progress, Done"
+                            placeholder="E.g Todo, Progress, Done"
                           />
                         ))}
                       <button

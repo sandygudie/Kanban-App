@@ -1,4 +1,4 @@
-import { IBoard, IColumn, ISubTask, ITask } from "types";
+import { AppState, IBoard, IColumn, ISubTask, ITask } from "types";
 import { FiMoreVertical } from "react-icons/fi";
 import SelectBox from "../SelectBox";
 import { useState } from "react";
@@ -24,7 +24,7 @@ export default function TaskDetails({
   handleOpenModal,
 }: Props) {
   const dispatch = useDispatch();
-  const data = useSelector(appData);
+  const data: AppState = useSelector(appData);
   const active: IBoard = data.active;
 
   const [selectedColumn, setSelectedColumn] = useState<string | any>(
@@ -61,7 +61,7 @@ export default function TaskDetails({
     <>
       {!isDeleteTask ? (
         <>
-          <div className=" text-lg font-bold flex items-center justify-between">
+          <div className="text-lg font-bold flex items-center justify-between">
             <p className=""> {tasks.title}</p>{" "}
             <div className="relative">
               <button className="text-3xl hover:text-primary">
@@ -69,6 +69,7 @@ export default function TaskDetails({
               </button>
               {isOpenMenu && (
                 <Popup
+                style={{}}
                   items={[
                     {
                       title: "Edit Task",
@@ -92,8 +93,8 @@ export default function TaskDetails({
             </p>
             <p className=" text-sm font-bold mb-2 ">{`Subtasks (${filtered.length} of ${tasks.subtasks.length})`}</p>
             <div
-              className={`overflow-y-auto px-4 ${
-                tasks.subtasks.length >= 4 && "h-[10rem]"
+              className={`overflow-y-auto ${
+                tasks.subtasks.length >= 4 && "h-[10rem] pr-4"
               }`}
             >
               {subtasks.map((subtask: ISubTask, index: number) => {

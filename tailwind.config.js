@@ -13,12 +13,25 @@ module.exports = {
       "sky-blue": "hsla(193, 75%, 59%,1)",
       purple: "hsla(249, 83% ,70%, 1)",
       "sea-green": "hsla(155, 68% ,65%, 1)",
-      white: '#ffffff',
-      black:'#000',
-      offwhite:"hsla(220, 69%, 97%, 1)",
-      error: "#ea5555"
+      white: "#ffffff",
+      black: "#000",
+      offwhite: "hsla(220, 69%, 97%, 1)",
+      error: "#ea5555",
     },
-
+    extend: {
+      boxShadow: {
+        "3xl":
+          "rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px",
+      },
+    },
+    screens: {
+      'xs':'100px',
+      'sm': '300px',
+      'md':'991px',
+      'lg': '1200px',
+      
+      
+    }
   },
   plugins: [],
 };

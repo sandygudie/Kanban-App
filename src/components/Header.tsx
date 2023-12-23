@@ -1,106 +1,158 @@
 import { useState } from "react";
-import { BiDotsVerticalRounded } from "react-icons/bi";
 import { IoIosAdd } from "react-icons/io";
 import AddBoard from "./Board/AddBoard";
-import { useMediaQuery } from "react-responsive";
 import logoMobile from "../assets/logo-mobile.svg";
 import AddTask from "./Board/AddTask";
 import DeleteItem from "./DeleteItem";
 import Icon from "./Icon";
 import Modal from "./Modal";
 import Popup from "./Popup";
-import { FiChevronDown } from "react-icons/fi";
-import SideBar from "./SideBar";
+
 import { useSelector } from "react-redux";
 import { appData } from "redux/boardSlice";
-import { IBoard } from "types";
+import { AppState } from "types";
+import ToggleBtn from "./ToggleBtn";
+import { MdOutlineDashboard } from "react-icons/md";
+import { HiOutlineChevronDown } from "react-icons/hi";
+import { useNavigate } from "react-router-dom";
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
   const [isOpenBoard, setOpenBoard] = useState(false);
+  const [isWorkspaceMenu, setWorkspaceMenu] = useState(false);
   const [isOpenMenu, setOpenMenu] = useState(false);
   const [isDeleteBoard, setDeleteBoard] = useState(false);
-  const [showDowndrop, setShowDropDown] = useState(false);
-  const [addBoardMobile, setAddBoardMobile] = useState(false);
-
-  const data = useSelector(appData);
-  const active: IBoard = data.active;
-
+  const data: AppState = useSelector(appData);
+  const { active, profile } = data;
+  const currentTheme = localStorage.getItem("theme")!;
+  const [theme, setTheme] = useState(currentTheme ? currentTheme : "dark");
+  const updateThemehandler = (theme: string) => setTheme(theme);
+  const navigate = useNavigate();
   const editBoard = () => {
     setOpenBoard(true);
     setOpenMenu(false);
   };
   const handleOpenMenu = () => setOpenMenu(false);
-  const handleaddBoardMobile = () => setAddBoardMobile(true);
-  const isMobile = useMediaQuery({ query: "(min-width: 700px)" });
 
   return (
-    <>
-      <div className="bg-white dark:bg-secondary flex items-center fixed w-full border-b-[1px] border-gray/20">
-        {isMobile ? (
-          <div
-            className={`border-r-[1px] border-gray/20 p-6 min-w-[15rem] cursor-pointer`}
-          >
-            <Icon type="kanban_logo" />
-          </div>
-        ) : (
-          <div className="border-gray/20 p-3 cursor-pointer">
-            <img src={logoMobile} alt="logo" className="w-8 h-8" />
-          </div>
-        )}
+    <div>
+      <div className="bg-white h-[65px] z-50 dark:bg-secondary flex items-center fixed w-full border-b-[1px] border-gray/20">
         <div
-          className={`flex items-center justify-between w-full ${isMobile ? "px-4" : "pr-4"
-            }`}
+          className={`border-r-[1px] border-gray/20 py-6 px-4 min-w-[14rem] cursor-pointer hidden md:block`}
         >
-          {active ? (
-            <>
-              {isMobile ? (
-                <h3 className="font-bold text-xl">{active.name}</h3>
-              ) : (
-                <button
-                  onClick={() => {
-                    setShowDropDown(!showDowndrop);
-                  }}
-                  className="flex items-center relative"
-                >
-                  <h3 className="font-bold text-sm md:text-xl">
-                    {active.name}
-                  </h3>{" "}
-                  <span>
-                    <FiChevronDown className="inline vertical-bottom" />
-                  </span>
-                </button>
-              )}
-              <div className="flex items-center">
-                <button
-                  aria-label="Add Task"
-                  onClick={() => setIsOpen(true)}
-                  className={`hover:bg-primary/40 rounded-full bg-primary text-sm font-bold text-white ${!isMobile ? "w-[30px] h-[30px]" : "px-6 py-2"
-                    } `}
-                >
-                  {!isMobile ? (
-                    <IoIosAdd className="inline-flex text-2xl" />
-                  ) : (
-                    <span className="flex justify-center items-center">
+          <Icon type="kanban_logo" />
+        </div>
+        <div className="block md:hidden border-gray/20 p-3 md:min-w-[14rem] cursor-pointer">
+          <img src={logoMobile} alt="logo" className="w-8 h-8" />
+        </div>
+
+        <div
+          className={`flex items-center justify-between w-full pr-2 md:px-4`}
+        >
+          <div className="relative">
+            <button
+              onClick={() => {
+                setWorkspaceMenu(!isWorkspaceMenu);
+              }}
+              className="flex items-center gap-x-2 relative"
+            >
+              <h3 className="font-bold truncate w-[5ch] sm:w-auto sm:text-base md:text-xl">
+                {profile.name}
+              </h3>{" "}
+              <HiOutlineChevronDown className="mt-1 text-sm" />
+            </button>
+            {isWorkspaceMenu && (
+              <Popup
+                description={
+                  <div className="flex gap-x-8 items-center border-b-[1px] border-gray/30 py-4 dark:text-white text-gray font-medium px-6 justify-center ">
+                    <img
+                      src="./workspace-placeholder.webp"
+                      className="w-10 h-10"
+                      alt=""
+                    />
+                    <div>
+                      <h2 className="text-xl font-bold">{profile.name}</h2>
+                      <p className="text-xs">{profile.email}</p>
+                    </div>
+                  </div>
+                }
+                style={{ top: 45, right: "-8rem" }}
+                handleOpenMenu={() => setWorkspaceMenu(false)}
+                items={[
+                  {
+                    title: `Invite people to ${profile.name}`,
+                    handler: ()=>{},
+                  },
+                  {
+                    title: "Workspace settings",
+                    handler: ()=>{},
+                  },
+                  {
+                    title: "Switch workspace",
+                    handler: () => {
+                      navigate("/workspace");
+                    },
+                  },
+                ]}
+              />
+            )}
+          </div>
+
+          <div className="flex items-center gap-x-6">
+            <ToggleBtn updateThemehandler={updateThemehandler} theme={theme} />
+            {active ? (
+              <div className="flex gap-x-4 items-center">
+                {active.columns.length ? (
+                  <button
+                    aria-label="Add Task"
+                    onClick={() => setIsOpen(true)}
+                    className={`hover:bg-primary/40 rounded-full bg-primary text-sm font-bold text-white 
+                  px-1.5 py-1.5 md:px-4 md:py-2 
+                  } `}
+                  >
+                    <IoIosAdd className="md:hidden inline-flex text-xl md:text-2xl" />
+
+                    <span className="hidden md:flex justify-center items-center">
                       {" "}
                       <span>
                         <IoIosAdd className="font-bold text-2xl" />
                       </span>{" "}
                       Add Task
                     </span>
-                  )}
-                </button>
-                <button>
-                  <BiDotsVerticalRounded
+                  </button>
+                ) : null}
+                <>
+                  <button
                     onClick={() => setOpenMenu(!isOpenMenu)}
-                    className="text-3xl hover:text-primary cursor-pointer"
-                  />
-                </button>
+                    className="text-base font-bold flex items-center gap-x-1 hover:bg-primary/40 px-2.5 md:px-5 py-2.5 rounded-full bg-primary text-sm font-bold text-white"
+                  >
+                    <span>
+                      <MdOutlineDashboard className="font-bold md:text-xl" />
+                    </span>
+                    <span className="hidden md:inline"> Board</span>
+                  </button>
+                  {isOpenMenu && (
+                    <Popup
+                      style={{ top: 60, right: 24 }}
+                      handleOpenMenu={handleOpenMenu}
+                      items={[
+                        {
+                          title: "Edit Board",
+                          handler: editBoard,
+                        },
+                        {
+                          title: "Delete Board",
+                          handler: () => {
+                            setDeleteBoard(true), handleOpenMenu();
+                          },
+                        },
+                      ]}
+                    />
+                  )}
+                </>
               </div>
-            </>
-          ) : (
-            <h1 className="font-bold text-gray text-xl"> No Board</h1>
-          )}
+            ) : null}
+          </div>
         </div>
       </div>
 
@@ -122,41 +174,6 @@ export default function Header() {
           <AddTask handleClose={() => setIsOpen(false)} />
         )}
       </Modal>
-      {isOpenMenu && (
-        <Popup
-          handleOpenMenu={handleOpenMenu}
-          items={[
-            {
-              title: "Edit Board",
-              handler: editBoard,
-            },
-            {
-              title: "Delete Board",
-              handler: () => {
-                setDeleteBoard(true), handleOpenMenu();
-              },
-            },
-          ]}
-        />
-      )}
-
-      {showDowndrop && !isMobile && (
-        <div className="absolute top-10">
-          <Modal
-            showDowndrop={showDowndrop}
-            open={showDowndrop}
-            handleClose={() => {
-              setShowDropDown(false), setAddBoardMobile(false);
-            }}
-          >
-            {addBoardMobile ? (
-              <AddBoard handleClose={() => setIsOpen(false)} />
-            ) : (
-              <SideBar handleaddBoardMobile={handleaddBoardMobile} />
-            )}
-          </Modal>
-        </div>
-      )}
-    </>
+    </div>
   );
 }

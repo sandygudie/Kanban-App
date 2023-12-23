@@ -6,6 +6,9 @@ import { gsap } from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { GoDotFill } from "react-icons/go";
+import { FaGithub,FaLinkedinIn } from "react-icons/fa";
+import { CgWebsite } from "react-icons/cg";
+import { MdOutlineEmail } from "react-icons/md";
 
 export default function Index() {
   gsap.registerPlugin(ScrollTrigger);
@@ -75,12 +78,12 @@ export default function Index() {
             })}
           </div>
           <div className="hover:scale-110 transition ease-in-out delay-100 duration-300">
-            <Link
+            {/* <Link
               to="/dashboard"
               className="hidden md:inline bg-primary rounded-lg text-white text-base px-6 py-4 font-bold"
             >
               Get Started
-            </Link>
+            </Link> */}
           </div>
         </header>
         <main>
@@ -149,30 +152,6 @@ export default function Index() {
                   </div>
                 </div>
               </div>
-              {/* <div className="flex items-center justify-center mt-20 gap-x-8 flex-wrap">
-                <div className="flex items-center justify-center flex-col justify-between">
-                  <h1 className="text-xl md:text-2xl font-semibold">
-                    Handle Multiple Projects
-                  </h1>
-
-                  <img
-                    src="interactive.gif"
-                    className="w-auto md:h-[22rem] mx-auto"
-                    alt="mutiple-projects-image"
-                  />
-                </div>
-                <div className="md:mt-0 flex items-center justify-center flex-col justify-between">
-                  <h1 className="text-xl md:text-2xl font-semibold">
-                    Smooth Interaction
-                  </h1>
-
-                  <img
-                  src="interactive.gif"
-                    className="w-auto md:h-[22rem] mx-auto"
-                    alt="drag-and-drop-gif"
-                  />
-                </div>
-              </div> */}
             </div>
           </section>
           <section
@@ -210,7 +189,7 @@ export default function Index() {
           >
             <p className="text-4xl md:text-5xl text-white font-bold"> Let&apos;s connect</p>
             <p className="text-white text-lg mt-4 mb-7 w-5/6 md:w-1/2 mx-auto font-medium">If you&apos;d like to work together on a new project or have any questions then please get in touch - I&apos;d love to hear from you!</p>
-            <div className="flex items-center flex-col text-sm text-white gap-y-2 justify-center">
+            <div className="flex items-center gap-x-6 text-lg text-white gap-y-2 justify-center">
             
               <Link
                 to="https://github.com/sandygudie"
@@ -218,7 +197,7 @@ export default function Index() {
                 className="hover:text-gray"
               >
                 {" "}
-                Github
+               <FaGithub /> 
               </Link>
               <Link
                 target="_blank"
@@ -226,7 +205,7 @@ export default function Index() {
                 className="hover:text-gray"
               >
                 {" "}
-                LinkedIn
+             <FaLinkedinIn />
               </Link>
               <Link
                 target="_blank"
@@ -234,15 +213,15 @@ export default function Index() {
                 className="hover:text-gray"
               >
                 {" "}
-                Portfolio
+                <CgWebsite/>
               </Link>
               <Link
                 target="_blank"
                 to="mailto:goodnewssandy@gmail.com"
                 className="hover:text-gray"
               >
-                {" "}
-                goodnewssandy@gmail.com
+                < MdOutlineEmail/>
+              
               </Link>
             </div>
           </section>

@@ -1,14 +1,16 @@
-import { useEffect, useRef } from "react";
+import { ReactElement, useEffect, useRef } from "react";
 
 interface Props {
   items: {
     title: string;
     handler: () => void;
   }[];
-  handleOpenMenu: ()=>void;
+  style: any;
+  description?: ReactElement;
+  handleOpenMenu: () => void;
 }
 
-function Popup({ items, handleOpenMenu }: Props) {
+function Popup({ items, style, handleOpenMenu, description }: Props) {
   const domRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -24,23 +26,31 @@ function Popup({ items, handleOpenMenu }: Props) {
   return (
     <div
       ref={domRef}
-      className="z-40 absolute py-2 text-sm shadow-xl dark:shadow-white/20 shadow-gray/50 
-      dark:bg-secondary bg-white right-5 top-10 rounded-md"
+      style={style}
+      className={`  ${
+        description ? "py-1" : "py-0"
+      } absolute rounded-md  shadow-3xl dark:shadow-gray/20 shadow-gray/30 
+      dark:bg-[#20212c] bg-offwhite text-white w-fit right-0 top-6 `}
     >
-      <ul className="w-36">
-        {items.map((list, i) => {
-          return (
-            <li
-              key={i}
-              onClick={list.handler}
-              className={`hover:text-primary py-2 px-6
-               cursor-pointer ${i < 1 && `border-b-[1px] border-gray/10`}`}
-            >
-              {list.title}
-            </li>
-          );
-        })}
-      </ul>
+      <div className="w-max">
+        {description ? description : null}
+        <div className="">
+          {items.map((list, i) => {
+            return (
+              <button
+                key={i}
+                onClick={list.handler}
+                className={`dark:text-white text-gray block w-full text-left hover:bg-primary hover:text-white font-semiBold text-[0.95rem] ${
+                  description ? "py-3 text-[0.9rem]" : "py-2 text-[0.8rem]"
+                } px-6 
+               ${i < items.length - 1 && `border-b-[1px] border-gray/20`}`}
+              >
+                {list.title}
+              </button>
+            );
+          })}
+        </div>
+      </div>
     </div>
   );
 }
