@@ -9,6 +9,7 @@ import { GoDotFill } from "react-icons/go";
 import { FaGithub,FaLinkedinIn } from "react-icons/fa";
 import { CgWebsite } from "react-icons/cg";
 import { MdOutlineEmail } from "react-icons/md";
+
 export default function Index() {
   gsap.registerPlugin(ScrollTrigger);
   const hero = useRef(null);
