@@ -181,7 +181,7 @@ export default function AddTask({ handleClose, activeColumn, tasks }: Props) {
                   )}
                 />
               </div>
-              <div className="relative flex items-center my-8 gap-x-8 justify-between ">
+              <div className="relative flex items-center my-6 gap-x-8 justify-between ">
                <div className="w-1/2">
                <TextInput
                   label="Deadline"

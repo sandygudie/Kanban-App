@@ -63,10 +63,10 @@ export default function Header() {
             {isWorkspaceMenu && (
               <Popup
                 description={
-                  <div className="flex gap-x-8 items-center border-b-[1px] border-gray/30 py-4 dark:text-white text-gray font-medium px-6 justify-center ">
+                  <div className="flex gap-x-6 items-center border-b-[1px] border-gray/30 py-4 dark:text-white text-gray font-medium px-8 justify-center ">
                     <img
                       src="./workspace-placeholder.webp"
-                      className="w-10 h-10"
+                      className="w-8 h-8"
                       alt=""
                     />
                     <div>

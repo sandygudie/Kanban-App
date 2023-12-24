@@ -18,9 +18,14 @@ export default function Index({ showSidebar }: Props) {
 
   return (
     <div className="w-auto h-full">
-      <>
+      <div
+            style={{
+              marginLeft: showSidebar ? "clamp(260px, 10vw, 500px)" : "0px",
+            }}
+            className={`z-10 relative h-auto py-4 mb-8 pr-8 pl-8`}
+          >
         {active ? (
-          <ActiveBoard showSidebar={showSidebar} />
+          <ActiveBoard  />
         ) : (
           <div className=" fixed -translate-y-[50%] -translate-x-[50%] top-1/2 shadow-lg p-4 md:p-8 bg-primary/20 rounded-lg left-[50%] text-center">
             <div className="w-64 md:w-72 mx-auto h-auto">
@@ -55,7 +60,7 @@ export default function Index({ showSidebar }: Props) {
             </button>
           </div>
         )}
-      </>
+      </div>
       <Modal open={isOpenBoard} handleClose={() => setOpenBoard(false)}>
         <AddBoard handleClose={() => setOpenBoard(false)} />
       </Modal>
