@@ -165,7 +165,7 @@ export default function ActiveBoard() {
                         >
                           <div>
                             <PiDotsThreeLight
-                              className=" relative font-bold"
+                              className="relative font-bold"
                               size={20}
                             />
                             {isOpenPopup && selectedColumn?.id === item.id ? (

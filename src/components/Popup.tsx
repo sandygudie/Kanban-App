@@ -29,8 +29,8 @@ function Popup({ items, style, handleOpenMenu, description }: Props) {
       style={style}
       className={`  ${
         description ? "py-1" : "py-0"
-      } z-40 absolute rounded-md  shadow-3xl dark:shadow-gray/20 shadow-gray/30 
-      dark:bg-[#20212c] bg-offwhite text-white w-fit right-0 top-6 `}
+      }  absolute rounded-md shadow-3xl dark:shadow-gray/20 shadow-gray/30 
+      dark:bg-[#20212c] bg-offwhite text-white w-fit right-0 top-6`}
     >
       <div className={`${description?"w-auto":"w-max"}`}>
         {description ? description : null}

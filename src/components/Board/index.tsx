@@ -14,10 +14,10 @@ interface Props {
 export default function Index({ showSidebar }: Props) {
   const [isOpenBoard, setOpenBoard] = useState(false);
   const data: AppState = useSelector(appData);
-  const { active } = data;
+  const { active,board } = data;
 
   return (
-    <div className="w-auto h-auto ">
+    <div className={` ${board.length? "h-auto":"h-full"} w-auto`}>
       <div
             style={{
               marginLeft: showSidebar ? "clamp(260px, 10vw, 500px)" : "0px",
@@ -27,7 +27,7 @@ export default function Index({ showSidebar }: Props) {
         {active ? (
           <ActiveBoard  />
         ) : (
-          <div className=" h-full flex flex-col items-center justify-center">
+          <div className="h-full flex flex-col items-center justify-center">
           <div className="shadow-lg p-4 md:p-8 bg-primary/20 rounded-lg w-64 md:w-96 mx-auto text-center">
             <div className="w-52 md:w-72 mx-auto h-auto">
               <img

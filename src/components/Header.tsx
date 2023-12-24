@@ -35,7 +35,7 @@ export default function Header() {
 
   return (
     <div>
-      <div className="bg-white h-[65px] z-50 dark:bg-secondary flex items-center absolute w-full border-b-[1px] border-gray/20">
+      <div className="bg-white h-[65px] z-40 dark:bg-secondary flex items-center absolute w-full border-b-[1px] border-gray/20">
         <div
           className={`border-r-[1px] border-gray/20 py-6 px-4 min-w-[14rem] cursor-pointer hidden md:block`}
         >
@@ -55,7 +55,7 @@ export default function Header() {
               }}
               className="flex items-center relative"
             >
-              <h3 className="font-bold truncate w-[5ch] sm:w-auto sm:text-base md:text-xl">
+              <h3 className="font-bold truncate w-[10ch] md:w-auto sm:text-base md:text-xl">
                 {profile.name}
               </h3>{" "}
               <HiOutlineChevronDown className="mt-1 text-sm" />

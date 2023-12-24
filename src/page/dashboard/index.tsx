@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import Header from "components/Header";
-import { Collapse } from "@chakra-ui/react";
+
 import { MdVisibilityOff } from "react-icons/md";
 import SideBar from "components/SideBar";
 import Board from "components/Board";
@@ -31,24 +31,17 @@ export default function Index() {
     <div className="w-full h-full relative">
       <Header />
       <div className="w-full h-screen">
-        <div className={`absolute top-[65px] overflow-auto h-[90vh] w-full`}>
+        <div
+          className={`absolute top-[65px] ${
+            board.length ? "h-[90vh] overflow-auto" : "h-full"
+          }  w-full`}
+        >
           {profile.id.length ? (
-            // <div
-            //   className={`${
-            //     isMobile === false && board.length < 1 ? "hidden" : "block"
-            //   }`}
-            // >
-            <Collapse in={showSidebar} animateOpacity>
-              <div
-                className={`h-screen fixed w-56 z-40 ${
-                  showSidebar ? "block " : "hidden"
-                }`}
-              >
-                <SideBar setShowSidebar={setShowSidebar} />
-              </div>
-            </Collapse>
-          ) : // </div>
-          null}
+            <SideBar
+              setShowSidebar={setShowSidebar}
+              showSidebar={showSidebar}
+            />
+          ) : null}
 
           <Board showSidebar={showSidebar} />
         </div>
