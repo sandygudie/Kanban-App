@@ -12,11 +12,10 @@ export default function Modal({
   handleClose,
   showDowndrop,
 }: Props) {
- 
   return (
     <>
       {open && (
-        <>
+        <div className="z-50">
           <button
             onClick={handleClose}
             className="z-50 bg-black/70 fixed -translate-y-[50%] -translate-x-[50%] top-[50%] left-[50%] w-screen h-screen"
@@ -31,7 +30,7 @@ export default function Modal({
           >
             {children}
           </div>
-        </>
+        </div>
       )}
     </>
   );

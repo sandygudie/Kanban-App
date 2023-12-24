@@ -19,10 +19,8 @@ import { FcCheckmark } from "react-icons/fc";
 import IconButton from "components/IconButton";
 import { IoCloseOutline } from "react-icons/io5";
 
-interface Props {
-  showSidebar: boolean;
-}
-export default function ActiveBoard({ showSidebar }: Props) {
+
+export default function ActiveBoard() {
   const dispatch = useDispatch();
   const [isAddTask, setAddTask] = useState(false);
   const [isOpenPopup, setOpenPopup] = useState(false);
@@ -86,12 +84,7 @@ export default function ActiveBoard({ showSidebar }: Props) {
     <>
       <DragDropContext onDragEnd={onDragEnd}>
         <div className="h-[90vh]">
-          <div
-            style={{
-              marginLeft: showSidebar ? "clamp(260px, 10vw, 500px)" : "0px",
-            }}
-            className={`z-10 relative h-auto py-4 mb-8 pr-8 pl-8`}
-          >
+         
             <div className="mt-3 z-10 h-full flex gap-x-10 w-full">
               {active.columns?.map((item: IColumn, index: number) => {
                 return (
@@ -172,7 +165,7 @@ export default function ActiveBoard({ showSidebar }: Props) {
                         >
                           <div>
                             <PiDotsThreeLight
-                              className=" relative font-bold"
+                              className="relative font-bold"
                               size={20}
                             />
                             {isOpenPopup && selectedColumn?.id === item.id ? (
@@ -243,7 +236,7 @@ export default function ActiveBoard({ showSidebar }: Props) {
               </div>
             </div>
           </div>
-        </div>
+     
       </DragDropContext>
 
       <Modal
