@@ -9,7 +9,7 @@ export const loadState = () => {
   };
 
   try {
-    const serializedState = localStorage.getItem("boarddata");
+    const serializedState = localStorage.getItem("kanban");
     if (serializedState === null) {
       return initialState;
     }
@@ -22,7 +22,7 @@ export const loadState = () => {
 export const saveState = (state: any) => {
   try {
     const serializesState = JSON.stringify(state);
-    localStorage.setItem("boarddata", serializesState);
+    localStorage.setItem("kanban", serializesState);
   } catch (err) {
     return err;
   }

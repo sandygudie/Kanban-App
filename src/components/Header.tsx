@@ -35,7 +35,7 @@ export default function Header() {
 
   return (
     <div>
-      <div className="bg-white h-[65px] z-50 dark:bg-secondary flex items-center fixed w-full border-b-[1px] border-gray/20">
+      <div className="bg-white h-[65px] z-40 dark:bg-secondary flex items-center absolute w-full border-b-[1px] border-gray/20">
         <div
           className={`border-r-[1px] border-gray/20 py-6 px-4 min-w-[14rem] cursor-pointer hidden md:block`}
         >
@@ -53,9 +53,9 @@ export default function Header() {
               onClick={() => {
                 setWorkspaceMenu(!isWorkspaceMenu);
               }}
-              className="flex items-center gap-x-2 relative"
+              className="flex items-center relative"
             >
-              <h3 className="font-bold truncate w-[5ch] sm:w-auto sm:text-base md:text-xl">
+              <h3 className="font-bold truncate w-[10ch] md:w-auto sm:text-base md:text-xl">
                 {profile.name}
               </h3>{" "}
               <HiOutlineChevronDown className="mt-1 text-sm" />
@@ -63,12 +63,14 @@ export default function Header() {
             {isWorkspaceMenu && (
               <Popup
                 description={
-                  <div className="flex gap-x-8 items-center border-b-[1px] border-gray/30 py-4 dark:text-white text-gray font-medium px-6 justify-center ">
-                    <img
+                  <div className="flex gap-x-6 items-center border-b-[1px] border-gray/30 py-4 dark:text-white text-gray font-medium px-4 justify-center ">
+                   <div  className="w-8 h-8">
+                   <img
                       src="./workspace-placeholder.webp"
-                      className="w-10 h-10"
+                      className="w-8 h-8 object-fit"
                       alt=""
                     />
+                   </div>
                     <div>
                       <h2 className="text-xl font-bold">{profile.name}</h2>
                       <p className="text-xs">{profile.email}</p>

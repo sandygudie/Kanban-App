@@ -14,21 +14,27 @@ interface Props {
 export default function Index({ showSidebar }: Props) {
   const [isOpenBoard, setOpenBoard] = useState(false);
   const data: AppState = useSelector(appData);
-  const { active } = data;
+  const { active,board } = data;
 
   return (
-    <div className="w-auto h-full">
-      <>
+    <div className={` ${board.length? "h-auto":"h-full"} w-auto`}>
+      <div
+            style={{
+              marginLeft: showSidebar ? "clamp(260px, 10vw, 500px)" : "0px",
+            }}
+            className={`relative h-full -z-[1] pt-8 pb-28 mb-8 pr-8 pl-8`}
+          >
         {active ? (
-          <ActiveBoard showSidebar={showSidebar} />
+          <ActiveBoard  />
         ) : (
-          <div className=" fixed -translate-y-[50%] -translate-x-[50%] top-1/2 shadow-lg p-4 md:p-8 bg-primary/20 rounded-lg left-[50%] text-center">
-            <div className="w-64 md:w-72 mx-auto h-auto">
+          <div className="h-full flex flex-col items-center justify-center">
+          <div className="shadow-lg p-4 md:p-8 bg-primary/20 rounded-lg w-64 md:w-96 mx-auto text-center">
+            <div className="w-52 md:w-72 mx-auto h-auto">
               <img
                 src="/empty-project.png"
                 alt="start project"
                 loading="eager"
-                className="w-64 md:w-72 mx-auto h-auto"
+                className="w-52 md:w-72 mx-auto h-auto"
               />
             </div>
             <div className="">
@@ -54,8 +60,9 @@ export default function Index({ showSidebar }: Props) {
               </div>
             </button>
           </div>
+          </div>
         )}
-      </>
+      </div>
       <Modal open={isOpenBoard} handleClose={() => setOpenBoard(false)}>
         <AddBoard handleClose={() => setOpenBoard(false)} />
       </Modal>

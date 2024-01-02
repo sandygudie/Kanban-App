@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import Header from "components/Header";
-import { Collapse } from "@chakra-ui/react";
+
 import { MdVisibilityOff } from "react-icons/md";
 import SideBar from "components/SideBar";
 import Board from "components/Board";
@@ -15,40 +15,35 @@ export default function Index() {
   const data: AppState = useSelector(appData);
   const { profile, board } = data;
   const navigate = useNavigate();
+  const isMobile = useMediaQuery({ query: "(min-width: 700px)" });
 
   useEffect(() => {
     if (!profile.id.length) {
       navigate("/workspace");
     }
-  }, [navigate, profile.id.length]);
+    if (isMobile === false && board.length < 1) {
+      console.log("see");
+      setShowSidebar(false);
+    }
+  }, [board.length, isMobile, navigate, profile.id.length]);
 
-  const isMobile = useMediaQuery({ query: "(min-width: 700px)" });
   return (
-    <div className="w-full h-full">
+    <div className="w-full h-full relative">
       <Header />
       <div className="w-full h-screen">
-        <div className={`absolute top-[65px] overflow-auto w-full`}>
+        <div
+          className={`absolute top-[65px] ${
+            board.length ? "h-[90vh] overflow-auto" : "h-full"
+          }  w-full`}
+        >
           {profile.id.length ? (
-            <div
-              className={`${
-                isMobile === false && board.length < 1 ? "hidden" : "block"
-              }`}
-            >
-              <Collapse in={showSidebar} animateOpacity>
-                <div
-                  className={`h-screen fixed w-56 z-40 ${
-                    showSidebar ? "block " : "hidden"
-                  }`}
-                >
-                  <SideBar setShowSidebar={setShowSidebar} />
-                </div>
-              </Collapse>
-            </div>
+            <SideBar
+              setShowSidebar={setShowSidebar}
+              showSidebar={showSidebar}
+            />
           ) : null}
 
-          <div>
-            <Board showSidebar={showSidebar} />
-          </div>
+          <Board showSidebar={showSidebar} />
         </div>
       </div>
 
