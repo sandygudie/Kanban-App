@@ -90,7 +90,7 @@ export default function ActiveBoard({ showSidebar }: Props) {
             style={{
               marginLeft: showSidebar ? "clamp(260px, 10vw, 500px)" : "0px",
             }}
-            className={`z-10 relative h-auto py-4 mb-8 pr-8 pl-8`}
+            className={`z-10 relative -z-[1] h-auto py-4 mb-8 pr-8 pl-8`}
           >
             <div className="mt-3 z-10 h-full flex gap-x-10 w-full">
               {active.columns?.map((item: IColumn, index: number) => {
