@@ -32,7 +32,7 @@ export default function Index({
     <>
       <Collapse in={showSidebar} animateOpacity>
         <div
-          className={`h-screen fixed w-56 ${showSidebar ? "block " : "hidden"}`}
+          className={`h-screen fixed z-20 w-56 ${showSidebar ? "block " : "hidden"}`}
         >
           <div
             className={`z-40 text-gray bg-white dark:bg-secondary ${
