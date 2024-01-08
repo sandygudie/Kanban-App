@@ -78,12 +78,6 @@ export default function Index() {
             })}
           </div>
           <div className="hover:scale-110 transition ease-in-out delay-100 duration-300">
-            {/* <Link
-              to="/dashboard"
-              className="hidden md:inline bg-primary rounded-lg text-white text-base px-6 py-4 font-bold"
-            >
-              Get Started
-            </Link> */}
           </div>
         </header>
         <main>
@@ -131,7 +125,6 @@ export default function Index() {
                   <div>
                     {[
                       "Simplified board view.",
-                      // "Handle multiple workspace.",
                       "Handle multiple projects.",
                       "Smooth drag and drop interaction.",
                       "Optimal layout on device's screen size.",
@@ -171,7 +164,6 @@ export default function Index() {
                 "GSAP",
                 "Framer-motion",
                 "Chakara-UI",
-
                 "Cypress",
               ].map((ele, index) => {
                 return (

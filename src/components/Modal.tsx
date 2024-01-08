@@ -1,4 +1,3 @@
-// import { useMediaQuery } from "react-responsive";
 interface Props {
   open: boolean;
   handleClose: () => void;

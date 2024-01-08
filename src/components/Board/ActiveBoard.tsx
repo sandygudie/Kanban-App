@@ -19,7 +19,6 @@ import { FcCheckmark } from "react-icons/fc";
 import IconButton from "components/IconButton";
 import { IoCloseOutline } from "react-icons/io5";
 
-
 export default function ActiveBoard() {
   const dispatch = useDispatch();
   const [isAddTask, setAddTask] = useState(false);
@@ -84,159 +83,154 @@ export default function ActiveBoard() {
     <>
       <DragDropContext onDragEnd={onDragEnd}>
         <div className="h-[90vh]">
-         
-            <div className="mt-3 z-10 h-full flex gap-x-10 w-full">
-              {active.columns?.map((item: IColumn, index: number) => {
-                return (
-                  <div key={item.name} className="w-[250px] shrink-0">
-                    <div className="flex justify-between items-center">
-                      <div
-                        className=" flex gap-x-1 items-center text-gray 
+          <div className="mt-3 z-10 h-full flex gap-x-10 w-full">
+            {active.columns?.map((item: IColumn, index: number) => {
+              return (
+                <div key={item.name} className="w-[250px] shrink-0">
+                  <div className="flex justify-between items-center">
+                    <div
+                      className=" flex gap-x-1 items-center text-gray 
             font-bold uppercase text-xs tracking-widest"
-                      >
-                        <BsCircleFill
-                          style={{
-                            fill:
-                              index < colorMarker.length
-                                ? colorMarker[index]
-                                : colorSelection(),
-                          }}
+                    >
+                      <BsCircleFill
+                        style={{
+                          fill:
+                            index < colorMarker.length
+                              ? colorMarker[index]
+                              : colorSelection(),
+                        }}
+                      />
+                      {isEditColumn && selectedColumn?.id === item.id ? (
+                        <input
+                          type="text"
+                          value={editedText}
+                          onChange={(e) => editColumnChangeHandler(e)}
+                          className={`${
+                            inputError && "border-error"
+                          } border-[1px] w-20 rounded-md py-1 px-2`}
                         />
-                        {isEditColumn && selectedColumn?.id === item.id ? (
-                          <input
-                            type="text"
-                            value={editedText}
-                            onChange={(e) => editColumnChangeHandler(e)}
-                            className={`${
-                              inputError && "border-error"
-                            } border-[1px] w-20 rounded-md py-1 px-2`}
-                          />
-                        ) : (
-                          <span
-                            className={`${
-                              item.name.length > 10
-                                ? "truncate w-[10ch]"
-                                : "w-fit"
-                            }`}
-                          >
-                            {" "}
-                            {item.name}
-                          </span>
-                        )}
-                        ({item.tasks.length})
-                      </div>
-                      <div className="relative gap-x-2 flex items-center">
-                        {isEditColumn && selectedColumn?.id === item.id ? (
-                          <>
-                            <IconButton
-                              handleClick={() => setEditColumn(false)}
-                            >
-                              <IoCloseOutline className="text-error text-lg font-bold" />
-                            </IconButton>
-                            <IconButton handleClick={editColumnHandler}>
-                              {<FcCheckmark className="text-lg font-bold" />}
-                            </IconButton>
-                          </>
-
-                        ) : (
-                          <IconButton
-                            handleClick={() => {
-                              setEditColumn(true),
-                                setSelectedColumn(item),
-                                setEditedText(item.name);
-                            }}
-                          >
-                            <IoPencil className="text-sm font-bold" />
-                          </IconButton>
-                        )}
-
-                        <IconButton
-                          handleClick={() => {
-                            setSelectedColumn(item), deleteColumnHandler();
-                          }}
+                      ) : (
+                        <span
+                          className={`${
+                            item.name.length > 10
+                              ? "truncate w-[10ch]"
+                              : "w-fit"
+                          }`}
                         >
                           {" "}
-                          <AiOutlineDelete className="text-sm text-error" />{" "}
-                        </IconButton>
+                          {item.name}
+                        </span>
+                      )}
+                      ({item.tasks.length})
+                    </div>
+                    <div className="relative gap-x-2 flex items-center">
+                      {isEditColumn && selectedColumn?.id === item.id ? (
+                        <>
+                          <IconButton handleClick={() => setEditColumn(false)}>
+                            <IoCloseOutline className="text-error text-lg font-bold" />
+                          </IconButton>
+                          <IconButton handleClick={editColumnHandler}>
+                            {<FcCheckmark className="text-lg font-bold" />}
+                          </IconButton>
+                        </>
+                      ) : (
                         <IconButton
                           handleClick={() => {
-                            setOpenPopup(true), setSelectedColumn(item);
+                            setEditColumn(true),
+                              setSelectedColumn(item),
+                              setEditedText(item.name);
                           }}
                         >
-                          <div>
-                            <PiDotsThreeLight
-                              className="relative font-bold"
-                              size={20}
-                            />
-                            {isOpenPopup && selectedColumn?.id === item.id ? (
-                              <div>
-                                <Popup
-                                  handleOpenMenu={() => setOpenPopup(false)}
-                                  style={{}}
-                                  items={[
-                                    {
-                                      title: "Add Card",
-                                      handler: addCard,
-                                    },
-                                  ]}
-                                />
-                              </div>
-                            ) : null}
-                          </div>
+                          <IoPencil className="text-sm font-bold" />
                         </IconButton>
-                      </div>
-                    </div>
-
-                    <Droppable droppableId={`${item.name}`}>
-                      {(provided) => (
-                        <div
-                          {...provided.droppableProps}
-                          ref={provided.innerRef}
-                          className="mt-4 h-full"
-                        >
-                          {item.tasks.length > 0 ? (
-                            <div>
-                              {item.tasks.map((tasks: ITask, index: number) => {
-                                const filtered = tasks.subtasks.filter(
-                                  (item) => item.isCompleted === true
-                                );
-                                return (
-                                  <TaskItem
-                                    tasks={tasks}
-                                    filtered={filtered}
-                                    key={tasks.id}
-                                    index={index}
-                                  />
-                                );
-                              })}
-                            </div>
-                          ) : (
-                            <div className="w-[250px] shrink-0 h-full">
-                              <div className="h-screen dark:bg-secondary/20 border-dashed border-2 border-gray rounded-lg"></div>
-                            </div>
-                          )}
-                          {provided.placeholder}
-                        </div>
                       )}
-                    </Droppable>
-                  </div>
-                );
-              })}
 
-              <div className="mt-8 h-screen w-[280px] pr-8 shrink-0">
-                <button
-                  onClick={() => setEditBoard(true)}
-                  className="h-full w-full bg-primary/30 hover:bg-primary/40 cursor-pointer flex items-center flex-col justify-center text-center rounded-lg"
-                >
-                  <p className="text-xl hover:text-primary/70 text-primary font-bold">
-                    {" "}
-                    + Add Column
-                  </p>
-                </button>
-              </div>
+                      <IconButton
+                        handleClick={() => {
+                          setSelectedColumn(item), deleteColumnHandler();
+                        }}
+                      >
+                        {" "}
+                        <AiOutlineDelete className="text-sm text-error" />{" "}
+                      </IconButton>
+                      <IconButton
+                        handleClick={() => {
+                          setOpenPopup(true), setSelectedColumn(item);
+                        }}
+                      >
+                        <div>
+                          <PiDotsThreeLight
+                            className="relative font-bold"
+                            size={20}
+                          />
+                          {isOpenPopup && selectedColumn?.id === item.id ? (
+                            <div>
+                              <Popup
+                                handleOpenMenu={() => setOpenPopup(false)}
+                                style={{}}
+                                items={[
+                                  {
+                                    title: "Add Card",
+                                    handler: addCard,
+                                  },
+                                ]}
+                              />
+                            </div>
+                          ) : null}
+                        </div>
+                      </IconButton>
+                    </div>
+                  </div>
+
+                  <Droppable droppableId={`${item.name}`}>
+                    {(provided) => (
+                      <div
+                        {...provided.droppableProps}
+                        ref={provided.innerRef}
+                        className="mt-4 h-full"
+                      >
+                        {item.tasks.length > 0 ? (
+                          <div>
+                            {item.tasks.map((tasks: ITask, index: number) => {
+                              const filtered = tasks.subtasks.filter(
+                                (item) => item.isCompleted === true
+                              );
+                              return (
+                                <TaskItem
+                                  tasks={tasks}
+                                  filtered={filtered}
+                                  key={tasks.id}
+                                  index={index}
+                                />
+                              );
+                            })}
+                          </div>
+                        ) : (
+                          <div className="w-[250px] shrink-0 h-full">
+                            <div className="h-screen dark:bg-secondary/20 border-dashed border-2 border-gray rounded-lg"></div>
+                          </div>
+                        )}
+                        {provided.placeholder}
+                      </div>
+                    )}
+                  </Droppable>
+                </div>
+              );
+            })}
+
+            <div className="mt-8 h-screen w-[280px] pr-8 shrink-0">
+              <button
+                onClick={() => setEditBoard(true)}
+                className="h-full w-full bg-primary/30 hover:bg-primary/40 cursor-pointer flex items-center flex-col justify-center text-center rounded-lg"
+              >
+                <p className="text-xl hover:text-primary/70 text-primary font-bold">
+                  {" "}
+                  + Add Column
+                </p>
+              </button>
             </div>
           </div>
-     
+        </div>
       </DragDropContext>
 
       <Modal

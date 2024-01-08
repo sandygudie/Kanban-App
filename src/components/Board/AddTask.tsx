@@ -59,7 +59,6 @@ export default function AddTask({ handleClose, activeColumn, tasks }: Props) {
         isClosable: true,
       });
     }
-
     handleClose();
   };
 
@@ -182,25 +181,22 @@ export default function AddTask({ handleClose, activeColumn, tasks }: Props) {
                 />
               </div>
               <div className="relative flex items-center my-6 gap-x-8 justify-between ">
-               <div className="w-1/2">
-               <TextInput
-                  label="Deadline"
-                  name="deadline"
-                  type="date"
-                  placeholder="E.g Pending design task"
-                  
-                />
-               </div>
-               <div className="w-1/2">
-                 <TextInput
-                  label="Time"
-                  name="time"
-                  type="time"
-                  placeholder="E.g Pending design task"
-                 
-                />
-                 </div>
-                
+                <div className="w-1/2">
+                  <TextInput
+                    label="Deadline"
+                    name="deadline"
+                    type="date"
+                    placeholder="E.g Pending design task"
+                  />
+                </div>
+                <div className="w-1/2">
+                  <TextInput
+                    label="Time"
+                    name="time"
+                    type="time"
+                    placeholder="E.g Pending design task"
+                  />
+                </div>
               </div>
               <div className="mb-6">
                 <label className="text-sm font-bold">Column</label>

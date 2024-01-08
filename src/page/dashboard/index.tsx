@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import Header from "components/Header";
-
 import { MdVisibilityOff } from "react-icons/md";
 import SideBar from "components/SideBar";
 import Board from "components/Board";
@@ -42,7 +41,6 @@ export default function Index() {
               showSidebar={showSidebar}
             />
           ) : null}
-
           <Board showSidebar={showSidebar} />
         </div>
       </div>

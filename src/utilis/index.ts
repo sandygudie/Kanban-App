@@ -1,4 +1,3 @@
-// import data from "data";
 import { AppState, IBoard, ITask } from "types";
 const data: IBoard[] = [];
 export const loadState = () => {

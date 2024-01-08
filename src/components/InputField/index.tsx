@@ -84,11 +84,6 @@ export const SubtaskInput = ({
           <MdClose className="text-lg hover:text-primary font-bold" />
         </button>
       </div>
-      {/* {meta.touched || meta.error ? (
-        <div className="absolute -bottom-0 text-error/70 text-xs">
-          {meta.error}
-        </div>
-      ) : null} */}
     </div>
   );
 };
