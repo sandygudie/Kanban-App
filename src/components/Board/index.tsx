@@ -22,7 +22,7 @@ export default function Index({ showSidebar }: Props) {
             style={{
               marginLeft: showSidebar ? "clamp(260px, 10vw, 500px)" : "0px",
             }}
-            className={`relative h-full -z-[1] pt-8 pb-28 mb-8 pr-8 pl-8`}
+            className={`relative h-full pt-8 pb-28 mb-8 pr-8 pl-8`}
           >
         {active ? (
           <ActiveBoard  />
