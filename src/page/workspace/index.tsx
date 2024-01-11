@@ -47,8 +47,8 @@ export default function Index() {
  
 
   return (
-    <div className="w-full h-screen">
-      <header className="bg-white h-[65px] dark:bg-secondary flex items-center  w-full border-b-[1px] border-gray/20">
+    <div className="w-full h-full">
+      <header className="bg-white h-[65px] dark:bg-secondary flex items-center w-full border-b-[1px] border-gray/20">
         <div
           className={`border-r-[1px] border-gray/20 py-6 px-4 min-w-[14rem] cursor-pointer hidden md:block`}
         >
@@ -65,7 +65,7 @@ export default function Index() {
         </div>
       </header>
       {!isCreateWorkspace && profile.id.length > 0 ? (
-        <div className="h-full">
+        <div className="h-full mt-12">
           <div className="w-4/6 mx-auto h-full flex flex-col items-center justify-center ">
             <div>
               <h1 className="text-xl md:text-2xl text-center ">Workspace(s)</h1>
@@ -94,9 +94,9 @@ export default function Index() {
         </div>
       ) : null}
       {isCreateWorkspace ? (
-        <div className="flex-wrap flex items-center relative h-full justify-center">
+        <div className="h-full">
           {profile.id.length > 0 ? (
-            <button onClick={()=> setCreateWorkspace(false)} className="text-lg hover:text-primary absolute top-10 left-20 flex items-center gap-x-4">
+            <button onClick={()=> setCreateWorkspace(false)} className="text-lg hover:text-primary p-8 flex items-center gap-x-4">
               {" "}
               <span>
                 <IoArrowBack />
@@ -104,6 +104,7 @@ export default function Index() {
               Available workspace
             </button>
           ) : null}
+          <div className="flex-wrap flex items-start md:items-center relative h-full justify-center md:mt-12">
           <div className="hidden md:block lg:w-[30rem] h-auto">
             <img
               src="/start-project.png"
@@ -112,7 +113,7 @@ export default function Index() {
               className="w-72 lg:w-[30rem] h-auto"
             />
           </div>
-          <div className="w-96 mx-6 md:mx-0 lg:mt-6 md:mt-0">
+          <div className="w-96 mx-6 md:mx-0 mt-6">
             <div>
               <h1 className="text-primary text-xl sm:text-2xl md:text-3xl font-bold ">
                 Welcome to Kanban!
@@ -157,6 +158,7 @@ export default function Index() {
                 </div>
               </Form>
             </Formik>
+          </div>
           </div>
         </div>
       ) : null}
