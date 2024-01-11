@@ -41,24 +41,10 @@ export default function Index() {
   });
 
   const addWorkspaceHandler = (values: any) => {
-    // const foundDuplicate = checkDuplicatedWorkspace(values, board);
-    // if (foundDuplicate === false) {
     dispatch(addWorkspace(values));
     navigate("/dashboard");
-    // } else {
-    //   toast({
-    //     title: "Board already exist.",
-    //     position: "top",
-    //     status: "error",
-    //     duration: 2000,
-    //     isClosable: true,
-    //   });
-    // }
-    // handleClose();
   };
-  // const editWorkspaceHandler = () => {
-
-  // };
+ 
 
   return (
     <div className="w-full h-screen">
@@ -118,7 +104,7 @@ export default function Index() {
               Available workspace
             </button>
           ) : null}
-          <div className="w-72 lg:w-[30rem] h-auto">
+          <div className="hidden md:block lg:w-[30rem] h-auto">
             <img
               src="/start-project.png"
               alt="start project"
@@ -126,7 +112,7 @@ export default function Index() {
               className="w-72 lg:w-[30rem] h-auto"
             />
           </div>
-          <div className="w-96 mx-6 md:mx-0 mt-6 md:mt-0">
+          <div className="w-96 mx-6 md:mx-0 lg:mt-6 md:mt-0">
             <div>
               <h1 className="text-primary text-xl sm:text-2xl md:text-3xl font-bold ">
                 Welcome to Kanban!
@@ -148,7 +134,7 @@ export default function Index() {
                     label="Organization's name"
                     name="name"
                     type="text"
-                    placeholder="E.g company"
+                    placeholder="E.g xyz"
                   />
                 </div>
                 <div className="mb-6">
@@ -156,7 +142,7 @@ export default function Index() {
                     label="Email"
                     name="email"
                     type="email"
-                    placeholder="E.g company@xyz.com"
+                    placeholder="E.g xyz@gmail.com"
                   />
                 </div>
 
