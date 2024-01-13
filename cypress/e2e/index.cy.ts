@@ -1,5 +1,5 @@
 describe("page load", () => {
-  it("displays board", () => {
+  it("displays landing page", () => {
     cy.visit("/");
     cy.contains("p", "Effortlessly Manage").should("be.visible");
   });

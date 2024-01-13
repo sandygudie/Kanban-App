@@ -4,6 +4,7 @@ interface Props {
   items: {
     title: string;
     handler: () => void;
+    status?: boolean;
   }[];
   style: any;
   description?: ReactElement;
@@ -32,17 +33,24 @@ function Popup({ items, style, handleOpenMenu, description }: Props) {
       }  absolute rounded-md shadow-3xl dark:shadow-gray/20 shadow-gray/30 
       dark:bg-[#20212c] bg-offwhite text-white w-fit right-0 top-6`}
     >
-      <div className={`${description?"w-auto":"w-max"}`}>
+      <div className={`${description ? "w-auto" : "w-max"}`}>
         {description ? description : null}
         <div className="">
           {items.map((list, i) => {
             return (
               <button
                 key={i}
+                disabled={list.status === false}
                 onClick={list.handler}
-                className={`dark:text-white text-gray block w-full text-left  hover:text-primary font-semiBold text-[0.95rem] ${
-                  description ? "py-3 text-[0.9rem] hover:bg-primary hover:text-white" : "dark:hover:text-primary py-2 text-[0.72rem]"
-                } px-4
+                className={`block w-full text-left font-semiBold text-[0.95rem] ${
+                  description
+                    ? `${
+                        list.status === false
+                          ? "bg-gray/10 text-gray cursor-not-allowed"
+                          : "dark:text-white text-black hover:bg-primary hover:text-white"
+                      } py-3 text-[0.9rem]`
+                    : "dark:hover:text-primary py-2 text-[0.72rem]"
+                }  px-4
                ${i < items.length - 1 && `border-b-[1px] border-gray/20`}`}
               >
                 {list.title}

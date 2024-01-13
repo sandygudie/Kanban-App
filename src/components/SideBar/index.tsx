@@ -1,5 +1,5 @@
 import { Dispatch, SetStateAction, useState } from "react";
-import { MdVisibilityOff } from "react-icons/md";
+import { GoSidebarCollapse } from "react-icons/go";
 import Icon from "components/Icon";
 import { AppState, IBoard } from "types";
 import { useMediaQuery } from "react-responsive";
@@ -8,7 +8,7 @@ import { appData, activeItem } from "redux/boardSlice";
 import { IoIosAdd } from "react-icons/io";
 import Modal from "components/Modal";
 import AddBoard from "components/Board/AddBoard";
-import { Collapse } from "@chakra-ui/react";
+// import { Collapse } from "@chakra-ui/react";
 interface Props {
   showSidebar: boolean;
   setShowSidebar?: Dispatch<SetStateAction<boolean>>;
@@ -30,19 +30,21 @@ export default function Index({
 
   return (
     <>
-      <Collapse in={showSidebar} animateOpacity>
+      <>
         <div
-          className={`h-screen fixed z-20 w-56 ${showSidebar ? "block " : "hidden"}`}
+          className={`h-screen fixed z-20 w-56 transition duration-700 ease-in-out ${
+            showSidebar ? "translate-x-0" : "-translate-x-64"
+          }`}
         >
           <div
             className={`z-40 text-gray bg-white dark:bg-secondary ${
               isMobile && "pr-2 pb-24 border-r-[1px] border-gray/20"
-            } 
-     pt-4 flex  
-        flex-col justify-between h-full left-0 `}
+            } pt-4 flex flex-col justify-between h-full left-0 `}
           >
             <div>
-              <p className="pl-4 py-2 text-xs">ALL BOARDS ({board.length})</p>
+              <p className="pl-4 pt-6 pb-2 text-xs">
+                ALL BOARDS ({board.length})
+              </p>
               <div>
                 {board && (
                   <>
@@ -77,7 +79,7 @@ export default function Index({
                         ? handleaddBoardMobile()
                         : setIsOpen(true);
                     }}
-                    className="pl-4 my-8 md:my-4 font-bold cursor-pointer text-primary hover:text-primary/60"
+                    className="pl-4 mt-4 font-bold cursor-pointer text-primary hover:text-primary/60"
                   >
                     <div className="flex items-center ">
                       {" "}
@@ -92,20 +94,20 @@ export default function Index({
               </div>
             </div>
 
-            <div className="mx-auto w-4/5 mb-4 absolute bottom-20 right-5 md:mb-0">
+            <div className="mb-4 absolute top-0 right-0 md:mb-0">
               <button
                 aria-label="Hide Sidebar"
                 onClick={() => {
                   setShowSidebar ? setShowSidebar(false) : null;
                 }}
-                className="cursor-pointer hover:text-primary border-none inline-flex items-center gap-x-2 text-xs my-4"
+                className="cursor-pointer text-white bg-primary p-2 rounded-l-full border-none inline-flex items-center gap-x-2 text-xs"
               >
-                <MdVisibilityOff size={20} /> Hide Sidebar
+                <GoSidebarCollapse size={20} />
               </button>
             </div>
           </div>
         </div>
-      </Collapse>
+      </>
       <Modal open={isOpen} handleClose={() => setIsOpen(false)}>
         <AddBoard handleClose={() => setIsOpen(false)} />
       </Modal>

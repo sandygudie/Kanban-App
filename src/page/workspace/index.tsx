@@ -44,7 +44,6 @@ export default function Index() {
     dispatch(addWorkspace(values));
     navigate("/dashboard");
   };
- 
 
   return (
     <div className="w-full h-full">
@@ -59,19 +58,21 @@ export default function Index() {
         </div>
         <div className="flex items-center justify-between w-full pr-2 md:px-4">
           <h1 className="font-bold text-gray text-lg">
-            {profile.id.length > 0 ? "Workspace(s)" : "No Workspace"}
+            {profile.id.length > 0 ? "Workspace" : "No Workspace"}
           </h1>
           <ToggleBtn updateThemehandler={updateThemehandler} theme={theme} />
         </div>
       </header>
       {!isCreateWorkspace && profile.id.length > 0 ? (
-        <div className="h-full mt-12">
-          <div className="w-4/6 mx-auto h-full flex flex-col items-center justify-center ">
+        <div className="h-full mt-12 overflow-hidden">
+          <div className="mx-auto h-full flex flex-col items-center justify-center ">
             <div>
-              <h1 className="text-xl md:text-2xl text-center ">Workspace(s)</h1>
+              <h1 className="text-xl md:text-2xl text-center">
+                Available Workspace(s)
+              </h1>
               <Link
                 to="/dashboard"
-                className="px-4 md:px-8 py-2 mt-6 w-max rounded-lg border-[1px] border-solid flex hover:bg-primary/50 gap-x-8 items-center justify-center"
+                className="px-3 md:px-8 py-3 mt-6 w-max rounded-lg border-[1px] border-solid flex hover:bg-primary/50 gap-x-4 md:gap-x-8 items-center justify-center"
               >
                 <img
                   src="./workspace-placeholder.webp"
@@ -79,13 +80,16 @@ export default function Index() {
                   alt=""
                 />
                 <div>
-                  <h2 className="text-xl md:text-xl">{profile.name}</h2>
+                  <h2 className="text-base md:text-lg">{profile.name}</h2>
                   <p className="text-xs">{profile.email}</p>
                 </div>
               </Link>
             </div>
             <div className="text-center mt-10">
-              <button className="bg-primary/70 hover:bg-primary text-white text-sm p-4 rounded-lg font-bold" onClick={() => setCreateWorkspace(true)}>
+              <button
+                className="bg-primary/70 hover:bg-primary text-white text-sm py-4 px-8 rounded-lg font-bold"
+                onClick={() => setCreateWorkspace(true)}
+              >
                 {" "}
                 Add Workspace
               </button>
@@ -96,7 +100,10 @@ export default function Index() {
       {isCreateWorkspace ? (
         <div className="h-full">
           {profile.id.length > 0 ? (
-            <button onClick={()=> setCreateWorkspace(false)} className="text-lg hover:text-primary p-8 flex items-center gap-x-4">
+            <button
+              onClick={() => setCreateWorkspace(false)}
+              className="text-lg hover:text-primary p-4 md:p-8 flex items-center gap-x-4"
+            >
               {" "}
               <span>
                 <IoArrowBack />
@@ -105,60 +112,60 @@ export default function Index() {
             </button>
           ) : null}
           <div className="flex-wrap flex items-start md:items-center relative h-full justify-center md:mt-12">
-          <div className="hidden md:block lg:w-[30rem] h-auto">
-            <img
-              src="/start-project.png"
-              alt="start project"
-              loading="eager"
-              className="w-72 lg:w-[30rem] h-auto"
-            />
-          </div>
-          <div className="w-96 mx-6 md:mx-0 mt-6">
-            <div>
-              <h1 className="text-primary text-xl sm:text-2xl md:text-3xl font-bold ">
-                Welcome to Kanban!
-              </h1>
-              <p className="text-gray mt-1 text-base mb-8">
-                Get started by creating a workspace!
-              </p>
+            <div className="hidden md:block lg:w-[30rem] h-auto">
+              <img
+                src="/start-project.png"
+                alt="start project"
+                loading="eager"
+                className="w-72 lg:w-[30rem] h-auto"
+              />
             </div>
-            <Formik
-              initialValues={{ id: uuidv4(), name: "", email: "" }}
-              validationSchema={WorkspaceSchema}
-              validateOnChange={false}
-              validateOnBlur={false}
-              onSubmit={addWorkspaceHandler}
-            >
-              <Form>
-                <div className="my-4">
-                  <TextInput
-                    label="Organization's name"
-                    name="name"
-                    type="text"
-                    placeholder="E.g xyz"
-                  />
-                </div>
-                <div className="mb-6">
-                  <TextInput
-                    label="Email"
-                    name="email"
-                    type="email"
-                    placeholder="E.g xyz@gmail.com"
-                  />
-                </div>
+            <div className="w-96 mx-6 md:mx-0 mt-6">
+              <div>
+                <h1 className="text-primary text-xl sm:text-2xl md:text-3xl font-bold ">
+                  Welcome to Kanban!
+                </h1>
+                <p className="text-gray mt-1 text-base mb-8">
+                  Get started by creating a workspace!
+                </p>
+              </div>
+              <Formik
+                initialValues={{ id: uuidv4(), name: "", email: "" }}
+                validationSchema={WorkspaceSchema}
+                validateOnChange={false}
+                validateOnBlur={false}
+                onSubmit={addWorkspaceHandler}
+              >
+                <Form>
+                  <div className="my-4">
+                    <TextInput
+                      label="Organization's name"
+                      name="name"
+                      type="text"
+                      placeholder="E.g xyz"
+                    />
+                  </div>
+                  <div className="mb-6">
+                    <TextInput
+                      label="Email"
+                      name="email"
+                      type="email"
+                      placeholder="E.g xyz@gmail.com"
+                    />
+                  </div>
 
-                <div className="my-8">
-                  <button
-                    aria-label="Board"
-                    className=" px-2 text-white bg-primary font-bold py-4 w-full text-sm rounded-full"
-                    type="submit"
-                  >
-                    Create Workspace
-                  </button>
-                </div>
-              </Form>
-            </Formik>
-          </div>
+                  <div className="my-8">
+                    <button
+                      aria-label="Board"
+                      className=" px-2 text-white bg-primary font-bold py-4 w-full text-sm rounded-full"
+                      type="submit"
+                    >
+                      Create Workspace
+                    </button>
+                  </div>
+                </Form>
+              </Formik>
+            </div>
           </div>
         </div>
       ) : null}

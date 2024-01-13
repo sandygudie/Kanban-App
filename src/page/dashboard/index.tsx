@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import Header from "components/Header";
-import { MdVisibilityOff } from "react-icons/md";
+import { GoSidebarExpand } from "react-icons/go";
 import SideBar from "components/SideBar";
 import Board from "components/Board";
 import { useSelector } from "react-redux";
@@ -51,11 +51,11 @@ export default function Index() {
           setShowSidebar(true);
         }}
         className={` ${
-          showSidebar ? "hidden" : "block"
-        } cursor-pointer fixed z-40 bottom-10 text-white rounded-r-full bg-primary p-4 w-12 transition ease-in-out duration-[2s]`}
+          showSidebar ? "opacity-0 delay-100 " : "opacity-100 delay-500"
+        } cursor-pointer z-20 fixed top-16 text-white rounded-r-full bg-primary p-2 transition ease-in-out`}
       >
         {" "}
-        <MdVisibilityOff size={20} />{" "}
+        <GoSidebarExpand size={20} />{" "}
       </button>
     </div>
   );

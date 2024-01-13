@@ -1,3 +1,9 @@
+import {
+  Modal,
+  ModalOverlay,
+  ModalContent,
+} from "@chakra-ui/react";
+
 interface Props {
   open: boolean;
   handleClose: () => void;
@@ -5,32 +11,27 @@ interface Props {
   showDowndrop?: boolean;
 }
 
-export default function Modal({
+export default function ModalPopup({
   children,
   open,
   handleClose,
   showDowndrop,
 }: Props) {
   return (
-    <>
-      {open && (
-        <div className="z-50">
-          <button
-            onClick={handleClose}
-            className="z-50 bg-black/70 fixed -translate-y-[50%] -translate-x-[50%] top-[50%] left-[50%] w-screen h-screen"
-          />
-          <div
-            className={`z-50 rounded-lg overflow-hidden ${
-              showDowndrop
-                ? "w-[17rem] p-2 top-[13rem]"
-                : `w-[17rem] sm:w-[20rem] p-4 md:w-[33rem] md:p-6 top-[50%]`
-            }  fixed bg-white dark:bg-secondary 
-            -translate-y-[50%] -translate-x-[50%] left-[50%] rounded-lg max-h-[27rem] h-auto md:max-h-[33rem] overflow-auto`}
-          >
-            {children}
-          </div>
+    <Modal isCentered isOpen={open} onClose={handleClose}>
+      <ModalOverlay />
+      <ModalContent className="!w-auto !rounded-full !bg-white !dark:bg-secondary">
+        <div
+          className={`rounded-lg  ${
+            showDowndrop
+              ? "w-[17rem] p-2 top-[13rem]"
+              : `w-[17rem] sm:w-[20rem] p-4 md:w-[33rem] md:p-6 top-[50%]`
+          }  bg-white dark:bg-secondary 
+            rounded-lg max-h-[27rem] h-auto md:max-h-[33rem] overflow-auto`}
+        >
+          {children}
         </div>
-      )}
-    </>
+      </ModalContent>
+    </Modal>
   );
 }
