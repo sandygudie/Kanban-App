@@ -42,14 +42,14 @@ function Popup({ items, style, handleOpenMenu, description }: Props) {
                 key={i}
                 disabled={list.status === false}
                 onClick={list.handler}
-                className={`block w-full text-left font-semiBold text-[0.95rem] ${
+                className={`block w-full text-left font-semiBold dark:text-white text-black hover:text-primary text-[0.95rem] ${
                   description
                     ? `${
                         list.status === false
-                          ? "bg-gray/10 text-gray cursor-not-allowed"
+                          ? "bg-gray/10 !text-gray hover:!text-gray  cursor-not-allowed"
                           : "dark:text-white text-black hover:bg-primary hover:text-white"
                       } py-3 text-[0.9rem]`
-                    : "dark:hover:text-primary py-2 text-[0.72rem]"
+                    : " py-2 text-[0.72rem]"
                 }  px-4
                ${i < items.length - 1 && `border-b-[1px] border-gray/20`}`}
               >
