@@ -4,7 +4,7 @@ import { ISubTask, ITask } from "types";
 import AddTask from "./AddTask";
 import TaskDetails from "./TaskDetails";
 import { Draggable } from "@hello-pangea/dnd";
-import {  colorSelection } from "utilis";
+import { colorSelection } from "utilis";
 interface Props {
   tasks: ITask;
   filtered: ISubTask[];
@@ -26,7 +26,6 @@ export default function TaskItem({ tasks, filtered, index }: Props) {
               ref={provided.innerRef}
               {...provided.draggableProps}
               {...provided.dragHandleProps}
-            
               className={`${
                 snapshot.isDragging
                   ? "!top-auto !left-auto bg-purple/20"
@@ -41,7 +40,7 @@ export default function TaskItem({ tasks, filtered, index }: Props) {
                 style={{
                   borderColor: colorSelection(),
                 }}
-                className="hover:opacity-60 shadow-lg  
+                className="shadow-lg hover:bg-gray/20
               cursor-pointer rounded-lg border-l-2 mb-4 py-6 px-4"
               >
                 <p className="font-bold text-sm">{tasks.title} </p>

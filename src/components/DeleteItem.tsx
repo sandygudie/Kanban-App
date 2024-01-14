@@ -63,7 +63,7 @@ export default function Delete({
       <div className="text-center flex items-center justify-around mt-8">
         <button
 
-          className="py-2 w-fit md:w-40 text-white hover:bg-error/10 px-4 rounded-md bg-error font-bold"
+          className="py-2 w-fit md:w-40 text-white hover:bg-error px-4 rounded-md bg-error/70 font-bold"
           type="button"
           onClick={
             isDeleteBoard
@@ -78,7 +78,7 @@ export default function Delete({
         </button>
         <button
        
-          className="py-2 w-fit md:w-40 font-bold hover:bg-error/10 bg-gray/50 duration-300 px-4 rounded-md"
+          className="py-2 w-fit md:w-40 font-bold hover:bg-gray bg-gray/70 duration-300 px-4 rounded-md"
           type="button"
           onClick={handleClose}
         >

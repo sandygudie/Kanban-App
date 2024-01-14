@@ -78,7 +78,7 @@ export default function Index({
                         ? handleaddBoardMobile()
                         : setIsOpen(true);
                     }}
-                    className="pl-4 mt-4 font-bold cursor-pointer text-primary hover:text-primary/60"
+                    className="pl-4 mt-4 font-bold cursor-pointer text-primary/80 hover:text-primary"
                   >
                     <div className="flex items-center ">
                       {" "}

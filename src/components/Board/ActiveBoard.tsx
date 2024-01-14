@@ -150,7 +150,7 @@ export default function ActiveBoard() {
                         }}
                       >
                         {" "}
-                        <AiOutlineDelete className="text-sm text-error" />{" "}
+                        <AiOutlineDelete className="text-sm text-error/80 hover:text-error" />{" "}
                       </IconButton>
 
                       <div className="flex flex-col">
@@ -160,8 +160,8 @@ export default function ActiveBoard() {
                           }}
                         >
                           <PiDotsThreeLight
-                            className="relative font-bold"
-                            size={20}
+                            className="relativefont-bold"
+                            size={30}
                           />
                         </IconButton>
 
@@ -222,7 +222,7 @@ export default function ActiveBoard() {
                 onClick={() => setEditBoard(true)}
                 className="h-full w-full bg-primary/30 hover:bg-primary/40 cursor-pointer flex items-center flex-col justify-center text-center rounded-lg"
               >
-                <p className="text-xl hover:text-primary/70 text-primary font-bold">
+                <p className="text-xl hover:text-primary text-primary/50 font-bold">
                   {" "}
                   + Add Column
                 </p>
