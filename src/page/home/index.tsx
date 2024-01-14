@@ -64,13 +64,13 @@ export default function Index() {
           <Link to="/">
             <Icon type="kanban_logo" />
           </Link>
-          <div className="hidden md:flex items-center gap-x-6">
+          <div className="hidden md:flex items-center gap-x-12 w-4/6 justify-end">
             {navItems.map((ele) => {
               return (
                 <a
                   key={ele.title}
                   href={`#${ele.link}`}
-                  className="hover:text-primary"
+                  className="hover:text-primary text-lg"
                 >
                   {ele.title}
                 </a>
@@ -93,7 +93,7 @@ export default function Index() {
                   shift priorities, track project progress, and stay on top of
                   deadlines.
                 </p>
-                {/* <div className="hover:scale-110 transition ease-in-out w-fit mx-auto delay-100 duration-300"> */}
+  
                 <div className=" w-fit mx-auto ">
                   <Link
                     to="/dashboard"

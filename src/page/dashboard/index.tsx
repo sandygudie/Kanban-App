@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import Header from "components/Header";
-import { GoSidebarExpand } from "react-icons/go";
+import { GoSidebarCollapse } from "react-icons/go";
 import SideBar from "components/SideBar";
 import Board from "components/Board";
 import { useSelector } from "react-redux";
@@ -55,7 +55,7 @@ export default function Index() {
         } cursor-pointer z-20 fixed top-16 text-white rounded-r-full bg-primary p-2 transition ease-in-out`}
       >
         {" "}
-        <GoSidebarExpand size={20} />{" "}
+        < GoSidebarCollapse size={20} />{" "}
       </button>
     </div>
   );

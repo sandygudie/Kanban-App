@@ -5,7 +5,6 @@ import AddTask from "./AddTask";
 import TaskDetails from "./TaskDetails";
 import { Draggable } from "@hello-pangea/dnd";
 import {  colorSelection } from "utilis";
-
 interface Props {
   tasks: ITask;
   filtered: ISubTask[];
@@ -17,6 +16,7 @@ export default function TaskItem({ tasks, filtered, index }: Props) {
   const [isOpenModal, setOpenModal] = useState(false);
 
   const handleOpenModal = () => setOpenModal(true);
+
   return (
     <>
       <Draggable key={tasks.id} draggableId={tasks.id.toString()} index={index}>
@@ -24,9 +24,14 @@ export default function TaskItem({ tasks, filtered, index }: Props) {
           return (
             <div
               ref={provided.innerRef}
-              data-snapshot={snapshot}
               {...provided.draggableProps}
               {...provided.dragHandleProps}
+            
+              className={`${
+                snapshot.isDragging
+                  ? "!top-auto !left-auto bg-purple/20"
+                  : "bg-white dark:bg-secondary"
+              } select-none rounded-lg`}
               data-id={index}
               onClick={() => {
                 setIsOpen(true);
@@ -34,11 +39,10 @@ export default function TaskItem({ tasks, filtered, index }: Props) {
             >
               <div
                 style={{
-                  borderColor: colorSelection()
-                   
+                  borderColor: colorSelection(),
                 }}
                 className="hover:opacity-60 shadow-lg  
-              cursor-pointer bg-white dark:bg-secondary border-l-2  mb-4 rounded-lg py-6 px-4"
+              cursor-pointer rounded-lg border-l-2 mb-4 py-6 px-4"
               >
                 <p className="font-bold text-sm">{tasks.title} </p>
                 <p className="pt-2 text-xs text-gray font-bold">

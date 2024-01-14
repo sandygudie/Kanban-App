@@ -1,5 +1,5 @@
 import { Dispatch, SetStateAction, useState } from "react";
-import { GoSidebarCollapse } from "react-icons/go";
+import {GoSidebarExpand } from "react-icons/go";
 import Icon from "components/Icon";
 import { AppState, IBoard } from "types";
 import { useMediaQuery } from "react-responsive";
@@ -8,7 +8,6 @@ import { appData, activeItem } from "redux/boardSlice";
 import { IoIosAdd } from "react-icons/io";
 import Modal from "components/Modal";
 import AddBoard from "components/Board/AddBoard";
-// import { Collapse } from "@chakra-ui/react";
 interface Props {
   showSidebar: boolean;
   setShowSidebar?: Dispatch<SetStateAction<boolean>>;
@@ -102,7 +101,7 @@ export default function Index({
                 }}
                 className="cursor-pointer text-white bg-primary p-2 rounded-l-full border-none inline-flex items-center gap-x-2 text-xs"
               >
-                <GoSidebarCollapse size={20} />
+                <GoSidebarExpand  size={20} />
               </button>
             </div>
           </div>

@@ -78,7 +78,6 @@ export default function ActiveBoard() {
     setInputError(false);
     setEditedText(e.target.value);
   };
-
   return (
     <>
       <DragDropContext onDragEnd={onDragEnd}>
@@ -153,32 +152,34 @@ export default function ActiveBoard() {
                         {" "}
                         <AiOutlineDelete className="text-sm text-error" />{" "}
                       </IconButton>
-                      <IconButton
-                        handleClick={() => {
-                          setOpenPopup(true), setSelectedColumn(item);
-                        }}
-                      >
-                        <div>
+
+                      <div className="flex flex-col">
+                        <IconButton
+                          handleClick={() => {
+                            setOpenPopup(true), setSelectedColumn(item);
+                          }}
+                        >
                           <PiDotsThreeLight
                             className="relative font-bold"
                             size={20}
                           />
-                          {isOpenPopup && selectedColumn?.id === item.id ? (
-                            <div>
-                              <Popup
-                                handleOpenMenu={() => setOpenPopup(false)}
-                                style={{}}
-                                items={[
-                                  {
-                                    title: "Add Card",
-                                    handler: addCard,
-                                  },
-                                ]}
-                              />
-                            </div>
-                          ) : null}
-                        </div>
-                      </IconButton>
+                        </IconButton>
+
+                        {isOpenPopup && selectedColumn?.id === item.id ? (
+                          <div>
+                            <Popup
+                              handleOpenMenu={() => setOpenPopup(false)}
+                              style={{}}
+                              items={[
+                                {
+                                  title: "Add Card",
+                                  handler: addCard,
+                                },
+                              ]}
+                            />
+                          </div>
+                        ) : null}
+                      </div>
                     </div>
                   </div>
 
@@ -190,21 +191,19 @@ export default function ActiveBoard() {
                         className="mt-4 h-full"
                       >
                         {item.tasks.length > 0 ? (
-                          <div>
-                            {item.tasks.map((tasks: ITask, index: number) => {
-                              const filtered = tasks.subtasks.filter(
-                                (item) => item.isCompleted === true
-                              );
-                              return (
-                                <TaskItem
-                                  tasks={tasks}
-                                  filtered={filtered}
-                                  key={tasks.id}
-                                  index={index}
-                                />
-                              );
-                            })}
-                          </div>
+                          item.tasks.map((tasks: ITask, index: number) => {
+                            const filtered = tasks.subtasks.filter(
+                              (item) => item.isCompleted === true
+                            );
+                            return (
+                              <TaskItem
+                                tasks={tasks}
+                                filtered={filtered}
+                                key={tasks.id}
+                                index={index}
+                              />
+                            );
+                          })
                         ) : (
                           <div className="w-[250px] shrink-0 h-full">
                             <div className="h-screen dark:bg-secondary/20 border-dashed border-2 border-gray rounded-lg"></div>
