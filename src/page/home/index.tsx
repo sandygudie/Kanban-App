@@ -77,8 +77,7 @@ export default function Index() {
               );
             })}
           </div>
-          <div className="hover:scale-110 transition ease-in-out delay-100 duration-300">
-          </div>
+          <div className="hover:scale-110 transition ease-in-out delay-100 duration-300"></div>
         </header>
         <main>
           <div>
@@ -93,7 +92,7 @@ export default function Index() {
                   shift priorities, track project progress, and stay on top of
                   deadlines.
                 </p>
-  
+
                 <div className=" w-fit mx-auto ">
                   <Link
                     to="/dashboard"
@@ -110,7 +109,6 @@ export default function Index() {
             className="px-4 md:px-0 text-center rounded-b-[9rem] py-24"
           >
             <h1 className="text-3xl md:text-4xl font-bold">Features</h1>
-
             <div className="box my-6 md:my-16 ">
               <div className="simplified-view grid items-center md:grid-cols-2 md:ml-24">
                 <img
@@ -151,29 +149,22 @@ export default function Index() {
           </section>
           <section
             id="technologies"
-            className="px-3 md:px-0 md:mx-auto  text-center"
+            className="px-3 md:px-0 md:mx-auto text-center"
           >
-            <h1 className="text-3xl md:text-4xl font-bold">Technologies</h1>
+            <h1 className="text-3xl md:text-4xl font-bold">Built with</h1>
             <Marquee className="mt-12 ">
               {[
-                "Vite(ReactJs)",
-                "TypeScript",
-                "TailwindCSS",
-                "Redux Toolkit",
-                "Formik-yup",
-                "GSAP",
-                "Framer-motion",
-                "Chakara-UI",
-                "Cypress",
+                "formik.png",
+                "gsap.png",
+                "tailwind-css-logo.png",
+                "atom.webp",
+                "chakara-ui.png",
+                "formik.png",
+                "redux.webp",
+                "typescript.webp",
+                "cypress.png",
               ].map((ele, index) => {
-                return (
-                  <div
-                    key={index}
-                    className="px-2 font-bold md:px-6 text-white mr-8 py-3 bg-primary/30 rounded-lg text-sm md:text-base"
-                  >
-                    {ele}
-                  </div>
-                );
+                return <img key={index} src={ele} className="w-36 mx-4" />;
               })}
             </Marquee>
           </section>
