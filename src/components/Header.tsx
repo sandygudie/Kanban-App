@@ -1,9 +1,7 @@
 import { useState } from "react";
 import { IoIosAdd } from "react-icons/io";
-import AddBoard from "./Board/AddBoard";
 import logoMobile from "../assets/logo-mobile.svg";
 import AddTask from "./Board/AddTask";
-import DeleteItem from "./DeleteItem";
 import Icon from "./Icon";
 import Modal from "./Modal";
 import Popup from "./Popup";
@@ -11,28 +9,31 @@ import { useSelector } from "react-redux";
 import { appData } from "redux/boardSlice";
 import { AppState } from "types";
 import ToggleBtn from "./ToggleBtn";
-import { MdOutlineDashboard } from "react-icons/md";
 import { HiOutlineChevronDown } from "react-icons/hi";
 import { useNavigate } from "react-router-dom";
+import { GoScreenFull } from "react-icons/go";
+import { MdZoomInMap } from "react-icons/md";
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
-  const [isOpenBoard, setOpenBoard] = useState(false);
   const [isWorkspaceMenu, setWorkspaceMenu] = useState(false);
-  const [isOpenMenu, setOpenMenu] = useState(false);
-  const [isDeleteBoard, setDeleteBoard] = useState(false);
   const data: AppState = useSelector(appData);
   const { active, profile } = data;
   const currentTheme = localStorage.getItem("theme")!;
   const [theme, setTheme] = useState(currentTheme ? currentTheme : "dark");
   const updateThemehandler = (theme: string) => setTheme(theme);
+  const [isFullscreen, setFullScreen] = useState(false);
   const navigate = useNavigate();
-  const editBoard = () => {
-    setOpenBoard(true);
-    setOpenMenu(false);
-  };
-  const handleOpenMenu = () => setOpenMenu(false);
 
+  function toggleFullScreen() {
+    if (!document.fullscreenElement) {
+      document.documentElement.requestFullscreen();
+      setFullScreen(true);
+    } else if (document.exitFullscreen) {
+      document.exitFullscreen();
+      setFullScreen(false);
+    }
+  }
   return (
     <div>
       <div className="fixed w-full z-40">
@@ -108,6 +109,12 @@ export default function Header() {
             </div>
 
             <div className="flex items-center gap-x-6">
+              <button
+                onClick={() => toggleFullScreen()}
+                className="font-bold text-primary text-xl"
+              >
+                {isFullscreen ? <MdZoomInMap /> : <GoScreenFull />}
+              </button>
               <ToggleBtn
                 updateThemehandler={updateThemehandler}
                 theme={theme}
@@ -133,35 +140,6 @@ export default function Header() {
                       </span>
                     </button>
                   ) : null}
-                  <>
-                    <button
-                      onClick={() => setOpenMenu(!isOpenMenu)}
-                      className="text-base font-bold flex items-center gap-x-1  px-2.5 md:px-5 py-2.5 rounded-full bg-primary/70 hover:bg-primary text-sm font-bold text-white"
-                    >
-                      <span>
-                        <MdOutlineDashboard className="font-bold md:text-xl" />
-                      </span>
-                      <span className="hidden md:inline"> Board</span>
-                    </button>
-                    {isOpenMenu && (
-                      <Popup
-                        style={{ top: 60, right: 24 }}
-                        handleOpenMenu={handleOpenMenu}
-                        items={[
-                          {
-                            title: "Edit Board",
-                            handler: editBoard,
-                          },
-                          {
-                            title: "Delete Board",
-                            handler: () => {
-                              setDeleteBoard(true), handleOpenMenu();
-                            },
-                          },
-                        ]}
-                      />
-                    )}
-                  </>
                 </div>
               ) : null}
             </div>
@@ -170,22 +148,12 @@ export default function Header() {
       </div>
 
       <Modal
-        open={isOpen || isOpenBoard || isDeleteBoard}
+        open={isOpen}
         handleClose={() => {
-          setIsOpen(false), setDeleteBoard(false), setOpenBoard(false);
+          setIsOpen(false);
         }}
       >
-        {isOpenBoard ? (
-          <AddBoard active={active} handleClose={() => setOpenBoard(false)} />
-        ) : isDeleteBoard ? (
-          <DeleteItem
-            handleClose={() => setDeleteBoard(false)}
-            isDeleteBoard={isDeleteBoard}
-            name={active.name}
-          />
-        ) : (
-          <AddTask handleClose={() => setIsOpen(false)} />
-        )}
+        <AddTask handleClose={() => setIsOpen(false)} />
       </Modal>
     </div>
   );

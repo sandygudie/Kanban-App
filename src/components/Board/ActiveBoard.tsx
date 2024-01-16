@@ -81,8 +81,8 @@ export default function ActiveBoard() {
   return (
     <>
       <DragDropContext onDragEnd={onDragEnd}>
-        <div className="h-[90vh]">
-          <div className="mt-3 z-10 h-full flex gap-x-10 w-full">
+        <div className="h-[90vh] mb-10">
+          <div className="z-10 h-full flex gap-x-10 w-full">
             {active.columns?.map((item: IColumn, index: number) => {
               return (
                 <div key={item.name} className="w-[250px] shrink-0">

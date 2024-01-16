@@ -161,7 +161,7 @@ export default function Index() {
                 "chakara-ui.png",
                 "formik.png",
                 "redux.webp",
-                "typescript.webp",
+                "typescript-new.webp",
                 "cypress.png",
               ].map((ele, index) => {
                 return <img key={index} src={ele} className="w-36 mx-4" />;

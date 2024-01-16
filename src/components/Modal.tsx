@@ -27,7 +27,7 @@ export default function ModalPopup({
               ? "w-[17rem] p-2 top-[13rem]"
               : `w-[17rem] sm:w-[20rem] p-4 md:w-[33rem] md:p-6 top-[50%]`
           }  bg-white dark:bg-secondary 
-            rounded-lg max-h-[27rem] h-auto md:max-h-[33rem] overflow-auto`}
+            rounded-lg max-h-[27rem] h-auto md:max-h-[35rem] overflow-auto md:overflow-hidden`}
         >
           {children}
         </div>
