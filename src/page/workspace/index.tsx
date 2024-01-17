@@ -11,6 +11,12 @@ import ToggleBtn from "components/ToggleBtn";
 import { Link, useNavigate } from "react-router-dom";
 import { AppState } from "types";
 import { IoArrowBack } from "react-icons/io5";
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
+import "swiper/css/pagination";
+import "swiper/css/navigation";
+import "swiper/css/autoplay";
+import { Autoplay, Pagination } from "swiper/modules";
 
 export default function Index() {
   const navigate = useNavigate();
@@ -111,18 +117,39 @@ export default function Index() {
               Available workspace
             </button>
           ) : null}
-          <div className="flex-wrap flex items-start md:items-center relative h-full justify-center md:mt-12">
-            <div className="hidden md:block lg:w-[30rem] h-auto">
-              <img
-                src="/start-project.png"
-                alt="start project"
-                loading="eager"
-                className="w-72 lg:w-[30rem] h-auto"
-              />
-            </div>
-            <div className="w-96 mx-6 md:mx-0 mt-6">
+          <div className="flex-wrap flex items-start md:items-center relative h-full justify-center">
+            <Swiper
+              loop={true}
+              spaceBetween={20}
+              centeredSlides={true}
+              autoplay={{
+                delay: 2500,
+                disableOnInteraction: false,
+              }}
+              pagination={{
+                clickable: true,
+              }}
+              modules={[Autoplay, Pagination]}
+              className="mySwiper hidden md:inline md:w-[30rem] ml-0 mr-10 h-auto"
+            >
+              {["/start-project.webp", "/todo-graphic.webp", "/todo.webp"].map(
+                (ele, index) => {
+                  return (
+                    <SwiperSlide key={index}>
+                      <img
+                        src={ele}
+                        alt="start project"
+                        loading="eager"
+                        className="w-[25rem] h-auto"
+                      />
+                    </SwiperSlide>
+                  );
+                }
+              )}
+            </Swiper>
+            <div className="w-96 mx-6 md:mx-0 mt-8">
               <div>
-                <h1 className="text-primary text-xl sm:text-2xl md:text-3xl font-bold ">
+                <h1 className="text-primary text-xl sm:text-3xl md:text-3xl font-bold ">
                   Welcome to Kanban!
                 </h1>
                 <p className="text-gray mt-1 text-base mb-8">

@@ -27,6 +27,7 @@
     "react-redux": "^8.0.5",
     "react-responsive": "^9.0.0",
     "react-router-dom": "6",
+    "swiper": "^11.0.5",
     "uuidv4": "^6.2.13",
     "yup": "^0.32.11"
   },

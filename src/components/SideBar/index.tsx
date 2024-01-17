@@ -62,7 +62,7 @@ export default function Index({
                       return (
                         <button
                           key={options.id}
-                          className={`py-3 w-52 px-4 relative flex items-center group justify-between font-bold cursor-pointer ${`${
+                          className={`py-3 w-[14rem] px-4 relative flex items-center group justify-between font-bold cursor-pointer ${`${
                             active.id === options.id
                               ? "bg-primary rounded-r-full text-white"
                               : `${
@@ -80,11 +80,18 @@ export default function Index({
                         >
                           <div className="flex items-center gap-x-2 justify-between">
                             <Icon type="board" />
-                            {options.name}
+                            <span>
+                              {" "}
+                              {options.name}
+                              <span className="text-sm font-bold pl-1">
+                                ({options.columns.length})
+                              </span>
+                            </span>
                           </div>
                           <span onClick={() => setOpenMenu(true)}>
                             <div className="relative">
                               <CgMoreVerticalO
+                                size={15}
                                 className={`${
                                   isOpenMenu
                                     ? `${active.id !== options.id && `hidden`}`
