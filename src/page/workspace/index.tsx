@@ -50,9 +50,9 @@ export default function Index() {
     dispatch(addWorkspace(values));
     navigate("/dashboard");
   };
-
+  console.log(isCreateWorkspace);
   return (
-    <div className="w-full h-full">
+    <div className={`w-full ${isCreateWorkspace ? "h-full" : "h-screen"}`}>
       <header className="bg-white h-[65px] dark:bg-secondary flex items-center w-full border-b-[1px] border-gray/20">
         <div
           className={`border-r-[1px] border-gray/20 py-6 px-4 min-w-[14rem] cursor-pointer hidden md:block`}
@@ -70,7 +70,7 @@ export default function Index() {
         </div>
       </header>
       {!isCreateWorkspace && profile.id.length > 0 ? (
-        <div className="h-full mt-12 overflow-hidden">
+        <div className="h-full overflow-hidden">
           <div className="mx-auto h-full flex flex-col items-center justify-center ">
             <div>
               <h1 className="text-xl md:text-2xl text-center">
@@ -104,7 +104,7 @@ export default function Index() {
         </div>
       ) : null}
       {isCreateWorkspace ? (
-        <div className="h-full">
+        <div className={`${profile.id.length > 0 ? "h-full" : "h-screen"} `}>
           {profile.id.length > 0 ? (
             <button
               onClick={() => setCreateWorkspace(false)}
@@ -132,7 +132,7 @@ export default function Index() {
               modules={[Autoplay, Pagination]}
               className="mySwiper hidden md:inline md:w-[30rem] ml-0 mr-10 h-auto"
             >
-              {["/start-project.webp", "/todo-graphic.webp", "/todo.webp"].map(
+              {["/start-project.webp", "/todo-graphic.webp", "/tod.webp"].map(
                 (ele, index) => {
                   return (
                     <SwiperSlide key={index}>
@@ -147,7 +147,7 @@ export default function Index() {
                 }
               )}
             </Swiper>
-            <div className="w-96 mx-6 md:mx-0 mt-8">
+            <div className="w-96 mx-6 md:mx-0 mt-20 md:mt-0">
               <div>
                 <h1 className="text-primary text-xl sm:text-3xl md:text-3xl font-bold ">
                   Welcome to Kanban!

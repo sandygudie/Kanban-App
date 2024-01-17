@@ -119,6 +119,7 @@
     font: inherit;
     background-color: transparent;
   }
+  
 }
 ::-webkit-scrollbar {
   width: 8px;
@@ -153,5 +154,9 @@
   border-top: 10px solid #383636;
   border-radius: 50%;
   animation: spinner 1.5s linear infinite;
+}
+
+.swiper-pagination-bullet{
+  @apply bg-primary dark:bg-white;
 }
 
